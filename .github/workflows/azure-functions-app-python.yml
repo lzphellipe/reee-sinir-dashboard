@@ -1,0 +1,108 @@
+# Testa, atualiza os dados e publica o Painel REEE Brasil num Azure Functions App (Linux)
+# a cada push na branch main (ou manualmente, pela aba Actions).
+#
+# Pré-requisitos (uma vez só):
+# 1. Crie o Function App no Azure: Linux, Python 3.12, plano Consumption ou Flex Consumption.
+#    A conta de armazenamento criada junto (AzureWebJobsStorage) também guarda os dados do painel.
+# 2. Em Settings › Secrets and variables › Actions do repositório:
+#    - secret   AZURE_FUNCTIONAPP_PUBLISH_PROFILE  (Function App › Overview › Get publish profile)
+#    - variable AZURE_FUNCTIONAPP_NAME             (nome do Function App, ex.: painel-reee)
+#    Se preferir RBAC em vez do publish profile, veja o passo comentado "Login via Azure CLI".
+# 3. Crie o environment "dev" em Settings › Environments (pode exigir aprovação antes do deploy).
+#
+# Referências:
+#   - Azure Functions Action: https://github.com/Azure/functions-action
+#   - Publish profile:        https://github.com/Azure/functions-action#using-publish-profile-as-deployment-credential-recommended
+#   - RBAC:                   https://github.com/Azure/functions-action#using-azure-service-principal-for-rbac-as-deployment-credential
+
+name: Deploy do painel no Azure Functions
+
+on:
+  push:
+    branches: ["main"]
+    paths-ignore: ["docs/**", "notebooks/**", "**.md"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: azure-functions-deploy
+  cancel-in-progress: false
+
+env:
+  AZURE_FUNCTIONAPP_NAME: ${{ vars.AZURE_FUNCTIONAPP_NAME || 'painel-reee' }}  # nome do Function App no Azure
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'   # function_app.py e host.json ficam na raiz do repositório
+  PYTHON_VERSION: '3.12'                # 3.12 é a última aceita no Linux Consumption; o projeto exige 3.10+
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@v4
+
+    # Para usar Azure RBAC em vez do publish profile, descomente este passo e
+    # remova "publish-profile" do passo de deploy.
+    # - name: 'Login via Azure CLI'
+    #   uses: azure/login@v2
+    #   with:
+    #     creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
+
+    - name: Setup Python ${{ env.PYTHON_VERSION }} Environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: pip
+
+    - name: 'Testes'
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-dev.txt
+        python -m pytest -q
+
+    # Atualiza os dados que vão dentro do pacote. É o "plano B" do painel enquanto
+    # o Blob Storage ainda não tem dados (primeiro deploy) ou se a coleta da nuvem falhar.
+    - name: 'Atualizar os dados empacotados'
+      shell: bash
+      env:
+        PYTHONPATH: src
+      run: |
+        sudo apt-get install -y unar >/dev/null || true
+        if python -m reee.pipeline --coletar; then
+          echo "Dados oficiais atualizados."
+        else
+          echo "::warning::Coleta oficial falhou; publicando com os dados já versionados."
+          python -m reee.pipeline || true
+        fi
+
+    # As dependências são instaladas pelo próprio Azure (build remoto com Oryx, abaixo),
+    # que gera os pacotes para o Linux do Functions. Por isso não há "pip install --target" aqui.
+    - name: 'Run Azure Functions Action'
+      uses: Azure/functions-action@v1
+      id: fa
+      with:
+        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}  # remova para usar RBAC
+        scm-do-build-during-deployment: true
+        enable-oryx-build: true
+
+    - name: 'Verificar o painel publicado'
+      shell: bash
+      run: |
+        url="${{ steps.fa.outputs.app-url }}"
+        url="${url:-https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net}"
+        for tentativa in 1 2 3 4 5 6; do
+          if curl -fsS "$url/api/status" -o status.json; then
+            echo "Painel no ar: $url"
+            cat status.json
+            curl -fsS -o /dev/null "$url/" && curl -fsS -o /dev/null "$url/data/dashboard.json"
+            exit 0
+          fi
+          echo "Ainda iniciando (tentativa $tentativa)…"; sleep 20
+        done
+        echo "::error::O painel não respondeu em $url/api/status"
+        exit 1
