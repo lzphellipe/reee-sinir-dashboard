@@ -4,3 +4,9 @@ __pycache__/
 .pytest_cache/
 dist/
 .ipynb_checkpoints/
+
+# downloads e extrações do SINIR (recriados pela coleta)
+data/raw/sinir/_download/
+data/raw/sinir/extraido/
+*.parcial
+dashboard/data/*.tmp

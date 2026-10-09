@@ -47,9 +47,10 @@ def numero_br(valor) -> float:
     elif s.count(".") > 1:  # "1.234.567" sem decimal
         s = s.replace(".", "")
     try:
-        return float(s)
+        x = float(s)
     except ValueError:
         return np.nan
+    return x if np.isfinite(x) else np.nan  # "1" * 400 viraria infinito
 
 
 def padronizar_colunas(df: pd.DataFrame, aliases: dict[str, list[str]]) -> pd.DataFrame:

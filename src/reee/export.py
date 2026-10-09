@@ -63,7 +63,9 @@ def simplificar_geojson(origem, destino, casas: int = 2) -> None:
                        encoding="utf-8")
 
 
-def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str) -> dict:
+def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str, proveniencia: dict | None = None,
+             extras: dict | None = None) -> dict:
+    extras = extras or {}
     for p in (C.PROCESSED, C.POWERBI, C.DASHBOARD_DATA):
         p.mkdir(parents=True, exist_ok=True)
 
@@ -77,9 +79,16 @@ def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str) -> dict:
     # cópia para o dashboard publicar como dados abertos
     abertos = C.DASHBOARD_DATA / "abertos"
     abertos.mkdir(parents=True, exist_ok=True)
+    if "planos_mun" in extras:
+        (extras["planos_mun"].merge(mun[["cod_ibge", "municipio", "uf"]], on="cod_ibge")
+         .to_csv(C.PROCESSED / "planos_municipais_reee.csv", index=False, encoding="utf-8-sig"))
+    else:
+        (C.PROCESSED / "planos_municipais_reee.csv").unlink(missing_ok=True)
+        (abertos / "planos_municipais_reee.csv").unlink(missing_ok=True)
     for nome in ("municipios", "indicadores_municipio_ano", "indicadores_uf_ano",
-                 "indicadores_brasil_ano", "prioridade_novos_pontos"):
-        (abertos / f"{nome}.csv").write_bytes((C.PROCESSED / f"{nome}.csv").read_bytes())
+                 "indicadores_brasil_ano", "prioridade_novos_pontos", "planos_municipais_reee"):
+        if (C.PROCESSED / f"{nome}.csv").exists():
+            (abertos / f"{nome}.csv").write_bytes((C.PROCESSED / f"{nome}.csv").read_bytes())
 
     # ---- Power BI: modelo estrela ----
     dim.to_csv(C.POWERBI / "dim_municipio.csv", index=False, encoding="utf-8-sig")
@@ -94,19 +103,27 @@ def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str) -> dict:
     m = mun.sort_values(["uf", "municipio"]).reset_index(drop=True)
     idx = {c: i for i, c in enumerate(m["cod_ibge"])}
     n, anos = len(m), C.ANOS
-    pts = np.zeros((n, len(anos)), dtype=int)
+    pts = np.full((n, len(anos)), np.nan)
     ton = np.full((n, len(anos)), np.nan)
     for r in fmun[["cod_ibge", "ano", "pontos", "toneladas"]].itertuples(index=False):
         i, j = idx[r.cod_ibge], anos.index(r.ano)
         pts[i, j] = r.pontos
         ton[i, j] = r.toneladas
-    ent = (pontos.groupby(["ano", "entidade"]).size().rename("pontos").reset_index())
-    tipo = (pontos.groupby(["ano", "tipo"]).size().rename("pontos").reset_index())
+    vazio = pd.DataFrame(columns=["ano", "entidade", "tipo", "pontos"])
+    ent = pontos.groupby(["ano", "entidade"]).size().rename("pontos").reset_index() if len(pontos) else vazio
+    if "entidade_ano" in extras:
+        ent = extras["entidade_ano"]
+    tipo = pontos.groupby(["ano", "tipo"]).size().rename("pontos").reset_index() if len(pontos) else vazio
     ufs = (mun.groupby(["uf", "nome_uf", "regiao"]).size().reset_index()[["uf", "nome_uf", "regiao"]])
 
     pacote = {
         "meta": {
             "fonte": fonte,
+            "proveniencia": proveniencia or {},
+            "anos_com_dados": sorted(int(a) for a in fmun.loc[fmun["tem_info"], "ano"].unique())
+                              or sorted(int(a) for a in fbr.loc[fbr["pontos"].notna() | fbr["toneladas"].notna(), "ano"]),
+            "fontes_relatorios": extras.get("fontes_relatorios", {}),
+            "ano_prioridade": int(prio["ano"].iloc[0]) if len(prio) else None,
             "gerado_em": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "anos": anos,
             "limiar_populacional": C.LIMIAR_POPULACIONAL,
@@ -123,7 +140,7 @@ def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str) -> dict:
             "lon": m["lon"].round(3).tolist(),
             "pop": m["populacao"].astype(int).tolist(),
             "capital": m["capital"].astype(int).tolist(),
-            "pontos": pts.tolist(),
+            "pontos": [[None if not np.isfinite(v) else int(v) for v in row] for row in pts],
             "ton": [[None if not np.isfinite(v) else round(float(v), 2) for v in row] for row in ton],
         },
         "uf_ano": _registros(fuf),
@@ -135,9 +152,17 @@ def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str) -> dict:
                                        "kg_hab", "indice_prioridade", "classe_prioridade"]]
                                   .assign(classe_prioridade=lambda d: d["classe_prioridade"].astype(str))),
         "qualidade": qualidade,
+        "uf_entidade": _registros(extras["uf_entidade"]) if "uf_entidade" in extras else [],
+        "mun_entidade": _registros(extras["mun_entidade"].astype({"cod_ibge": int})) if "mun_entidade" in extras else [],
+        # [cod_ibge, ano, cita_reee, cita_lr, trecho] — trecho só quando cita REEE (mantém o pacote pequeno)
+        "planos_mun": [[int(r.cod_ibge), int(r.ano), int(r.cita_reee), int(r.cita_lr), r.trecho if r.cita_reee else ""]
+                       for r in extras["planos_mun"].itertuples()] if "planos_mun" in extras else [],
+        "planos_uf": _registros(extras["planos_uf"]) if "planos_uf" in extras else [],
     }
-    (C.DASHBOARD_DATA / "dashboard.json").write_text(
-        json.dumps(pacote, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    # grava em arquivo temporário e troca de uma vez: o painel nunca lê um JSON pela metade
+    tmp = C.DASHBOARD_DATA / "dashboard.json.tmp"
+    tmp.write_text(json.dumps(pacote, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    tmp.replace(C.DASHBOARD_DATA / "dashboard.json")
     simplificar_geojson(C.RAW_GEO / "brazil-states.geojson", C.DASHBOARD_DATA / "uf.geojson")
     (C.PROCESSED / "qualidade.json").write_text(json.dumps(qualidade, ensure_ascii=False, indent=2),
                                                 encoding="utf-8")

@@ -1,15 +1,14 @@
 {
-  "fonte": "demo",
-  "pontos_linhas_lidas": 30440,
-  "pontos_fora_do_periodo": 0,
-  "pontos_inativos_removidos": 618,
-  "pontos_codigo_recuperado_por_nome": 458,
-  "pontos_sem_municipio_descartados": 0,
-  "pontos_duplicados_removidos": 300,
-  "pontos_registros_validos": 29522,
-  "massa_linhas_lidas": 12401,
-  "massa_valores_invalidos": 0,
-  "massa_codigo_recuperado_por_nome": 0,
-  "massa_sem_municipio_descartados": 0,
-  "massa_outliers_sinalizados": 41
+  "fonte": "relatorios_entidades",
+  "relatorio_municipios_nome_corrigido": [
+    "Alagoinha/BA → Alagoinhas",
+    "Águas Lindas/GO → Águas Lindas de Goiás",
+    "Senador Caiedo/GO → Senador Canedo",
+    "Cachoeiro do Itapemirim/ES → Cachoeiro de Itapemirim",
+    "Poços de Calda/MG → Poços de Caldas",
+    "Fazenda do Rio Grande/PR → Fazenda Rio Grande",
+    "Guarupuava/PR → Guarapuava"
+  ],
+  "relatorio_municipios_nao_casados": [],
+  "relatorios_validados": "somas por UF conferem com os totais impressos"
 }

@@ -30,6 +30,39 @@ flowchart LR
 
 **Layouts diferentes entre anos** são resolvidos por apelidos de coluna em `config.py` (`ALIASES_PONTOS`, `ALIASES_MASSA`, `ALIASES_POP`). Se uma exportação nova usar outro cabeçalho, acrescente o apelido; nenhum outro código muda.
 
+## 2.1 Coleta automática e dados declaratórios
+
+`src/reee/coleta.py` consulta a API CKAN do portal do MMA (`/api/3/action/package_show?id=sinir`) e seleciona os recursos do **módulo Estados e Municípios**, identificando o ano pelo nome ou pela URL. Se a API falhar, usa a lista de URLs conferida em 08/10/2026. Cada download registra URL, data de modificação, tamanho, SHA-256 e data da coleta em `data/raw/sinir/manifesto.json`. Essa proveniência aparece na aba Dados abertos do painel e só é baixada de novo quando muda no portal.
+
+`src/reee/adaptador_sinir.py` lê todas as abas de todas as planilhas extraídas e:
+
+| Etapa | Como decide |
+|---|---|
+| Linha de cabeçalho | Linha (entre as 25 primeiras) com mais textos, com bônus se cita município/IBGE/UF; se a linha de cima tiver grupos, os nomes viram "Grupo · Coluna" |
+| Código IBGE | Coluna em que ≥ 60 % dos valores são códigos IBGE válidos (7 ou 6 dígitos), com bônus pelo nome |
+| Campo `pontos` | Nome cita eletroeletrônicos **e** ponto/PEV/local de entrega, de preferência com "quantidade"; valores inteiros |
+| Campo `toneladas` | Nome cita eletroeletrônicos **e** massa/peso/toneladas/kg; kg é convertido para t |
+| Campo `possui` | Nome cita eletroeletrônicos e "possui/existe/há"; valores Sim/Não |
+| Formato longo | Se houver colunas Pergunta/Resposta, filtra as perguntas sobre eletroeletrônicos e as transforma em colunas |
+
+**Tratamento de lacunas.** Município que não aparece no arquivo do ano, ou que aparece sem responder sobre eletroeletrônicos, fica **sem informação** (nulo), e nunca com zero pontos. Quem respondeu "Sim" sem informar quantidade conta como 1 ponto (mínimo declarado, marcado em `pontos_estimado`). O painel mostra o percentual de municípios com informação em cada ano e exclui quem não informou do déficit e do ranking.
+
+## 2.2 Planos municipais: classificação dos textos
+
+O módulo Estados e Municípios do SINIR não tem campos numéricos de REEE (verificado nos arquivos de 2019 a 2024 com `scripts/procurar_reee.py`). Ele traz, porém, os **planos de gestão de resíduos** declarados pelos municípios, com metas, programas e soluções compartilhadas em texto livre. `src/reee/planos_sinir.py` transforma esses textos num indicador:
+
+| Etapa | Regra |
+|---|---|
+| Arquivos | Planilhas cujo nome contém "Municipal" (Diagnóstico, Soluções Compartilhadas, Mecanismo para Criação de Fonte) |
+| Município | `Município Declarante` + `UF Declarante` casados com o IBGE pelo nome; grafias próximas (≥ 0,88 de semelhança) são aceitas e registradas |
+| Colunas lidas | `Meta - Programa`, `Meta - Programa - Descritivo`, `Solução`, `Solução Consórcio`, `Descrição Mecanismo Fonte` |
+| Cita REEE | eletroeletrônico(s), eletrodoméstico(s), lixo/sucata eletrônica, resíduos/equipamentos eletrônicos, REEE, e-lixo, "eletrônicos" no plural |
+| Falsos positivos excluídos | nota fiscal eletrônica, MTR/sistema/meio/processo/documento/ponto eletrônico, entre outros |
+| Cita logística reversa | "logística reversa" (registrado à parte; não conta como REEE) |
+| Evidência | Trecho de até ~160 caracteres do texto original, com palavras inteiras |
+
+Indicadores: `planos_declarados` (municípios com plano declarado no ano), `planos_citam_reee` e `pct_planos_reee`. **Limite:** citar não prova execução, e não citar não prova ausência de ação. O painel exibe o trecho original para que o leitor julgue.
+
 ## 3. Regras de tratamento (Pandas)
 
 | Problema encontrado | Regra | Registro em `qualidade.json` |
@@ -107,8 +140,9 @@ Visuais equivalentes: mapa coroplético por UF (pontos por 100 mil), gráfico de
 
 ```bash
 pip install -r requirements.txt
-PYTHONPATH=src python -m reee.pipeline --demo   # dados sintéticos
-PYTHONPATH=src python -m reee.pipeline          # dados reais em data/raw/
-python -m pytest                                # 13 testes
-cd dashboard && python -m http.server 8000      # http://localhost:8000
+pip install -e .
+python -m reee.servidor                         # coleta, trata e abre o painel (atualiza em tempo de execução)
+python -m reee.pipeline --coletar               # o mesmo, sem servidor
+python -m reee.pipeline --demo                  # dados sintéticos, sem internet
+python -m pytest                                # 18 testes (inclui portal MMA/IBGE simulado)
 ```

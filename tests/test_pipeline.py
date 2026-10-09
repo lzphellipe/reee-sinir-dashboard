@@ -1,4 +1,5 @@
 import json
+import shutil
 
 import numpy as np
 import pandas as pd
@@ -29,9 +30,16 @@ def test_padronizar_colunas_por_apelido():
 
 
 @pytest.fixture(scope="module")
-def pacote():
+def pacote(tmp_path_factory):
+    """Roda o modo demonstração em pastas temporárias (não toca nos dados reais do painel)."""
+    tmp = tmp_path_factory.mktemp("demo")
+    mp = pytest.MonkeyPatch()
+    for nome, valor in {"RAW_DEMO": tmp / "raw_demo", "PROCESSED": tmp / "proc", "POWERBI": tmp / "proc" / "powerbi",
+                        "DASHBOARD_DATA": tmp / "dash"}.items():
+        mp.setattr(C, nome, valor)
     from reee.pipeline import executar
-    return executar(usar_demo=True, seed=42)
+    yield executar(usar_demo=True, seed=42)
+    mp.undo()
 
 
 def test_pipeline_demo_gera_pacote(pacote):
@@ -44,12 +52,12 @@ def test_pipeline_demo_gera_pacote(pacote):
 
 def test_consistencia_dos_totais(pacote):
     m = pacote["municipios"]
-    total_mun = np.array(m["pontos"]).sum(axis=0)
+    total_mun = np.array(m["pontos"], dtype=float).sum(axis=0)
     total_br = [r["pontos"] for r in pacote["brasil_ano"]]
     assert total_mun.tolist() == total_br
 
 
-def test_indicadores_municipais():
+def test_indicadores_municipais(pacote):
     f = pd.read_csv(C.PROCESSED / "indicadores_municipio_ano.csv")
     assert (f["deficit_pontos"] >= 0).all()
     assert not f.duplicated(["cod_ibge", "ano"]).any()
@@ -58,7 +66,7 @@ def test_indicadores_municipais():
     assert (f.loc[~f["obrigado_decreto"], "pontos_necessarios"] == 0).all()
 
 
-def test_qualidade_registra_limpeza():
+def test_qualidade_registra_limpeza(pacote):
     q = json.loads((C.PROCESSED / "qualidade.json").read_text(encoding="utf-8"))
     assert q["pontos_duplicados_removidos"] > 0
     assert q["pontos_codigo_recuperado_por_nome"] > 0

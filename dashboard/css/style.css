@@ -47,6 +47,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--ink);
@@ -100,6 +101,7 @@ textarea { resize: vertical; min-height: 84px; width: 100%; }
   color: var(--ink-2); padding: 8px 10px; cursor: pointer;
 }
 .years button:last-child { border-right: 0; }
+.years button.sem-dados:not([aria-pressed="true"]) { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--axis); }
 .years button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
 .btn {
   font: 600 var(--step--1) var(--font-body); border-radius: 8px; padding: 9px 14px; cursor: pointer;
@@ -207,3 +209,19 @@ dl.dict dd { margin: 0; color: var(--ink-2); }
 footer.foot { border-top: 1px solid var(--line); color: var(--muted); font-size: var(--step--1); }
 footer.foot .wrap { padding-block: 18px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* barra de status dos dados */
+.statusbar { background: var(--surface); border-bottom: 1px solid var(--line); font-size: var(--step--1); }
+.statusbar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-block: 8px; }
+.statusbar .grow { flex: 1 1 auto; }
+.statusbar details { position: relative; }
+.statusbar summary { cursor: pointer; color: var(--ink-2); }
+.statusbar pre {
+  position: absolute; right: 0; top: 1.8rem; z-index: 30; width: min(560px, calc(100vw - 32px)); max-height: 300px; overflow: auto;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px; margin: 0;
+  font: 400 0.75rem/1.5 var(--font-mono); color: var(--ink-2); white-space: pre-wrap; box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+}
+.statusbar .btn { padding: 6px 12px; }
+.statusbar .dot.pulse { animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.35; } }
+.empty-state { color: var(--muted); font-size: var(--step--1); }

@@ -26,8 +26,18 @@
 </header>
 <div class="banner" id="banner" hidden>
   <div class="wrap">
-    <span class="chip">Dados sintéticos</span>
-    <span>Esta versão usa dados de demonstração gerados no formato do SINIR. Os números não descrevem a situação real; rode o pipeline com as exportações oficiais para substituí-los.</span>
+    <span class="chip" id="banner-chip">Dados sintéticos</span>
+    <span id="banner-txt">Esta versão usa dados de demonstração gerados no formato do SINIR. Os números não descrevem a situação real; clique em Atualizar dados para buscar os dados oficiais.</span>
+  </div>
+</div>
+
+<div class="statusbar" id="statusbar" hidden>
+  <div class="wrap">
+    <span class="dot" id="st-dot"></span>
+    <span id="st-texto">Verificando dados…</span>
+    <span class="grow"></span>
+    <details id="st-log"><summary>Detalhes</summary><pre id="st-log-txt"></pre></details>
+    <button class="btn ghost" type="button" id="st-btn" hidden>Atualizar dados</button>
   </div>
 </div>
 
@@ -88,8 +98,19 @@
       <div class="card span-6">
         <header><div><h2>Pontos por entidade gestora</h2><p id="ent-sub"></p></div></header>
         <div class="bars" id="entidades"></div>
-        <h3>Por tipo de ponto</h3>
+        <h3 id="tipos-titulo">Por tipo de ponto</h3>
         <div class="bars" id="tipos"></div>
+      </div>
+
+      <div class="card span-12" id="card-planos" hidden>
+        <header>
+          <div><h2>Planos municipais que citam eletroeletrônicos</h2>
+            <p>Municípios que declararam o plano de resíduos ao SINIR e, entre eles, os que preveem alguma ação para REEE</p></div>
+        </header>
+        <div class="grid" style="gap:16px">
+          <div class="span-8"><div class="chart-box"><canvas id="c-planos" aria-label="Gráfico de planos municipais por ano"></canvas></div></div>
+          <div class="span-4 prose small" id="planos-resumo"></div>
+        </div>
       </div>
 
       <div class="card span-12">
@@ -113,7 +134,7 @@
             <tbody></tbody>
           </table>
         </div>
-        <p class="small muted">Índice = 45 % déficit de pontos + 30 % população acima da capacidade da rede + 15 % coleta per capita abaixo da mediana da UF + 10 % ausência de ponto. Pesos editáveis em <span class="mono">src/reee/config.py</span>.</p>
+        <p class="small muted" id="prio-nota">Índice = 45 % déficit de pontos + 30 % população acima da capacidade da rede + 15 % coleta per capita abaixo da mediana da UF + 10 % ausência de ponto. Pesos editáveis em <span class="mono">src/reee/config.py</span>.</p>
       </div>
     </div>
   </section>
@@ -211,6 +232,7 @@
           </ul>
           <p>Gerado em <span class="mono" id="gerado"></span> · fonte: <span class="mono" id="fonte"></span>.</p>
         </div>
+        <div class="table-wrap" id="proveniencia"></div>
       </div>
     </div>
   </section>

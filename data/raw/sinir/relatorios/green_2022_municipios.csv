@@ -1,0 +1,267 @@
+uf,municipio,pevs
+AM,Coari,1
+AM,Itacoatiara,1
+AM,Manacapuru,1
+AM,Manaus,17
+AM,Parintins,1
+PA,Ananindeua,1
+PA,Belém,8
+RO,Ariquemes,1
+RO,Cacoal,1
+RO,Ji-Paraná,1
+RO,Porto Velho,1
+RO,Vilhena,1
+RR,Boa Vista,1
+TO,Palmas,1
+AL,Maceió,6
+BA,Alagoinha,1
+BA,Camaçari,1
+BA,Feira de Santana,5
+BA,Itabuna,1
+BA,Lauro de Freitas,2
+BA,Salvador,18
+BA,Teixeira de Freitas,1
+BA,Vitória da Conquista,2
+CE,Caucaia,1
+CE,Fortaleza,14
+MA,São Luis,6
+PB,João Pessoa,6
+PB,Campina Grande,1
+PE,Cabo de Santo Agostinho,1
+PE,Camaragibe,1
+PE,Caruaru,1
+PE,Jaboatão dos Guararapes,4
+PE,Olinda,3
+PE,Paulista,3
+PE,Petrolina,1
+PE,Recife,47
+PE,São Lourenço da Mata,1
+PI,Teresina,4
+RN,Mossoró,1
+RN,Natal,5
+RN,Parnamirim,1
+SE,Aracaju,3
+SE,Nossa Senhora do Socorro,1
+DF,Brasília,60
+GO,Águas Lindas,1
+GO,Anápolis,3
+GO,Aparecida de Goiânia,6
+GO,Goiânia,14
+GO,Senador Caiedo,1
+GO,Valparaíso de Goiás,1
+MS,Campo Grande,10
+MS,Corumbá,1
+MS,Dourados,2
+MS,Três Lagoas,1
+MT,Várzea Grande,1
+MT,Cuiabá,4
+ES,Cachoeiro do Itapemirim,1
+ES,Cariacica,4
+ES,Guarapari,1
+ES,São Mateus,1
+ES,Serra,3
+ES,Vila Velha,7
+ES,Vitória,6
+MG,Araguari,1
+MG,Belo Horizonte,13
+MG,Betim,2
+MG,Contagem,4
+MG,Ibirité,1
+MG,Itajubá,1
+MG,Ituiutaba,1
+MG,Juiz de Fora,2
+MG,Lavras,1
+MG,Montes Claros,4
+MG,Nova Lima,1
+MG,Passos,1
+MG,Poços de Calda,1
+MG,Pouso Alegre,1
+MG,Ribeirão das Neves,1
+MG,Sabará,1
+MG,Santa Luzia,1
+MG,Uberaba,1
+MG,Uberlândia,3
+MG,Varginha,1
+MG,Vespasiano,1
+RJ,Araruama,1
+RJ,Barra Mansa,1
+RJ,Barra do Piraí,1
+RJ,Belford Roxo,2
+RJ,Cabo Frio,2
+RJ,Campos dos Goytacazes,2
+RJ,Duque de Caxias,7
+RJ,Itaboraí,1
+RJ,Itaguaí,1
+RJ,Itaperuna,1
+RJ,Macaé,2
+RJ,Magé,2
+RJ,Maricá,1
+RJ,Nilópolis,1
+RJ,Niterói,6
+RJ,Nova Friburgo,1
+RJ,Nova Iguaçu,5
+RJ,Queimados,1
+RJ,Resende,1
+RJ,Rio das Ostras,1
+RJ,Rio de Janeiro,50
+RJ,São Gonçalo,8
+RJ,São João de Meriti,4
+RJ,Saquarema,1
+RJ,Seropédica,1
+RJ,Teresópolis,4
+RJ,Três Rios,1
+RJ,Volta Redonda,4
+SP,Americana,2
+SP,Américo Brasiliense,1
+SP,Amparo,1
+SP,Aparecida,1
+SP,Araçatuba,1
+SP,Araraquara,2
+SP,Araras,1
+SP,Arujá,1
+SP,Assis,1
+SP,Atibaia,1
+SP,Avaré,1
+SP,Barra Bonita,1
+SP,Barretos,1
+SP,Barueri,8
+SP,Bauru,5
+SP,Bertioga,1
+SP,Birigui,1
+SP,Botucatu,1
+SP,Bragança Paulista,2
+SP,Caçapava,1
+SP,Caieiras,1
+SP,Cajamar,1
+SP,Campinas,29
+SP,Campo Limpo Paulista,1
+SP,Caraguatatuba,2
+SP,Carapicuíba,2
+SP,Catanduva,1
+SP,Cotia,4
+SP,Cruzeiro,1
+SP,Cubatão,1
+SP,Diadema,10
+SP,Embu das Artes,1
+SP,Ferraz de Vasconcelos,1
+SP,Franca,3
+SP,Franco da Rocha,1
+SP,Guaratinguetá,2
+SP,Guarujá,8
+SP,Guarulhos,20
+SP,Hortolândia,1
+SP,Indaiatuba,3
+SP,Itanhaém,1
+SP,Itapecerica da Serra,1
+SP,Itapetininga,1
+SP,Itapeva,1
+SP,Itapevi,2
+SP,Itaquaquecetuba,2
+SP,Itatiba,1
+SP,Itu,1
+SP,Jacareí,1
+SP,Jandira,1
+SP,Jaú,1
+SP,José Bonifácio,1
+SP,Jundiaí,11
+SP,Leme,1
+SP,Limeira,3
+SP,Lorena,1
+SP,Mairiporã,1
+SP,Marília,3
+SP,Matão,1
+SP,Mauá,5
+SP,Mirandópolis,1
+SP,Mogi das Cruzes,6
+SP,Mogi Mirim,1
+SP,Mogi Guaçu,1
+SP,Mongaguá,1
+SP,Morro Agudo,1
+SP,Osasco,17
+SP,Osvaldo Cruz,1
+SP,Ourinhos,2
+SP,Paulínia,1
+SP,Pederneiras,1
+SP,Peruíbe,2
+SP,Pindamonhangaba,1
+SP,Piracicaba,7
+SP,Poá,1
+SP,Praia Grande,6
+SP,Presidente Prudente,4
+SP,Promissão,1
+SP,Ribeirão Pires,1
+SP,Ribeirão Preto,13
+SP,Rio Claro,1
+SP,Salto,1
+SP,Salto de Pirapora,1
+SP,Santa Bárbara d'Oeste,4
+SP,Santa Rita do Passa Quatro,1
+SP,Santana de Parnaíba,1
+SP,Santo André,14
+SP,Santos,10
+SP,São Bernardo do Campo,13
+SP,São Caetano do Sul,3
+SP,São Carlos,2
+SP,São João da Boa Vista,1
+SP,São José do Rio Preto,8
+SP,São José dos Campos,14
+SP,São Paulo,207
+SP,São Roque,1
+SP,São Sebastião,1
+SP,São Vicente,5
+SP,Sertãozinho,1
+SP,Socorro,1
+SP,Sorocaba,17
+SP,Sumaré,2
+SP,Suzano,5
+SP,Taboão da Serra,6
+SP,Tatuí,2
+SP,Taubaté,5
+SP,Ubatuba,1
+SP,Valinhos,1
+SP,Vargem Grande Paulista,1
+SP,Votorantim,1
+SP,Votuporanga,1
+PR,Araucária,1
+PR,Campo Mourão,1
+PR,Cascável,1
+PR,Cianorte,1
+PR,Colombo,1
+PR,Curitiba,23
+PR,Fazenda do Rio Grande,1
+PR,Foz do Iguaçu,2
+PR,Guarupuava,1
+PR,Londrina,4
+PR,Maringá,3
+PR,Paranaguá,1
+PR,Paranavaí,1
+PR,Pinhais,1
+PR,Ponta Grossa,2
+PR,São José dos Pinhais,3
+PR,Sarandi,1
+PR,Toledo,1
+PR,Umuarama,1
+RS,Alvorada,1
+RS,Bento Gonçalves,1
+RS,Cachoeira do Sul,1
+RS,Cachoeirinha,1
+RS,Canoas,3
+RS,Caxias do Sul,2
+RS,Esteio,1
+RS,Gravataí,2
+RS,Novo Hamburgo,3
+RS,Porto Alegre,16
+RS,São Leopoldo,2
+SC,Araranguá,1
+SC,Balneário Camboriú,3
+SC,Biguaçu,1
+SC,Blumenau,5
+SC,Brusque,1
+SC,Cricíuma,3
+SC,Florianópolis,10
+SC,Itajaí,2
+SC,Jaraguá do Sul,1
+SC,Joinville,4
+SC,Lages,1
+SC,São José,4
+SC,Tubarão,2

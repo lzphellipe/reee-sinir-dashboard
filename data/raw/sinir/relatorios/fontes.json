@@ -1,0 +1,45 @@
+{
+  "coletado_em": "2026-10-08",
+  "pagina_sinir": "https://sinir.gov.br/perfis/logistica-reversa/logistica-reversa/eletroeletronicos/",
+  "metodo": "Tabelas transcritas dos PDFs publicados no SINIR; cada arquivo foi conferido contra os totais impressos no próprio documento.",
+  "arquivos": {
+    "abree_2022_uf.csv": {
+      "documento": "Relatório Anual de Desempenho do SLR de Eletroeletrônicos 2022 – ABREE",
+      "url": "https://portal-api.sinir.gov.br/wp-content/uploads/2024/04/RELATORIO_ANUAL_DE_DESEMPENHO_2022_-_ABREE.pdf",
+      "tabelas": [
+        "Pontos de recebimento por estado (2021 e 2022)",
+        "Municípios já atendidos pelo SLR da ABREE versus metas do Decreto",
+        "Quantidade total coletada em 2022, por estado"
+      ],
+      "conferencia": "pontos 2021 = 3.417; pontos 2022 = 4.997; municípios = 1.370; < 80 mil hab. = 990; toneladas = 15.350,03 (todos iguais ao total impresso)"
+    },
+    "green_2022_municipios.csv": {
+      "documento": "Relatório Anual de Atividades 2022 – Green Eletron",
+      "url": "https://portal-api.sinir.gov.br/wp-content/uploads/2024/04/RELATORIO_ANUAL_DE_ATIVIDADES_2022_-_GREEN-ELETRON.pdf",
+      "tabelas": [
+        "Seção 6.2 – municípios atendidos e PEVs por UF"
+      ],
+      "conferencia": "266 municípios e 1.152 PEVs; totais por região iguais aos impressos (N 37/14, NE 142/29, CO 105/13, SE 747/167, S 121/43)",
+      "observacao": "nomes mantidos como impressos (há erros de grafia, corrigidos no casamento com o IBGE)"
+    },
+    "green_2023_uf.csv": {
+      "documento": "Relatório de Resultados EEE 2023 – Green Eletron",
+      "url": "https://portal-api.sinir.gov.br/wp-content/uploads/2025/09/RELATORIO_GREEN_ELETRON_EEE_2023_02.04.25.pdf",
+      "tabelas": [
+        "Seções 4.2 e 4.12 – PEVs e municípios por UF"
+      ],
+      "conferencia": "1.282 PEVs e 306 municípios (iguais aos totais citados no texto)"
+    },
+    "totais_nacionais.csv": {
+      "documento": "Totais impressos nos relatórios acima (2019–2021 citados no relatório ABREE 2022)",
+      "observacao": "Green Eletron 2023: 4.279,67 t coletadas em PEVs e campanhas; o total de 7.068,4 t inclui saldo de anos anteriores e não é usado."
+    }
+  },
+  "nao_obtidos": {
+    "ABREE 2021 e 2022 (anexos)": "publicados como ZIP no SINIR; não lidos",
+    "ABREE 2023": "o PDF publicado remete os números ao Anexo 9.1, que não está no documento",
+    "Green Eletron 2021": "PDF não pôde ser aberto",
+    "Whirlpool 2023": "PDF não pôde ser aberto",
+    "2024 e 2025": "nenhum relatório publicado na página do SINIR em 08/10/2026"
+  }
+}
