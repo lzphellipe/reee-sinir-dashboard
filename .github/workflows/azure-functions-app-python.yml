@@ -7,7 +7,7 @@
 # 2. Em Settings › Secrets and variables › Actions do repositório:
 #    - secret   AZURE_FUNCTIONAPP_PUBLISH_PROFILE  (Function App › Overview › Get publish profile)
 #    - variable AZURE_FUNCTIONAPP_NAME             (nome do Function App, ex.: painel-reee)
-#    Se preferir RBAC em vez do publish profile, veja o passo comentado "Login via Azure CLI".
+#    Se preferir login OIDC em vez do publish profile, veja docs/04_azure.md (seção 2b).
 # 3. Crie o environment "dev" em Settings › Environments (pode exigir aprovação antes do deploy).
 #
 # Referências:
@@ -25,6 +25,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write   # necessário apenas para o login OIDC (alternativa ao publish profile)
 
 concurrency:
   group: azure-functions-deploy
@@ -43,12 +44,34 @@ jobs:
     - name: 'Checkout GitHub Action'
       uses: actions/checkout@v4
 
-    # Para usar Azure RBAC em vez do publish profile, descomente este passo e
-    # remova "publish-profile" do passo de deploy.
-    # - name: 'Login via Azure CLI'
-    #   uses: azure/login@v2
-    #   with:
-    #     creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
+    # Falha logo no início, com uma mensagem clara, se nenhuma credencial do Azure estiver
+    # configurada. Sem isto, o erro só aparece no deploy como "No credentials found".
+    - name: 'Conferir credenciais do Azure'
+      id: cred
+      shell: bash
+      env:
+        PERFIL: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+        CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      run: |
+        if [ -n "$PERFIL" ]; then
+          echo "modo=perfil" >> "$GITHUB_OUTPUT"; echo "Usando o publish profile."
+        elif [ -n "$CLIENT_ID" ]; then
+          echo "modo=oidc" >> "$GITHUB_OUTPUT"; echo "Usando login OIDC (azure/login)."
+        else
+          echo "::error::O secret AZURE_FUNCTIONAPP_PUBLISH_PROFILE está vazio ou não existe. Crie-o em Settings › Secrets and variables › Actions › aba Secrets (não em Variables), com o conteúdo inteiro do arquivo .PublishSettings. Veja docs/04_azure.md."
+          exit 1
+        fi
+
+    # Alternativa ao publish profile: login OIDC, sem senha guardada no GitHub.
+    # Só roda se o secret do publish profile não existir e as variáveis AZURE_CLIENT_ID,
+    # AZURE_TENANT_ID e AZURE_SUBSCRIPTION_ID estiverem definidas (ver docs/04_azure.md).
+    - name: 'Login no Azure (OIDC)'
+      if: steps.cred.outputs.modo == 'oidc'
+      uses: azure/login@v2
+      with:
+        client-id: ${{ vars.AZURE_CLIENT_ID }}
+        tenant-id: ${{ vars.AZURE_TENANT_ID }}
+        subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
     - name: Setup Python ${{ env.PYTHON_VERSION }} Environment
       uses: actions/setup-python@v5
@@ -86,7 +109,7 @@ jobs:
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}  # remova para usar RBAC
+        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}  # vazio = usa o login OIDC acima
         scm-do-build-during-deployment: true
         enable-oryx-build: true
 
