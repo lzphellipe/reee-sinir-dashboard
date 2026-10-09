@@ -1,0 +1,4 @@
+DADOS SINTÉTICOS gerados por src/reee/demo.py (seed=42).
+Imitam o formato das exportações do SINIR, mas NÃO são dados reais.
+Para usar dados reais, coloque as exportações em data/raw/sinir/ e a
+população IBGE em data/raw/ibge/populacao.csv e rode sem --demo.

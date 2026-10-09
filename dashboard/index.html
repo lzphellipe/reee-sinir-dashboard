@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel REEE Brasil</title>
+<meta name="description" content="Protótipo de dashboard de monitoramento da logística reversa de eletroeletrônicos (REEE) com dados do SINIR 2019–2025.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Painel REEE Brasil</h1>
+      <span class="tag">Logística reversa · SINIR 2019–2025</span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Seções do painel">
+      <button class="tab" role="tab" id="tab-gestor" aria-controls="panel-gestor" aria-selected="true">Gestor público</button>
+      <button class="tab" role="tab" id="tab-cidadao" aria-controls="panel-cidadao" aria-selected="false">Cidadão</button>
+      <button class="tab" role="tab" id="tab-dados" aria-controls="panel-dados" aria-selected="false">Dados abertos</button>
+    </nav>
+  </div>
+</header>
+<div class="banner" id="banner" hidden>
+  <div class="wrap">
+    <span class="chip">Dados sintéticos</span>
+    <span>Esta versão usa dados de demonstração gerados no formato do SINIR. Os números não descrevem a situação real; rode o pipeline com as exportações oficiais para substituí-los.</span>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="filters" id="filters">
+    <div class="field">
+      <span id="lbl-ano">Ano de referência</span>
+      <div class="years" id="years" role="group" aria-labelledby="lbl-ano"></div>
+    </div>
+    <label class="field"><span>Unidade da federação</span>
+      <select id="f-uf"><option value="">Brasil (todas)</option></select>
+    </label>
+  </div>
+
+  <!-- ===================== GESTOR ===================== -->
+  <section class="panel" id="panel-gestor" role="tabpanel" aria-labelledby="tab-gestor">
+    <div class="grid">
+      <div class="card kpi span-3" id="k-pontos"></div>
+      <div class="card kpi span-3" id="k-massa"></div>
+      <div class="card kpi span-3" id="k-meta"></div>
+      <div class="card kpi span-3" id="k-deficit"></div>
+
+      <div class="card span-8">
+        <header>
+          <div><h2 id="map-title">Mapa da rede de recebimento</h2>
+            <p>Clique em um estado para filtrar. Pontos: municípios acima de 80 mil habitantes.</p></div>
+          <label class="field"><span>Indicador</span>
+            <select id="f-ind">
+              <option value="pontos_100k">Pontos por 100 mil hab.</option>
+              <option value="pct_pop_coberta">% da população em município com ponto</option>
+              <option value="pct_obrigados_com_ponto">% dos municípios obrigados com ponto</option>
+              <option value="kg_hab">Coleta per capita (kg/hab.)</option>
+              <option value="deficit_pontos">Pontos faltantes (Decreto)</option>
+            </select>
+          </label>
+        </header>
+        <div class="map-wrap" id="map"></div>
+        <div class="legend" id="map-legend"></div>
+      </div>
+
+      <div class="card span-4">
+        <header><div><h2>Ranking por estado</h2><p id="rank-sub"></p></div></header>
+        <div class="bars" id="rank"></div>
+      </div>
+
+      <div class="card span-6">
+        <header><div><h2>Pontos de recebimento ativos</h2><p>Por ano, recorte selecionado</p></div></header>
+        <div class="chart-box"><canvas id="c-pontos" aria-label="Gráfico de pontos ativos por ano"></canvas></div>
+      </div>
+      <div class="card span-6">
+        <header><div><h2>Municípios obrigados com ponto x meta</h2><p>Meta acumulada do Decreto 10.240/2020 (fase 2)</p></div></header>
+        <div class="chart-box"><canvas id="c-meta" aria-label="Gráfico de municípios atendidos contra a meta"></canvas></div>
+      </div>
+      <div class="card span-6">
+        <header><div><h2>Massa de REEE recebida</h2><p id="massa-sub">Toneladas por ano</p></div></header>
+        <div class="chart-box"><canvas id="c-massa" aria-label="Gráfico de toneladas recebidas por ano"></canvas></div>
+      </div>
+      <div class="card span-6">
+        <header><div><h2>Pontos por entidade gestora</h2><p id="ent-sub"></p></div></header>
+        <div class="bars" id="entidades"></div>
+        <h3>Por tipo de ponto</h3>
+        <div class="bars" id="tipos"></div>
+      </div>
+
+      <div class="card span-12">
+        <header>
+          <div><h2>Onde instalar os próximos pontos</h2>
+            <p id="prio-sub">Índice de prioridade (0–100) do ano mais recente. Arraste para simular a instalação de novos pontos.</p></div>
+        </header>
+        <div class="sim">
+          <label class="field"><span>Novos pontos a instalar: <b id="sim-n-lbl" class="mono">100</b></span>
+            <input type="range" id="sim-n" min="0" max="800" step="10" value="100">
+          </label>
+          <div class="sim-out" id="sim-out"></div>
+        </div>
+        <div class="table-wrap">
+          <table id="prio">
+            <thead><tr>
+              <th>#</th><th>Município</th><th>UF</th><th class="r">População</th><th class="r">Pontos</th>
+              <th class="r">Necessários</th><th class="r">Faltam</th><th class="r">Hab./ponto</th><th class="r">kg/hab.</th>
+              <th class="r">Índice</th><th>Prioridade</th><th class="r">Simulação</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="small muted">Índice = 45 % déficit de pontos + 30 % população acima da capacidade da rede + 15 % coleta per capita abaixo da mediana da UF + 10 % ausência de ponto. Pesos editáveis em <span class="mono">src/reee/config.py</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CIDADÃO ===================== -->
+  <section class="panel" id="panel-cidadao" role="tabpanel" aria-labelledby="tab-cidadao" hidden>
+    <div class="grid">
+      <div class="card span-12">
+        <label class="field"><span>Busque sua cidade</span>
+          <input type="search" id="busca" list="lista-mun" placeholder="Digite o nome do município" autocomplete="off">
+          <datalist id="lista-mun"></datalist>
+        </label>
+      </div>
+
+      <div class="card span-7" id="cidade"></div>
+      <div class="card span-5">
+        <header><div><h2>Como descartar seu eletrônico</h2></div></header>
+        <ol class="steps">
+          <li><span><b>Apague seus dados.</b> Faça backup e restaure o celular, computador ou tablet para as configurações de fábrica.</span></li>
+          <li><span><b>Retire pilhas e baterias removíveis.</b> Elas seguem outro sistema de logística reversa.</span></li>
+          <li><span><b>Leve a um ponto de recebimento.</b> O descarte é gratuito para o consumidor (Decreto 10.240/2020).</span></li>
+          <li><span><b>Não deixe no lixo comum.</b> Placas e telas contêm metais pesados e materiais recicláveis valiosos.</span></li>
+        </ol>
+        <h3>O que é aceito</h3>
+        <div class="cats"><span>Celulares e tablets</span><span>Computadores e periféricos</span><span>TVs e monitores</span><span>Eletroportáteis</span><span>Geladeiras e fogões</span><span>Lavadoras</span><span>Ferramentas elétricas</span><span>Brinquedos eletrônicos</span></div>
+        <p class="small muted">Itens grandes podem exigir agendamento. Confira as regras do ponto antes de levar.</p>
+      </div>
+
+      <div class="card span-7">
+        <header><div><h2>Participe</h2><p>Sugira um ponto, relate um problema ou peça dados ao seu município.</p></div></header>
+        <form class="part" id="form-part" novalidate>
+          <div class="row2">
+            <label class="field"><span>Tipo de contribuição</span>
+              <select id="p-tipo">
+                <option>Sugerir novo ponto de coleta</option>
+                <option>Relatar problema em ponto existente</option>
+                <option>Solicitar informação (LAI)</option>
+                <option>Elogio ou comentário</option>
+              </select>
+            </label>
+            <label class="field"><span>Município</span><input type="text" id="p-mun" list="lista-mun"></label>
+          </div>
+          <label class="field"><span>Bairro ou referência</span><input type="text" id="p-local" placeholder="Ex.: Praça central, perto do terminal de ônibus"></label>
+          <label class="field"><span>Descrição</span><textarea id="p-desc" placeholder="Conte o que você observou ou precisa"></textarea></label>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+            <button class="btn" type="submit">Registrar contribuição</button>
+            <button class="btn ghost" type="button" id="p-copiar">Copiar contribuições (CSV)</button>
+            <span class="toast" id="p-toast" role="status"></span>
+          </div>
+          <p class="small muted">No protótipo, as contribuições ficam salvas só neste navegador. Em produção, o envio seria integrado à ouvidoria municipal ou à plataforma Fala.BR.</p>
+        </form>
+        <h3>Suas contribuições</h3>
+        <div class="list" id="p-lista"></div>
+      </div>
+
+      <div class="card span-5">
+        <header><div><h2>Avalie este painel</h2><p>Escala de 1 (discordo totalmente) a 5 (concordo totalmente).</p></div></header>
+        <form class="likert" id="form-aval"></form>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <button class="btn" type="button" id="a-salvar">Enviar avaliação</button>
+          <button class="btn ghost" type="button" id="a-copiar">Copiar respostas (CSV)</button>
+        </div>
+        <span class="toast" id="a-toast" role="status"></span>
+        <div id="a-resumo" class="small"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DADOS ABERTOS ===================== -->
+  <section class="panel" id="panel-dados" role="tabpanel" aria-labelledby="tab-dados" hidden>
+    <div class="grid">
+      <div class="card span-7">
+        <header><div><h2>Arquivos para download</h2><p>Tabelas tratadas pelo pipeline Python (UTF-8, separador vírgula).</p></div></header>
+        <div class="table-wrap"><table id="arquivos"><thead><tr><th>Arquivo</th><th>Conteúdo</th></tr></thead><tbody></tbody></table></div>
+        <h3>Dicionário de indicadores</h3>
+        <dl class="dict">
+          <dt>pontos</dt><dd>Pontos de recebimento ativos no ano (snapshot SINIR, sem inativos e duplicados).</dd>
+          <dt>pontos_necessarios</dt><dd>⌈população ÷ 25.000⌉ para municípios com mais de 80 mil habitantes; 0 nos demais.</dd>
+          <dt>deficit_pontos</dt><dd>Pontos necessários menos pontos existentes, nunca negativo.</dd>
+          <dt>pct_pop_coberta</dt><dd>População que vive em município com ao menos um ponto ÷ população total.</dd>
+          <dt>pct_obrigados_com_ponto</dt><dd>Municípios acima de 80 mil hab. com ponto ÷ municípios acima de 80 mil hab.</dd>
+          <dt>kg_hab</dt><dd>Toneladas recebidas × 1.000 ÷ população. Em 2019–2020 só existe dado por UF.</dd>
+          <dt>indice_prioridade</dt><dd>Combinação ponderada de déficit, população descoberta, coleta abaixo da UF e ausência de ponto (0–100).</dd>
+        </dl>
+      </div>
+      <div class="card span-5">
+        <header><div><h2>Qualidade dos dados</h2><p>O que o pipeline corrigiu ou descartou</p></div></header>
+        <div class="table-wrap"><table id="qualidade"><tbody></tbody></table></div>
+        <header><div><h2>Fontes e método</h2></div></header>
+        <div class="prose small">
+          <ul>
+            <li>SINIR / MMA: pontos de recebimento e relatórios anuais dos sistemas de logística reversa de eletroeletrônicos.</li>
+            <li>IBGE: cadastro de municípios e população residente.</li>
+            <li>Decreto nº 10.240/2020: regras de cobertura e metas progressivas.</li>
+          </ul>
+          <p>Gerado em <span class="mono" id="gerado"></span> · fonte: <span class="mono" id="fonte"></span>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="foot"><div class="wrap">Protótipo acadêmico de apoio à decisão e transparência na logística reversa de REEE. Código aberto (MIT).</div></footer>
+<div class="tooltip" id="tip" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
