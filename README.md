@@ -38,7 +38,7 @@ Você precisa do **Python 3.10 ou mais novo**. Todos os comandos rodam **a parti
 cd C:\Users\PC\Documents\tcc
 python -m venv .venv
 .venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 python iniciar.py
 ```
 
@@ -48,7 +48,7 @@ python iniciar.py
 cd ~/tcc
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 python iniciar.py
 ```
 
@@ -175,14 +175,17 @@ A chave `"*"` vale para todos os anos; um ano específico sobrepõe. Depois, rod
 │   ├── export.py           dados abertos, Power BI e pacote do painel
 │   ├── pipeline.py         orquestra as etapas
 │   ├── servidor.py         servidor local com /api/status e /api/atualizar
+│   ├── nuvem.py            execução no Azure: Blob Storage, status e pasta temporária
 │   ├── demo.py             gerador de dados sintéticos no formato do SINIR
 │   └── config.py           anos, regras do Decreto, apelidos de colunas, pesos
+├── function_app.py         funções do Azure (painel, status, atualizar, fila, mensal)
+├── host.json               configuração do Azure Functions
 ├── dashboard/              site estático (index.html, css/, js/, data/)
 ├── data/raw/               entradas: ibge/, geo/, sinir/ (relatorios/, downloads)
 ├── data/processed/         saídas tratadas, powerbi/, qualidade.json, inventário
-├── docs/                   referencial teórico, metodologia e avaliação
+├── docs/                   referencial teórico, metodologia, avaliação e implantação no Azure
 ├── notebooks/              análise exploratória em Pandas
-└── tests/                  36 testes, incluindo um portal MMA/IBGE simulado
+└── tests/                  41 testes, incluindo um portal MMA/IBGE simulado e as funções do Azure
 ```
 
 ---
@@ -204,7 +207,26 @@ A chave `"*"` vale para todos os anos; um ano específico sobrepõe. Depois, rod
 2. Em **Settings › Pages**, escolha **GitHub Actions** como fonte.
 3. O workflow [`pages.yml`](.github/workflows/pages.yml) roda os testes, faz a coleta oficial, trata os dados e publica a pasta `dashboard/`. Ele roda a cada push e todo dia 1º do mês. Se o portal do MMA estiver fora do ar, publica os dados de demonstração e registra um aviso. O inventário das planilhas fica disponível como artefato da execução.
 
-No Pages o painel é estático: a atualização acontece pelo agendamento, e o botão "Atualizar dados" só aparece no servidor local.
+No Pages o painel é estático: a atualização acontece pelo agendamento, e o botão "Atualizar dados" só aparece no servidor local ou no Azure.
+
+## Publicar no Azure Functions
+
+Para ter o painel **com o botão "Atualizar dados" funcionando na internet**, publique no Azure Functions. O mesmo código roda lá sem mudanças no JavaScript:
+
+- `function_app.py` serve o painel e as rotas `/api/status` e `/api/atualizar`;
+- o pedido de atualização vai para uma fila, e a coleta roda em segundo plano (sem estourar o tempo limite do HTTP);
+- os dados novos ficam no Blob Storage, com os dados empacotados como plano B;
+- uma atualização automática roda todo dia 1º.
+
+O workflow [`azure-functions.yml`](.github/workflows/azure-functions.yml) testa, atualiza os dados e publica a cada push na `main`. Ele precisa de:
+
+- um Function App Linux com Python 3.12;
+- o secret `AZURE_FUNCTIONAPP_PUBLISH_PROFILE`;
+- a variável `AZURE_FUNCTIONAPP_NAME`.
+
+O passo a passo, com os comandos `az`, está em [`docs/04_azure.md`](docs/04_azure.md).
+
+Os dois workflows rodam a cada push. Se for usar só um destino, apague o outro arquivo em `.github/workflows/`.
 
 ---
 

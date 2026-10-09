@@ -10,3 +10,5 @@ data/raw/sinir/_download/
 data/raw/sinir/extraido/
 *.parcial
 dashboard/data/*.tmp
+local.settings.json
+.python_packages/

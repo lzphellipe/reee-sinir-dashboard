@@ -11,6 +11,9 @@ dependencies = ["pandas>=2.0", "numpy>=1.24", "openpyxl>=3.1", "xlrd>=2.0", "odf
 
 [project.optional-dependencies]
 dev = ["pytest>=7"]
+azure = ["azure-functions>=1.21", "azure-storage-blob>=12.20"]
+
+
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

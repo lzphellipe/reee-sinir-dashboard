@@ -140,7 +140,15 @@
   }
   async function pedirAtualizacao(forcar = false) {
     $("#st-btn").disabled = true;
-    try { await fetch(`api/atualizar${forcar ? "?forcar=1" : ""}`, { method: "POST" }); } catch { /* status mostra */ }
+    try {
+      const r = await fetch(`api/atualizar${forcar ? "?forcar=1" : ""}`, { method: "POST" });
+      if (r.status === 429) {  // atualizado há pouco (servidor na nuvem limita a frequência)
+        const st = await r.json();
+        pintarStatus("--warning", st.erro || "Os dados foram atualizados há pouco.");
+        $("#st-btn").disabled = false;
+        return;
+      }
+    } catch { /* o status mostra o que houve */ }
     ultimoEstado = "executando";
     checarStatus();
   }
