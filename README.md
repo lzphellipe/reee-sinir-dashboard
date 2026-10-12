@@ -185,7 +185,7 @@ A chave `"*"` vale para todos os anos; um ano específico sobrepõe. Depois, rod
 ├── data/processed/         saídas tratadas, powerbi/, qualidade.json, inventário
 ├── docs/                   referencial teórico, metodologia, avaliação e implantação no Azure
 ├── notebooks/              análise exploratória em Pandas
-└── tests/                  41 testes, incluindo um portal MMA/IBGE simulado e as funções do Azure
+└── tests/                  42 testes, incluindo um portal MMA/IBGE simulado e as funções do Azure
 ```
 
 ---
@@ -232,7 +232,7 @@ Os dois workflows rodam a cada push. Se for usar só um destino, apague o outro 
 
 ## Antes de citar no TCC
 
-- **Metas do Decreto.** As metas da fase 2 em `src/reee/config.py` (24 a 400 municípios; 1 % a 17 % do peso) devem ser conferidas no Anexo I do Decreto 10.240/2020.
+- **Metas do Decreto.** As metas em `src/reee/config.py` seguem o Anexo II do Decreto 10.240/2020 (24, 68, 186, 294 e 400 cidades; 1 %, 3 %, 6 %, 12 % e 17 % do peso), conferidas em 11/10/2026. O corte de 80 mil habitantes é uma aproximação da lista de municípios do Anexo III.
 - **Contagem não é acesso.** Cumprir o número de pontos não garante acesso: um município pode ter todos os pontos num mesmo bairro.
 - **Dados autodeclarados.** As planilhas do módulo municipal do SINIR são preenchidas pelos próprios municípios. O painel mostra quantos municípios informaram em cada ano.
 

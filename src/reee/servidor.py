@@ -11,6 +11,7 @@ progresso por GET /api/status e recarrega sozinho quando termina.
 API:
     GET  /api/status            estado, etapa atual, log e data dos dados
     POST /api/atualizar         inicia coleta + pipeline (?forcar=1 ignora cache)
+    POST /api/contribuicao      e-participação: grava a contribuição do cidadão
 Só usa a biblioteca padrão; não há dependências de servidor web.
 """
 from __future__ import annotations
@@ -126,13 +127,36 @@ def criar_handler(tarefa: Tarefa, demo: bool):
 
         def do_POST(self):
             url = urlparse(self.path)
+            if url.path == "/api/contribuicao":
+                return self._contribuicao()
             if url.path != "/api/atualizar":
                 return self._json(404, {"erro": "rota inexistente"})
             forcar = parse_qs(url.query).get("forcar", ["0"])[0] == "1"
             iniciou = tarefa.iniciar(demo=demo, forcar=forcar)
             return self._json(202 if iniciou else 409, tarefa.status())
 
+        def _contribuicao(self):
+            from . import config as C, participacao
+            try:
+                tamanho = int(self.headers.get("Content-Length") or 0)
+                if tamanho > 10_000:
+                    raise participacao.ContribuicaoInvalida("Texto muito longo.")
+                c = participacao.validar(json.loads(self.rfile.read(tamanho) or b"{}"))
+            except (ValueError, participacao.ContribuicaoInvalida) as e:
+                return self._json(400, {"erro": str(e)})
+            C.PROCESSED.mkdir(parents=True, exist_ok=True)
+            arq = C.PROCESSED / "contribuicoes.jsonl"
+            with trava_contrib, open(arq, "ab") as f:
+                f.write(participacao.linha(c))
+            abertos = C.DASHBOARD_DATA / "abertos"
+            abertos.mkdir(parents=True, exist_ok=True)
+            (abertos / "contribuicoes.csv").write_bytes(participacao.para_csv(arq.read_bytes()))
+            return self._json(201, {"ok": True, "contribuicao": c})
+
     return Handler
+
+
+trava_contrib = threading.Lock()
 
 
 def main() -> None:

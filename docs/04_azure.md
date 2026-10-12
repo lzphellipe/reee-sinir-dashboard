@@ -61,6 +61,45 @@ Configurações opcionais, em **Function App › Settings › Environment variab
    - **Variable** `AZURE_FUNCTIONAPP_NAME`: o nome do app (ex.: `painel-reee`).
 3. Em **Settings › Environments**, crie o environment `dev`. Se quiser, exija aprovação antes do deploy.
 
+### Erro "No credentials found. Add an Azure login action before this action"
+
+Esse erro **não** significa que falta o `azure/login`. A action do Functions só tenta o login RBAC ("Using RBAC for authentication") quando o campo `publish-profile` chega **vazio**, ou seja, quando o GitHub não achou o secret. Confira:
+
+- **Aba certa.** O valor tem de estar em **Secrets**, não em **Variables**. São abas separadas na mesma página.
+- **Nome exato:** `AZURE_FUNCTIONAPP_PUBLISH_PROFILE`, sem espaços.
+- **Escopo.** Vale secret do repositório (**Repository secrets**) ou do environment **`dev`**. Secret criado em outro environment (ex.: `Production`) não chega a este job.
+- **Conteúdo.** Cole o XML inteiro do arquivo `.PublishSettings`, de `<publishData>` até `</publishData>`.
+- **Fork.** Workflows de pull request vindos de fork não recebem secrets.
+
+Depois de corrigir, rode de novo em **Actions › Deploy do painel no Azure Functions › Run workflow**. O workflow tem um passo **Conferir credenciais do Azure** que agora acusa esse problema logo no início.
+
+### 2b. Alternativa: login OIDC (sem publish profile)
+
+Use esta opção se o **Get publish profile** estiver bloqueado na sua assinatura (comum em contas de instituição) ou se preferir não guardar senha no GitHub.
+
+```bash
+APP_ID=$(az ad app create --display-name gh-painel-reee --query appId -o tsv)
+az ad sp create --id $APP_ID
+az role assignment create --assignee $APP_ID --role "Website Contributor" \
+  --scope $(az functionapp show -n $APP -g $GRUPO --query id -o tsv)
+az ad app federated-credential create --id $APP_ID --parameters '{
+  "name": "github-dev",
+  "issuer": "https://token.actions.githubusercontent.com",
+  "subject": "repo:USUARIO/REPOSITORIO:environment:dev",
+  "audiences": ["api://AzureADTokenExchange"]
+}'
+echo "AZURE_CLIENT_ID=$APP_ID"
+echo "AZURE_TENANT_ID=$(az account show --query tenantId -o tsv)"
+echo "AZURE_SUBSCRIPTION_ID=$(az account show --query id -o tsv)"
+```
+
+Troque `USUARIO/REPOSITORIO` pelo seu repositório. Depois:
+
+1. Crie as três **Variables** (`AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`).
+2. Apague o secret `AZURE_FUNCTIONAPP_PUBLISH_PROFILE`, se ele existir.
+
+O workflow passa a usar o login OIDC sozinho.
+
 ## 3. Publicar
 
 Faça push na branch `main` ou rode o workflow **Deploy do painel no Azure Functions** pela aba Actions. O workflow [`azure-functions.yml`](../.github/workflows/azure-functions.yml) faz quatro coisas:

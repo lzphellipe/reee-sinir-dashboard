@@ -3,7 +3,7 @@
 Definições (também documentadas em docs/metodologia.md):
 
 * pontos               – pontos de recebimento ativos no ano
-* pontos_necessarios   – ceil(pop / 25.000) se pop > 80.000 (Decreto 10.240/2020), senão 0
+* pontos_necessarios   – ceil(pop / 25.000) se pop > 80.000 (aproximação do Anexo III do Decreto 10.240/2020), senão 0
 * deficit_pontos       – max(0, necessários − existentes)
 * com_ponto            – município tem ao menos 1 ponto
 * cumpre_densidade     – município obrigado com pontos ≥ necessários

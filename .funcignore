@@ -16,3 +16,5 @@ data/raw/demo/
 data/raw/sinir/_download/
 data/raw/sinir/extraido/
 iniciar.py
+data/raw/sinir/*.zip
+data/raw/sinir/*.rar

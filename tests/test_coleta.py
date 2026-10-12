@@ -79,6 +79,9 @@ def test_coleta_e_pipeline_completo(portal_falso, tmp_path, monkeypatch):
                         "DASHBOARD_DATA": tmp_path / "dash"}.items():
         monkeypatch.setattr(C, nome, valor)
     monkeypatch.setattr(coleta, "CKAN_BASE", url)
+    # links diretos do SINIR (etl_sinir.URLS): 2022 responde; 2023 está fora do ar -> usa o portal do MMA
+    from reee import etl_sinir
+    monkeypatch.setattr(etl_sinir, "URLS", {2022: url + "/download/estadosmunicipios2022.zip", 2023: url + "/sumiu/2023.zip"})
     monkeypatch.setattr(coleta, "SIDRA_POP", url + "/sidra")
     monkeypatch.setattr(coleta, "DIR_DOWNLOAD", raw / "sinir" / "_download")
     monkeypatch.setattr(coleta, "DIR_EXTRAIDO", raw / "sinir" / "extraido")
@@ -107,3 +110,14 @@ def test_fonte_fora_do_ar_da_erro_claro(monkeypatch, tmp_path):
     monkeypatch.setattr(C, "RAW_IBGE", tmp_path)
     with pytest.raises(coleta.FonteIndisponivel, match="sem acesso a 127.0.0.1:9"):
         coleta.sincronizar_populacao(forcar=True, progresso=lambda m: None)
+
+
+def test_zip_com_acentos_do_macos_e_pasta_macosx(tmp_path):
+    import zipfile
+    from reee import coleta
+    z = tmp_path / "EstadosMunicipios2025.zip"
+    with zipfile.ZipFile(z, "w") as f:
+        f.writestr("EstadosMunicipios2025/Municipal - Mecanismo para Cria#U00e7#U00e3o de Fonte.csv", "a;b\n1;2\n")
+        f.writestr("__MACOSX/EstadosMunicipios2025/._lixo.csv", "x")
+    arqs = coleta.extrair(z, tmp_path / "out")
+    assert [a.name for a in arqs] == ["Municipal - Mecanismo para Criação de Fonte.csv"]

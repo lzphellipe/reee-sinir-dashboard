@@ -1,0 +1,2690 @@
+﻿cod_ibge,ano,declarou_plano,cita_reee,cita_lr,trecho,fonte,municipio,uf
+1100056,2023,True,False,False,,,Cerejeiras,RO
+1100114,2023,True,False,False,,,Jaru,RO
+1100122,2023,True,False,False,,,Ji-Paraná,RO
+1100189,2023,True,False,False,,,Pimenta Bueno,RO
+1100205,2023,True,False,False,,,Porto Velho,RO
+1200104,2023,True,False,False,,,Brasiléia,AC
+1200203,2023,True,False,False,,,Cruzeiro do Sul,AC
+1200401,2023,True,False,False,,,Rio Branco,AC
+1200427,2023,True,False,False,,,Rodrigues Alves,AC
+1300102,2023,True,False,False,,,Anori,AM
+1300144,2023,True,False,False,,,Apuí,AM
+1300201,2023,True,False,False,,,Atalaia do Norte,AM
+1300680,2023,True,False,False,,,Boa Vista do Ramos,AM
+1300706,2023,True,False,False,,,Boca do Acre,AM
+1300805,2023,True,False,False,,,Borba,AM
+1300839,2023,True,False,False,,,Caapiranga,AM
+1301100,2023,True,False,False,,,Careiro,AM
+1301209,2023,True,False,False,,,Coari,AM
+1302207,2023,True,False,False,,,Juruá,AM
+1302405,2023,True,False,False,,,Lábrea,AM
+1302603,2023,True,False,False,,,Manaus,AM
+1302702,2023,True,False,False,,,Manicoré,AM
+1302900,2023,True,False,False,,,Maués,AM
+1303809,2023,True,False,False,,,São Gabriel da Cachoeira,AM
+1304005,2023,True,False,False,,,Silves,AM
+1500107,2023,True,False,False,,,Abaetetuba,PA
+1501303,2023,True,False,False,,,Barcarena,PA
+1501600,2023,True,False,False,,,Bonito,PA
+1504208,2023,True,False,False,,,Marabá,PA
+1506104,2023,True,False,False,,,Primavera,PA
+1507102,2023,True,False,False,,,São Caetano de Odivelas,PA
+1507300,2023,True,False,False,,,São Félix do Xingu,PA
+1507458,2023,True,False,False,,,São Geraldo do Araguaia,PA
+1507904,2023,True,False,False,,,Soure,PA
+1600204,2023,True,False,False,,,Calçoene,AP
+1600212,2023,True,False,False,,,Cutias,AP
+1600238,2023,True,False,False,,,Ferreira Gomes,AP
+1600253,2023,True,False,False,,,Itaubal,AP
+1600279,2023,True,False,False,,,Laranjal do Jari,AP
+1600535,2023,True,False,False,,,Porto Grande,AP
+1600600,2023,True,False,False,,,Santana,AP
+1600709,2023,True,False,False,,,Tartarugalzinho,AP
+1600808,2023,True,False,False,,,Vitória do Jari,AP
+1700251,2023,True,False,False,,,Abreulândia,TO
+1700350,2023,True,False,False,,,Aliança do Tocantins,TO
+1701002,2023,True,False,False,,,Ananás,TO
+1701903,2023,True,False,False,,,Araguacema,TO
+1702109,2023,True,False,False,,,Araguaína,TO
+1702158,2023,True,False,False,,,Araguanã,TO
+1702208,2023,True,False,False,,,Araguatins,TO
+1702703,2023,True,False,False,,,Aurora do Tocantins,TO
+1703057,2023,True,False,False,,,Bandeirantes do Tocantins,TO
+1703073,2023,True,False,False,,,Barra do Ouro,TO
+1703107,2023,True,False,False,,,Barrolândia,TO
+1703701,2023,True,False,False,,,Brejinho de Nazaré,TO
+1703800,2023,True,False,False,,,Buriti do Tocantins,TO
+1703826,2023,True,False,False,,,Cachoeirinha,TO
+1703909,2023,True,False,False,,,Caseara,TO
+1704600,2023,True,False,False,,,Chapada de Areia,TO
+1705607,2023,True,False,False,,,Conceição do Tocantins,TO
+1706100,2023,True,False,False,,,Cristalândia,TO
+1707009,2023,True,False,False,,,Dianópolis,TO
+1707108,2023,True,False,False,,,Divinópolis do Tocantins,TO
+1707207,2023,True,False,False,,,Dois Irmãos do Tocantins,TO
+1707306,2023,True,False,False,,,Dueré,TO
+1707702,2023,True,False,False,,,Filadélfia,TO
+1709302,2023,True,False,False,,,Guaraí,TO
+1710904,2023,True,False,False,,,Itapiratins,TO
+1711100,2023,True,False,False,,,Itaporã do Tocantins,TO
+1711506,2023,True,False,False,,,Jaú do Tocantins,TO
+1711803,2023,True,False,False,,,Juarina,TO
+1712009,2023,True,False,False,,,Lajeado,TO
+1712504,2023,True,False,False,,,Marianópolis do Tocantins,TO
+1712801,2023,True,False,False,,,Maurilândia do Tocantins,TO
+1713205,2023,True,False,False,,,Miracema do Tocantins,TO
+1713304,2023,True,False,False,,,Miranorte,TO
+1713957,2023,True,False,False,,,Muricilândia,TO
+1714203,2023,True,False,False,,,Natividade,TO
+1715754,2023,True,False,False,,,Palmeirópolis,TO
+1716109,2023,True,False,False,,,Paraíso do Tocantins,TO
+1716208,2023,True,False,False,,,Paranã,TO
+1716505,2023,True,False,False,,,Pedro Afonso,TO
+1716653,2023,True,False,False,,,Pequizeiro,TO
+1717206,2023,True,False,False,,,Piraquê,TO
+1718204,2023,True,False,False,,,Porto Nacional,TO
+1718550,2023,True,False,False,,,Riachinho,TO
+1718899,2023,True,False,False,,,Santa Rita do Tocantins,TO
+1718907,2023,True,False,False,,,Santa Rosa do Tocantins,TO
+1719004,2023,True,False,False,,,Santa Tereza do Tocantins,TO
+1720259,2023,True,False,False,,,São Salvador do Tocantins,TO
+1720655,2023,True,False,False,,,Silvanópolis,TO
+1721109,2023,True,False,False,,,Tocantínia,TO
+1721208,2023,True,False,False,,,Tocantinópolis,TO
+1722081,2023,True,False,False,,,Wanderlândia,TO
+2100477,2023,True,False,False,,,Alto Alegre do Pindaré,MA
+2101103,2023,True,False,False,,,Axixá,MA
+2101707,2023,True,False,False,,,Barreirinhas,MA
+2102002,2023,True,False,False,,,Bom Jardim,MA
+2102101,2023,True,False,False,,,Brejo,MA
+2102325,2023,True,False,False,,,Buriticupu,MA
+2103752,2023,True,False,False,,,Davinópolis,MA
+2104800,2023,True,False,False,,,Grajaú,MA
+2105104,2023,True,False,False,,,Icatu,MA
+2105302,2023,True,False,False,,,Imperatriz,MA
+2105401,2023,True,False,False,,,Itapecuru Mirim,MA
+2105427,2023,True,False,False,,,Itinga do Maranhão,MA
+2106300,2023,True,False,False,,,Magalhães de Almeida,MA
+2106607,2023,True,False,False,,,Matões,MA
+2107100,2023,True,False,False,,,Morros,MA
+2107506,2023,True,False,False,,,Paço do Lumiar,MA
+2107803,2023,True,False,False,,,Parnarama,MA
+2109007,2023,True,False,False,,,Porto Franco,MA
+2109205,2023,True,False,False,,,Presidente Juscelino,MA
+2109601,2023,True,False,False,,,Rosário,MA
+2110039,2023,True,False,False,,,Santa Luzia do Paruá,MA
+2110609,2023,True,False,False,,,São Bernardo,MA
+2111201,2023,True,False,False,,,São José de Ribamar,MA
+2111508,2023,True,False,False,,,São Mateus do Maranhão,MA
+2111607,2023,True,False,False,,,São Raimundo das Mangabeiras,MA
+2112001,2023,True,False,False,,,Tasso Fragoso,MA
+2112506,2023,True,False,False,,,Tutóia,MA
+2112704,2023,True,False,False,,,Vargem Grande,MA
+2200251,2023,True,False,False,,,Alagoinha do Piauí,PI
+2200400,2023,True,False,False,,,Altos,PI
+2201804,2023,True,False,False,,,Bocaina,PI
+2202737,2023,True,False,False,,,Coivaras,PI
+2204352,2023,True,False,False,,,Geminiano,PI
+2205953,2023,True,False,False,,,Marcolândia,PI
+2206506,2023,True,False,False,,,Monsenhor Hipólito,PI
+2206654,2023,True,False,False,,,Morro Cabeça no Tempo,PI
+2206670,2023,True,False,False,,,Morro do Chapéu do Piauí,PI
+2209401,2023,True,False,False,,,Santo Antônio de Lisboa,PI
+2209872,2023,True,False,False,,,São João da Fronteira,PI
+2209955,2023,True,False,False,,,São João da Varjota,PI
+2209971,2023,True,False,False,,,São João do Arraial,PI
+2210375,2023,True,False,False,,,São Luis do Piauí,PI
+2210938,2023,True,False,False,,,Sussuapara,PI
+2211704,2023,True,False,False,,,Wall Ferraz,PI
+2300101,2023,True,False,False,,,Abaiara,CE
+2300200,2023,True,False,False,,,Acaraú,CE
+2300408,2023,True,False,False,,,Aiuaba,CE
+2300705,2023,True,False,False,,,Alto Santo,CE
+2300903,2023,True,False,False,,,Apuiarés,CE
+2301208,2023,True,False,False,,,Aracoiaba,CE
+2301257,2023,True,False,False,,,Ararendá,CE
+2301505,2023,True,False,False,,,Arneiroz,CE
+2301703,2023,True,False,False,,,Aurora,CE
+2302008,2023,True,False,False,,,Barro,CE
+2302206,2023,True,False,False,,,Beberibe,CE
+2302701,2023,True,False,False,,,Campos Sales,CE
+2302909,2023,True,False,False,,,Capistrano,CE
+2303303,2023,True,False,False,,,Cariús,CE
+2303501,2023,True,False,False,,,Cascavel,CE
+2303659,2023,True,False,False,,,Catunda,CE
+2303709,2023,True,False,False,,,Caucaia,CE
+2303956,2023,True,False,False,,,Chorozinho,CE
+2304202,2023,True,False,False,,,Crato,CE
+2304269,2023,True,True,True,"…coleta de resíduos passiveis de logística reversas como óleos, pneus e eletrônicos.",Municipal - Mecanismo para Criação de Fonte - 2023.csv · Descrição Mecanismo Fonte.1,Deputado Irapuan Pinheiro,CE
+2304459,2023,True,False,False,,,Fortim,CE
+2304954,2023,True,False,False,,,Guaiúba,CE
+2305357,2023,True,False,False,,,Icapuí,CE
+2305506,2023,True,False,False,,,Iguatu,CE
+2306009,2023,True,False,False,,,Iracema,CE
+2306108,2023,True,False,False,,,Irauçuba,CE
+2306256,2023,True,False,False,,,Itaitinga,CE
+2306405,2023,True,False,False,,,Itapipoca,CE
+2306801,2023,True,False,False,,,Jaguaribara,CE
+2307304,2023,True,False,False,,,Juazeiro do Norte,CE
+2307601,2023,True,False,False,,,Limoeiro do Norte,CE
+2307700,2023,True,False,False,,,Maranguape,CE
+2308104,2023,True,False,False,,,Mauriti,CE
+2308302,2023,True,False,False,,,Milagres,CE
+2308609,2023,True,False,False,,,Monsenhor Tabosa,CE
+2308708,2023,True,False,False,,,Morada Nova,CE
+2309003,2023,True,False,False,,,Mucambo,CE
+2309102,2023,True,False,False,,,Mulungu,CE
+2309300,2023,True,False,False,,,Nova Russas,CE
+2309409,2023,True,False,False,,,Novo Oriente,CE
+2309458,2023,True,False,False,,,Ocara,CE
+2309607,2023,True,False,False,,,Pacajus,CE
+2310001,2023,True,False,False,,,Palhano,CE
+2310308,2023,True,False,False,,,Parambu,CE
+2310407,2023,True,False,False,,,Paramoti,CE
+2310852,2023,True,False,False,,,Pindoretama,CE
+2311108,2023,True,False,False,,,Porteiras,CE
+2311603,2023,True,False,False,,,Redenção,CE
+2311801,2023,True,False,False,,,Russas,CE
+2311900,2023,True,False,False,,,Saboeiro,CE
+2312007,2023,True,False,False,,,Santana do Acaraú,CE
+2312304,2023,True,False,False,,,São Benedito,CE
+2313104,2023,True,False,False,,,Tabuleiro do Norte,CE
+2313252,2023,True,False,False,,,Tarrafas,CE
+2313302,2023,True,False,False,,,Tauá,CE
+2313906,2023,True,False,False,,,Uruoca,CE
+2401206,2023,True,False,False,,,Arês,RN
+2401404,2023,True,False,False,,,Baía Formosa,RN
+2401453,2023,True,False,False,,,Baraúna,RN
+2402006,2023,True,False,False,,,Caicó,RN
+2402808,2023,True,False,False,,,Coronel Ezequiel,RN
+2402907,2023,True,False,False,,,Coronel João Pessoa,RN
+2403202,2023,True,False,False,,,Doutor Severiano,RN
+2403756,2023,True,False,False,,,Fernando Pedroza,RN
+2407906,2023,True,False,False,,,Monte das Gameleiras,RN
+2408409,2023,True,False,False,,,Olho-d'Água do Borges,RN
+2408805,2023,True,False,False,,,Parazinho,RN
+2409407,2023,True,False,False,,,Pau dos Ferros,RN
+2410801,2023,True,False,False,,,Riacho de Santana,RN
+2412203,2023,True,False,False,,,São José de Mipibu,RN
+2413409,2023,True,False,False,,,Serra Negra do Norte,RN
+2500601,2023,True,False,False,,,Alhandra,PB
+2502706,2023,True,False,False,,,Borborema,PB
+2503704,2023,True,False,False,,,Cajazeiras,PB
+2516003,2023,True,False,False,,,Solânea,PB
+2601706,2023,True,False,False,,,Belo Jardim,PE
+2603926,2023,True,False,False,,,Carnaubeira da Penha,PE
+2605004,2023,True,False,False,,,Cupira,PE
+2605202,2023,True,False,False,,,Escada,PE
+2609303,2023,True,False,False,,,Mirandiba,PE
+2609600,2023,True,False,False,,,Olinda,PE
+2610608,2023,True,False,False,,,Paudalho,PE
+2611606,2023,True,False,False,,,Recife,PE
+2612455,2023,True,False,False,,,Santa Cruz,PE
+2612554,2023,True,False,False,,,Santa Filomena,PE
+2613909,2023,True,False,False,,,Serra Talhada,PE
+2615607,2023,True,False,False,,,Trindade,PE
+2700102,2023,True,False,False,,,Água Branca,AL
+2700201,2023,True,False,False,,,Anadia,AL
+2700409,2023,True,False,False,,,Atalaia,AL
+2700508,2023,True,False,False,,,Barra de Santo Antônio,AL
+2700904,2023,True,False,False,,,Belo Monte,AL
+2701100,2023,True,False,False,,,Branquinha,AL
+2701209,2023,True,False,False,,,Cacimbinhas,AL
+2701357,2023,True,False,False,,,Campestre,AL
+2702108,2023,True,False,False,,,Colônia Leopoldina,AL
+2702207,2023,True,False,False,,,Coqueiro Seco,AL
+2702306,2023,True,False,False,,,Coruripe,AL
+2702355,2023,True,False,False,,,Craíbas,AL
+2702405,2023,True,False,False,,,Delmiro Gouveia,AL
+2702504,2023,True,False,False,,,Dois Riachos,AL
+2702900,2023,True,False,False,,,Girau do Ponciano,AL
+2703106,2023,True,False,False,,,Igaci,AL
+2703304,2023,True,False,False,,,Inhapi,AL
+2703403,2023,True,False,False,,,Jacaré dos Homens,AL
+2703700,2023,True,False,False,,,Jaramataia,AL
+2703759,2023,True,False,False,,,Jequiá da Praia,AL
+2703809,2023,True,False,False,,,Joaquim Gomes,AL
+2704005,2023,True,False,False,,,Junqueiro,AL
+2704203,2023,True,False,False,,,Limoeiro de Anadia,AL
+2704609,2023,True,False,False,,,Maravilha,AL
+2704708,2023,True,False,False,,,Marechal Deodoro,AL
+2704906,2023,True,False,False,,,Mar Vermelho,AL
+2705309,2023,True,False,False,,,Minador do Negrão,AL
+2705408,2023,True,False,False,,,Monteirópolis,AL
+2706000,2023,True,False,False,,,Olivença,AL
+2706109,2023,True,False,False,,,Ouro Branco,AL
+2706422,2023,True,False,False,,,Pariconha,AL
+2706448,2023,True,False,False,,,Paripueira,AL
+2706505,2023,True,False,False,,,Passo de Camaragibe,AL
+2706604,2023,True,False,False,,,Paulo Jacinto,AL
+2706802,2023,True,False,False,,,Piaçabuçu,AL
+2707107,2023,True,False,False,,,Piranhas,AL
+2707206,2023,True,False,False,,,Poço das Trincheiras,AL
+2707305,2023,True,False,False,,,Porto Calvo,AL
+2707404,2023,True,False,False,,,Porto de Pedras,AL
+2707602,2023,True,False,False,,,Quebrangulo,AL
+2707800,2023,True,False,False,,,Roteiro,AL
+2708006,2023,True,False,False,,,Santana do Ipanema,AL
+2708600,2023,True,False,False,,,São Miguel dos Campos,AL
+2708709,2023,True,False,False,,,São Miguel dos Milagres,AL
+2708808,2023,True,False,False,,,São Sebastião,AL
+2708956,2023,True,False,False,,,Senador Rui Palmeira,AL
+2709004,2023,True,False,False,,,Tanque d'Arca,AL
+2709152,2023,True,False,False,,,Teotônio Vilela,AL
+2709202,2023,True,False,False,,,Traipu,AL
+2709301,2023,True,False,False,,,União dos Palmares,AL
+2800407,2023,True,False,False,,,Arauá,SE
+2800670,2023,True,False,False,,,Boquim,SE
+2801504,2023,True,False,False,,,Carmópolis,SE
+2801603,2023,True,False,False,,,Cedro de São João,SE
+2801702,2023,True,False,False,,,Cristinápolis,SE
+2802007,2023,True,False,False,,,Divina Pastora,SE
+2802106,2023,True,False,False,,,Estância,SE
+2802403,2023,True,False,False,,,Gararu,SE
+2802601,2023,True,False,False,,,Gracho Cardoso,SE
+2803500,2023,True,False,False,,,Lagarto,SE
+2804409,2023,True,False,False,,,Neópolis,SE
+2804508,2023,True,False,False,,,Nossa Senhora da Glória,SE
+2804706,2023,True,False,False,,,Nossa Senhora de Lourdes,SE
+2804904,2023,True,False,False,,,Pacatuba,SE
+2805109,2023,True,False,False,,,Pedrinhas,SE
+2805703,2023,True,False,False,,,Propriá,SE
+2806701,2023,True,False,False,,,São Cristóvão,SE
+2806909,2023,True,False,False,,,São Francisco,SE
+2807402,2023,True,False,False,,,Tobias Barreto,SE
+2807600,2023,True,False,False,,,Umbaúba,SE
+2901403,2023,True,False,False,,,Angical,BA
+2901700,2023,True,False,False,,,Antônio Cardoso,BA
+2902708,2023,True,False,False,,,Barra,BA
+2902906,2023,True,False,False,,,Barra do Choça,BA
+2903508,2023,True,False,False,,,Belo Campo,BA
+2904506,2023,True,False,False,,,Brotas de Macaúbas,BA
+2904753,2023,True,False,False,,,Buritirama,BA
+2905206,2023,True,False,False,,,Caetité,BA
+2905701,2023,True,False,False,,,Camaçari,BA
+2906402,2023,True,False,False,,,Candeal,BA
+2907103,2023,True,False,False,,,Carinhanha,BA
+2908507,2023,True,False,False,,,Conceição do Jacuípe,BA
+2910776,2023,True,False,False,,,Feira da Mata,BA
+2911709,2023,True,False,False,,,Guanambi,BA
+2912509,2023,True,False,False,,,Ibipitanga,BA
+2912905,2023,True,False,False,,,Ibirataia,BA
+2916856,2023,True,False,False,,,Itatim,BA
+2917334,2023,True,False,False,,,Iuiú,BA
+2917508,2023,True,False,False,,,Jacobina,BA
+2918407,2023,True,False,False,,,Juazeiro,BA
+2919207,2023,True,False,False,,,Lauro de Freitas,BA
+2919553,2023,True,False,False,,,Luís Eduardo Magalhães,BA
+2920205,2023,True,False,False,,,Malhada,BA
+2921609,2023,True,False,False,,,Morpará,BA
+2921708,2023,True,False,False,,,Morro do Chapéu,BA
+2927804,2023,True,False,False,,,Santa Cruz da Vitória,BA
+2928406,2023,True,False,False,,,Santa Rita de Cássia,BA
+2928901,2023,True,False,False,,,São Desidério,BA
+2929206,2023,True,False,False,,,São Francisco do Conde,BA
+2932101,2023,True,False,False,,,Ubaíra,BA
+2933455,2023,True,False,False,,,Wanderley,BA
+3100104,2023,True,False,False,,,Abadia dos Dourados,MG
+3101706,2023,True,False,False,,,Almenara,MG
+3102308,2023,True,False,False,,,Alvinópolis,MG
+3106309,2023,True,False,False,,,Belo Oriente,MG
+3107406,2023,True,False,False,,,Bom Despacho,MG
+3108206,2023,True,False,False,,,Bonfinópolis de Minas,MG
+3110400,2023,True,False,False,,,Camacho,MG
+3111200,2023,True,False,False,,,Campo Belo,MG
+3111408,2023,True,False,False,,,Campo Florido,MG
+3111606,2023,True,False,False,,,Campos Gerais,MG
+3111804,2023,True,False,False,,,Canápolis,MG
+3111903,2023,True,False,False,,,Cana Verde,MG
+3113305,2023,True,False,False,,,Carangola,MG
+3114600,2023,True,False,False,,,Carrancas,MG
+3115003,2023,True,False,False,,,Cascalho Rico,MG
+3115359,2023,True,False,False,,,Catas Altas,MG
+3117504,2023,True,False,False,,,Conceição do Mato Dentro,MG
+3118304,2023,True,False,False,,,Conselheiro Lafaiete,MG
+3118700,2023,True,False,False,,,Coqueiral,MG
+3119302,2023,True,False,False,,,Coromandel,MG
+3121100,2023,True,False,False,,,Delfim Moreira,MG
+3122009,2023,True,False,False,,,Divino,MG
+3122470,2023,True,False,False,,,Dom Bosco,MG
+3123205,2023,True,False,False,,,Dores do Indaiá,MG
+3123502,2023,True,False,False,,,Douradoquara,MG
+3123601,2023,True,False,False,,,Elói Mendes,MG
+3124807,2023,True,False,False,,,Estrela do Sul,MG
+3126703,2023,True,False,False,,,Francisco Sá,MG
+3127800,2023,True,False,False,,,Grão Mogol,MG
+3127909,2023,True,False,False,,,Grupiara,MG
+3128204,2023,True,False,False,,,Guaraciaba,MG
+3128303,2023,True,False,False,,,Guaranésia,MG
+3129400,2023,True,False,False,,,Ibertioga,MG
+3129806,2023,True,False,False,,,Ibirité,MG
+3130408,2023,True,False,False,,,Ijaci,MG
+3130804,2023,True,False,False,,,Ingaí,MG
+3131604,2023,True,False,False,,,Iraí de Minas,MG
+3131901,2023,True,False,False,,,Itabirito,MG
+3132008,2023,True,False,False,,,Itacambira,MG
+3133303,2023,True,False,False,,,Itaobim,MG
+3133501,2023,True,False,False,,,Itapecerica,MG
+3133709,2023,True,False,False,,,Itatiaiuçu,MG
+3134202,2023,True,False,False,,,Ituiutaba,MG
+3134301,2023,True,False,False,,,Itumirim,MG
+3134509,2023,True,False,False,,,Itutinga,MG
+3134905,2023,True,False,False,,,Jacutinga,MG
+3135100,2023,True,False,False,,,Janaúba,MG
+3135209,2023,True,False,False,,,Januária,MG
+3136579,2023,True,False,False,,,Josenópolis,MG
+3136702,2023,True,False,False,,,Juiz de Fora,MG
+3136959,2023,True,False,False,,,Juvenília,MG
+3137601,2023,True,False,False,,,Lagoa Santa,MG
+3138203,2023,True,False,False,,,Lavras,MG
+3138401,2023,True,False,False,,,Leopoldina,MG
+3138708,2023,True,False,False,,,Luminárias,MG
+3139102,2023,True,False,False,,,Madre de Deus de Minas,MG
+3139300,2023,True,False,False,,,Manga,MG
+3140100,2023,True,False,False,,,Marilac,MG
+3142007,2023,True,False,False,,,Mirabela,MG
+3142254,2023,True,False,False,,,Miravânia,MG
+3142304,2023,True,False,False,,,Moeda,MG
+3142700,2023,True,False,False,,,Montalvânia,MG
+3142809,2023,True,False,False,,,Monte Alegre de Minas,MG
+3143104,2023,True,False,False,,,Monte Carmelo,MG
+3144607,2023,True,False,False,,,Nepomuceno,MG
+3145109,2023,True,False,False,,,Nova Resende,MG
+3145901,2023,True,False,False,,,Ouro Branco,MG
+3146107,2023,True,False,False,,,Ouro Preto,MG
+3147907,2023,True,False,False,,,Passos,MG
+3147956,2023,True,False,False,,,Patis,MG
+3149903,2023,True,False,False,,,Perdões,MG
+3150505,2023,True,False,False,,,Pimenta,MG
+3150802,2023,True,False,False,,,Piranga,MG
+3151206,2023,True,False,False,,,Pirapora,MG
+3152204,2023,True,False,False,,,Porteirinha,MG
+3152303,2023,True,False,False,,,Porto Firme,MG
+3152600,2023,True,False,False,,,Pouso Alto,MG
+3152808,2023,True,False,False,,,Prata,MG
+3153301,2023,True,False,False,,,Presidente Kubitschek,MG
+3154002,2023,True,False,False,,,Raul Soares,MG
+3154705,2023,True,False,False,,,Ribeirão Vermelho,MG
+3155108,2023,True,False,False,,,Rio do Prado,MG
+3157336,2023,True,False,False,,,Santa Cruz de Minas,MG
+3159803,2023,True,False,False,,,Santa Vitória,MG
+3160801,2023,True,False,False,,,São Bento Abade,MG
+3161106,2023,True,False,False,,,São Francisco,MG
+3161403,2023,True,False,False,,,São Francisco do Glória,MG
+3162658,2023,True,False,False,,,São João do Pacuí,MG
+3169356,2023,True,False,False,,,Três Marias,MG
+3169901,2023,True,False,False,,,Ubá,MG
+3170206,2023,True,False,False,,,Uberlândia,MG
+3170404,2023,True,False,False,,,Unaí,MG
+3170909,2023,True,False,False,,,Varzelândia,MG
+3171006,2023,True,False,False,,,Vazante,MG
+3171154,2023,True,False,False,,,Vermelho Novo,MG
+3171709,2023,True,False,False,,,Virgínia,MG
+3200102,2023,True,False,False,,,Afonso Cláudio,ES
+3200136,2023,True,False,False,,,Águia Branca,ES
+3200169,2023,True,False,False,,,Água Doce do Norte,ES
+3200300,2023,True,False,False,,,Alfredo Chaves,ES
+3200409,2023,True,False,False,,,Anchieta,ES
+3200607,2023,True,False,False,,,Aracruz,ES
+3200706,2023,True,False,False,,,Atilio Vivacqua,ES
+3200805,2023,True,False,False,,,Baixo Guandu,ES
+3200904,2023,True,False,False,,,Barra de São Francisco,ES
+3201001,2023,True,False,False,,,Boa Esperança,ES
+3201100,2023,True,False,False,,,Bom Jesus do Norte,ES
+3201159,2023,True,False,False,,,Brejetuba,ES
+3201209,2023,True,False,False,,,Cachoeiro de Itapemirim,ES
+3201506,2023,True,False,False,,,Colatina,ES
+3201902,2023,True,False,False,,,Domingos Martins,ES
+3202009,2023,True,False,False,,,Dores do Rio Preto,ES
+3202108,2023,True,False,False,,,Ecoporanga,ES
+3202256,2023,True,False,False,,,Governador Lindenberg,ES
+3202504,2023,True,False,False,,,Ibiraçu,ES
+3202900,2023,True,False,False,,,Itarana,ES
+3203007,2023,True,False,False,,,Iúna,ES
+3203056,2023,True,False,False,,,Jaguaré,ES
+3203130,2023,True,False,False,,,João Neiva,ES
+3203163,2023,True,False,False,,,Laranja da Terra,ES
+3203346,2023,True,False,False,,,Marechal Floriano,ES
+3203502,2023,True,False,False,,,Montanha,ES
+3203601,2023,True,False,False,,,Mucurici,ES
+3203700,2023,True,False,False,,,Muniz Freire,ES
+3203809,2023,True,False,False,,,Muqui,ES
+3204104,2023,True,False,False,,,Pinheiros,ES
+3204203,2023,True,False,False,,,Piúma,ES
+3204252,2023,True,False,False,,,Ponto Belo,ES
+3204351,2023,True,False,False,,,Rio Bananal,ES
+3204559,2023,True,False,False,,,Santa Maria de Jetibá,ES
+3204658,2023,True,False,False,,,São Domingos do Norte,ES
+3204807,2023,True,False,False,,,São José do Calçado,ES
+3204955,2023,True,False,False,,,São Roque do Canaã,ES
+3205002,2023,True,False,False,,,Serra,ES
+3205010,2023,True,False,False,,,Sooretama,ES
+3205036,2023,True,False,False,,,Vargem Alta,ES
+3205069,2023,True,False,False,,,Venda Nova do Imigrante,ES
+3205101,2023,True,False,False,,,Viana,ES
+3205150,2023,True,False,False,,,Vila Pavão,ES
+3205200,2023,True,False,False,,,Vila Velha,ES
+3300159,2023,True,False,False,,,Aperibé,RJ
+3300258,2023,True,False,False,,,Arraial do Cabo,RJ
+3301108,2023,True,False,False,,,Cantagalo,RJ
+3301900,2023,True,False,False,,,Itaboraí,RJ
+3302007,2023,True,False,False,,,Itaguaí,RJ
+3302270,2023,True,False,False,,,Japeri,RJ
+3302403,2023,True,False,False,,,Macaé,RJ
+3302601,2023,True,False,False,,,Mangaratiba,RJ
+3303609,2023,True,False,False,,,Paracambi,RJ
+3303856,2023,True,False,False,,,Paty do Alferes,RJ
+3303955,2023,True,False,False,,,Pinheiral,RJ
+3304201,2023,True,False,False,,,Resende,RJ
+3304557,2023,True,False,False,,,Rio de Janeiro,RJ
+3305000,2023,True,False,False,,,São João da Barra,RJ
+3306008,2023,True,False,False,,,Três Rios,RJ
+3306107,2023,True,False,False,,,Valença,RJ
+3501806,2023,True,False,False,,,Américo de Campos,SP
+3501905,2023,True,False,False,,,Amparo,SP
+3502002,2023,True,False,False,,,Analândia,SP
+3502903,2023,True,False,False,,,Araçoiaba da Serra,SP
+3503307,2023,True,False,False,,,Araras,SP
+3503406,2023,True,False,False,,,Arealva,SP
+3504008,2023,True,False,False,,,Assis,SP
+3504107,2023,True,False,False,,,Atibaia,SP
+3505351,2023,True,False,False,,,Barra do Chapéu,SP
+3505500,2023,True,False,False,,,Barretos,SP
+3506003,2023,True,False,False,,,Bauru,SP
+3507209,2023,True,False,False,,,Borá,SP
+3507753,2023,True,False,False,,,Brejo Alegre,SP
+3509957,2023,True,False,False,,,Canas,SP
+3510005,2023,True,False,False,,,Cândido Mota,SP
+3511003,2023,True,False,False,,,Castilho,SP
+3512407,2023,True,False,False,,,Cordeirópolis,SP
+3512803,2023,True,False,False,,,Cosmópolis,SP
+3513306,2023,True,False,False,,,Cruzália,SP
+3514106,2023,True,False,False,,,Dois Córregos,SP
+3515152,2023,True,False,False,,,Engenheiro Coelho,SP
+3515400,2023,True,False,False,,,Fartura,SP
+3515657,2023,True,False,False,,,Fernão,SP
+3518701,2023,True,False,False,,,Guarujá,SP
+3519501,2023,True,False,False,,,Ibirarema,SP
+3520301,2023,True,False,False,,,Iguape,SP
+3520400,2023,True,False,False,,,Ilhabela,SP
+3520442,2023,True,False,False,,,Ilha Solteira,SP
+3521200,2023,True,False,False,,,Iporanga,SP
+3522653,2023,True,False,False,,,Itapirapuã Paulista,SP
+3524709,2023,True,False,False,,,Jaguariúna,SP
+3525508,2023,True,False,False,,,Joanópolis,SP
+3525904,2023,True,False,False,,,Jundiaí,SP
+3526506,2023,True,False,False,,,Lavínia,SP
+3526704,2023,True,False,False,,,Leme,SP
+3526902,2023,True,False,False,,,Limeira,SP
+3528304,2023,True,False,False,,,Magda,SP
+3528601,2023,True,False,False,,,Manduri,SP
+3530805,2023,True,False,False,,,Mogi Mirim,SP
+3531001,2023,True,False,False,,,Monções,SP
+3531308,2023,True,False,False,,,Monte Alto,SP
+3532108,2023,True,False,False,,,Murutinga do Sul,SP
+3534302,2023,True,False,False,,,Orlândia,SP
+3534500,2023,True,False,False,,,Oscar Bressane,SP
+3536257,2023,True,False,False,,,Parisi,SP
+3536406,2023,True,False,False,,,Paulicéia,SP
+3536604,2023,True,False,False,,,Paulo de Faria,SP
+3536901,2023,True,False,False,,,Pedranópolis,SP
+3537305,2023,True,False,False,,,Penápolis,SP
+3538709,2023,True,False,False,,,Piracicaba,SP
+3539806,2023,True,False,False,,,Poá,SP
+3542008,2023,True,False,False,,,Quintana,SP
+3543907,2023,True,False,False,,,Rio Claro,SP
+3545803,2023,True,False,False,,,Santa Bárbara d'Oeste,SP
+3546405,2023,True,False,False,,,Santa Cruz do Rio Pardo,SP
+3547601,2023,True,False,False,,,Santa Rosa de Viterbo,SP
+3547809,2023,True,False,False,,,Santo André,SP
+3549904,2023,True,False,False,,,São José dos Campos,SP
+3551009,2023,True,False,False,,,São Vicente,SP
+3552106,2023,True,False,False,,,Socorro,SP
+3552502,2023,True,False,False,,,Suzano,SP
+3552551,2023,True,False,False,,,Suzanápolis,SP
+3553955,2023,True,False,False,,,Tarumã,SP
+3554508,2023,True,False,False,,,Tietê,SP
+3555109,2023,True,False,False,,,Tupi Paulista,SP
+3555307,2023,True,False,False,,,Turmalina,SP
+3556107,2023,True,False,False,,,Valentim Gentil,SP
+3556206,2023,True,False,False,,,Valinhos,SP
+3556305,2023,True,False,False,,,Valparaíso,SP
+3556602,2023,True,False,False,,,Vera Cruz,SP
+3557105,2023,True,False,False,,,Votuporanga,SP
+4100509,2023,True,False,False,,,Altônia,PR
+4100806,2023,True,False,False,,,Alvorada do Sul,PR
+4101101,2023,True,False,False,,,Andirá,PR
+4101804,2023,True,False,False,,,Araucária,PR
+4101903,2023,True,False,False,,,Assaí,PR
+4102109,2023,True,False,False,,,Astorga,PR
+4102307,2023,True,False,False,,,Balsa Nova,PR
+4102802,2023,True,False,False,,,Bela Vista do Paraíso,PR
+4103453,2023,True,False,False,,,Cafelândia,PR
+4103958,2023,True,False,False,,,Campina do Simão,PR
+4104303,2023,True,False,False,,,Campo Mourão,PR
+4104402,2023,True,False,False,,,Cândido de Abreu,PR
+4104600,2023,True,False,False,,,Capitão Leônidas Marques,PR
+4104659,2023,True,False,False,,,Carambeí,PR
+4104907,2023,True,False,False,,,Castro,PR
+4105003,2023,True,False,False,,,Catanduvas,PR
+4105508,2023,True,False,False,,,Cianorte,PR
+4105706,2023,True,False,False,,,Clevelândia,PR
+4105805,2023,True,False,False,,,Colombo,PR
+4106209,2023,True,False,False,,,Contenda,PR
+4106506,2023,True,False,False,,,Coronel Vivida,PR
+4106605,2023,True,False,False,,,Cruzeiro do Oeste,PR
+4106704,2023,True,False,False,,,Cruzeiro do Sul,PR
+4106902,2023,True,False,False,,,Curitiba,PR
+4107009,2023,True,False,False,,,Curiúva,PR
+4107157,2023,True,False,False,,,Diamante D'Oeste,PR
+4107520,2023,True,False,False,,,Esperança Nova,PR
+4107538,2023,True,False,False,,,Entre Rios do Oeste,PR
+4107553,2023,True,False,False,,,Farol,PR
+4107702,2023,True,False,False,,,Fênix,PR
+4108403,2023,True,False,False,,,Francisco Beltrão,PR
+4108502,2023,True,False,False,,,General Carneiro,PR
+4108650,2023,True,False,False,,,Goioxim,PR
+4109104,2023,True,False,False,,,Guaporema,PR
+4109401,2023,True,False,False,,,Guarapuava,PR
+4109500,2023,True,False,False,,,Guaraqueçaba,PR
+4109658,2023,True,False,False,,,Honório Serpa,PR
+4109757,2023,True,False,False,,,Ibema,PR
+4109807,2023,True,False,False,,,Ibiporã,PR
+4110508,2023,True,False,False,,,Ipiranga,PR
+4110706,2023,True,False,False,,,Irati,PR
+4110904,2023,True,False,False,,,Itaguajé,PR
+4110953,2023,True,False,False,,,Itaipulândia,PR
+4111209,2023,True,False,False,,,Itapejara d'Oeste,PR
+4111506,2023,True,False,False,,,Ivaiporã,PR
+4111555,2023,True,False,False,,,Ivaté,PR
+4111605,2023,True,False,False,,,Ivatuba,PR
+4111803,2023,True,False,False,,,Jacarezinho,PR
+4112207,2023,True,False,False,,,Janiópolis,PR
+4112405,2023,True,False,False,,,Japurá,PR
+4112504,2023,True,False,False,,,Jardim Alegre,PR
+4112603,2023,True,False,False,,,Jardim Olinda,PR
+4113106,2023,True,False,False,,,Kaloré,PR
+4113452,2023,True,False,False,,,Lindoeste,PR
+4113700,2023,True,False,False,,,Londrina,PR
+4113734,2023,True,False,False,,,Luiziana,PR
+4114203,2023,True,False,False,,,Mandaguari,PR
+4114351,2023,True,False,False,,,Manfrinópolis,PR
+4114609,2023,True,False,False,,,Marechal Cândido Rondon,PR
+4115200,2023,True,False,False,,,Maringá,PR
+4115309,2023,True,False,False,,,Mariópolis,PR
+4115606,2023,True,False,False,,,Matelândia,PR
+4115804,2023,True,False,False,,,Medianeira,PR
+4116059,2023,True,False,False,,,Missal,PR
+4116901,2023,True,False,False,,,Nova Esperança,PR
+4117271,2023,True,False,False,,,Nova Tebas,PR
+4117297,2023,True,False,False,,,Novo Itacolomi,PR
+4117602,2023,True,False,False,,,Palmas,PR
+4117701,2023,True,False,False,,,Palmeira,PR
+4118204,2023,True,False,False,,,Paranaguá,PR
+4118501,2023,True,False,False,,,Pato Branco,PR
+4118600,2023,True,False,False,,,Paula Freitas,PR
+4118857,2023,True,False,False,,,Perobal,PR
+4118907,2023,True,False,False,,,Pérola,PR
+4119806,2023,True,False,False,,,Planalto,PR
+4119905,2023,True,False,False,,,Ponta Grossa,PR
+4119954,2023,True,False,False,,,Pontal do Paraná,PR
+4120507,2023,True,False,False,,,Primeiro de Maio,PR
+4120804,2023,True,False,False,,,Quatro Barras,PR
+4120853,2023,True,False,False,,,Quatro Pontes,PR
+4121109,2023,True,False,False,,,Quinta do Sol,PR
+4121356,2023,True,False,False,,,Rancho Alegre D'Oeste,PR
+4121406,2023,True,False,False,,,Realeza,PR
+4121703,2023,True,False,False,,,Reserva,PR
+4121752,2023,True,False,False,,,Reserva do Iguaçu,PR
+4122156,2023,True,False,False,,,Rio Bonito do Iguaçu,PR
+4122206,2023,True,False,False,,,Rio Branco do Sul,PR
+4122701,2023,True,False,False,,,Sabáudia,PR
+4123402,2023,True,False,False,,,Santa Fé,PR
+4123501,2023,True,False,False,,,Santa Helena,PR
+4123907,2023,True,False,False,,,Santa Mariana,PR
+4124103,2023,True,False,False,,,Santo Antônio da Platina,PR
+4125001,2023,True,False,False,,,São João do Ivaí,PR
+4125357,2023,True,False,False,,,São Jorge do Patrocínio,PR
+4125407,2023,True,False,False,,,São José da Boa Vista,PR
+4125456,2023,True,False,False,,,São José das Palmeiras,PR
+4125555,2023,True,False,False,,,São Manoel do Paraná,PR
+4125803,2023,True,False,False,,,São Pedro do Ivaí,PR
+4126009,2023,True,False,False,,,São Sebastião da Amoreira,PR
+4126207,2023,True,False,False,,,Sapopema,PR
+4126306,2023,True,False,True,,,Sengés,PR
+4126702,2023,True,False,False,,,Tamboara,PR
+4126900,2023,True,False,False,,,Tapira,PR
+4127502,2023,True,False,False,,,Tibagi,PR
+4127601,2023,True,False,False,,,Tijucas do Sul,PR
+4127809,2023,True,False,False,,,Tomazina,PR
+4127858,2023,True,False,False,,,Três Barras do Paraná,PR
+4127965,2023,True,False,False,,,Turvo,PR
+4128005,2023,True,False,False,,,Ubiratã,PR
+4128559,2023,True,False,False,,,Vera Cruz do Oeste,PR
+4128807,2023,True,False,False,,,Xambrê,PR
+4200309,2023,True,False,False,,,Agronômica,SC
+4201505,2023,True,False,False,,,Armazém,SC
+4201901,2023,True,False,False,,,Aurora,SC
+4202081,2023,True,False,False,,,Bandeirante,SC
+4202206,2023,True,False,False,,,Benedito Novo,SC
+4202305,2023,True,False,False,,,Biguaçu,SC
+4202404,2023,True,False,False,,,Blumenau,SC
+4202438,2023,True,False,False,,,Bocaina do Sul,SC
+4202453,2023,True,False,False,,,Bombinhas,SC
+4202602,2023,True,False,False,,,Bom Retiro,SC
+4203253,2023,True,False,False,,,Capão Alto,SC
+4203402,2023,True,False,False,,,Campo Belo do Sul,SC
+4203808,2023,True,False,False,,,Canoinhas,SC
+4203956,2023,True,False,False,,,Capivari de Baixo,SC
+4204558,2023,True,False,False,,,Correia Pinto,SC
+4204905,2023,True,False,False,,,Descanso,SC
+4205159,2023,True,False,False,,,Doutor Pedrinho,SC
+4205407,2023,True,False,False,,,Florianópolis,SC
+4205456,2023,True,False,False,,,Forquilhinha,SC
+4206900,2023,True,False,False,,,Ibirama,SC
+4208104,2023,True,False,False,,,Itaiópolis,SC
+4208203,2023,True,False,False,,,Itajaí,SC
+4209102,2023,True,False,False,,,Joinville,SC
+4209300,2023,True,False,False,,,Lages,SC
+4209805,2023,True,False,False,,,Leoberto Leal,SC
+4210803,2023,True,False,False,,,Meleiro,SC
+4211009,2023,True,False,False,,,Mondaí,SC
+4211108,2023,True,False,False,,,Monte Castelo,SC
+4211306,2023,True,False,False,,,Navegantes,SC
+4211751,2023,True,False,False,,,Otacílio Costa,SC
+4211892,2023,True,False,False,,,Painel,SC
+4211900,2023,True,False,False,,,Palhoça,SC
+4212007,2023,True,False,False,,,Palma Sola,SC
+4212304,2023,True,False,False,,,Paulo Lopes,SC
+4212403,2023,True,False,False,,,Pedras Grandes,SC
+4212650,2023,True,False,False,,,Pescaria Brava,SC
+4212700,2023,True,False,False,,,Petrolândia,SC
+4212809,2023,True,False,False,,,Balneário Piçarras,SC
+4213203,2023,True,False,False,,,Pomerode,SC
+4213302,2023,True,False,False,,,Ponte Alta,SC
+4213609,2023,True,False,False,,,Porto União,SC
+4213708,2023,True,False,False,,,Pouso Redondo,SC
+4213807,2023,True,False,False,,,Praia Grande,SC
+4214003,2023,True,False,False,,,Presidente Getúlio,SC
+4215000,2023,True,False,False,,,Rio Negrinho,SC
+4215208,2023,True,False,False,,,Romelândia,SC
+4215307,2023,True,False,False,,,Salete,SC
+4215455,2023,True,False,False,,,Sangão,SC
+4215653,2023,True,False,False,,,Santa Rosa do Sul,SC
+4215703,2023,True,False,False,,,Santo Amaro da Imperatriz,SC
+4215802,2023,True,False,False,,,São Bento do Sul,SC
+4216255,2023,True,False,False,,,São João do Oeste,SC
+4216503,2023,True,False,False,,,São Joaquim,SC
+4216701,2023,True,False,False,,,São José do Cedro,SC
+4216800,2023,True,False,False,,,São José do Cerrito,SC
+4218004,2023,True,False,False,,,Tijucas,SC
+4218202,2023,True,False,False,,,Timbó,SC
+4218400,2023,True,False,False,,,Treze de Maio,SC
+4218707,2023,True,False,False,,,Tubarão,SC
+4219200,2023,True,False,False,,,Vidal Ramos,SC
+4219309,2023,True,False,False,,,Videira,SC
+4219606,2023,True,False,False,,,Xavantina,SC
+4300604,2023,True,False,False,,,Alvorada,RS
+4302584,2023,True,False,False,,,Bozano,RS
+4303905,2023,True,False,False,,,Campo Bom,RS
+4305108,2023,True,False,False,,,Caxias do Sul,RS
+4305439,2023,True,False,False,,,Chuí,RS
+4306007,2023,True,False,False,,,Crissiumal,RS
+4306403,2023,True,False,False,,,Dois Irmãos,RS
+4307815,2023,True,False,False,,,Estrela Velha,RS
+4308805,2023,True,False,False,,,General Câmara,RS
+4308854,2023,True,False,False,,,Gentil,RS
+4309704,2023,True,False,False,,,Humaitá,RS
+4310207,2023,True,False,False,,,Ijuí,RS
+4310504,2023,True,False,False,,,Iraí,RS
+4311007,2023,True,False,False,,,Jaguarão,RS
+4311759,2023,True,False,False,,,Manoel Viana,RS
+4312450,2023,True,False,False,,,Morro Redondo,RS
+4312757,2023,True,False,False,,,Nova Alvorada,RS
+4313086,2023,True,False,False,,,Nova Pádua,RS
+4313201,2023,True,False,False,,,Nova Petrópolis,RS
+4314308,2023,True,False,False,,,Pejuçara,RS
+4314506,2023,True,False,False,,,Pinheiro Machado,RS
+4315602,2023,True,False,False,,,Rio Grande,RS
+4316006,2023,True,False,False,,,Rolante,RS
+4316428,2023,True,False,False,,,Sagrada Família,RS
+4316709,2023,True,False,False,,,Santa Bárbara do Sul,RS
+4316972,2023,True,False,False,,,Santa Margarida do Sul,RS
+4317608,2023,True,False,False,,,Santo Antônio da Patrulha,RS
+4319000,2023,True,False,False,,,São Marcos,RS
+4319711,2023,True,False,False,,,São Valentim do Sul,RS
+4320008,2023,True,False,False,,,Sapucaia do Sul,RS
+4320503,2023,True,False,False,,,Sertão,RS
+4321352,2023,True,False,False,,,Tavares,RS
+4321667,2023,True,False,False,,,Três Cachoeiras,RS
+4322343,2023,True,False,False,,,Ubiretama,RS
+4323358,2023,True,False,False,,,Vila Lângaro,RS
+4323705,2023,True,False,False,,,Vista Gaúcha,RS
+5001904,2023,True,False,False,,,Bataguassu,MS
+5002159,2023,True,False,False,,,Bodoquena,MS
+5002308,2023,True,False,False,,,Brasilândia,MS
+5002704,2023,True,False,False,,,Campo Grande,MS
+5002951,2023,True,False,False,,,Chapadão do Sul,MS
+5003256,2023,True,False,False,,,Costa Rica,MS
+5005251,2023,True,False,False,,,Laguna Carapã,MS
+5005707,2023,True,False,False,,,Naviraí,MS
+5006309,2023,True,False,False,,,Paranaíba,MS
+5006606,2023,True,False,False,,,Ponta Porã,MS
+5006903,2023,True,False,False,,,Porto Murtinho,MS
+5008305,2023,True,False,False,,,Três Lagoas,MS
+5008404,2023,True,False,False,,,Vicentina,MS
+5102504,2023,True,False,False,,,Cáceres,MT
+5103205,2023,True,False,False,,,Colíder,MT
+5103254,2023,True,False,False,,,Colniza,MT
+5103502,2023,True,False,False,,,Diamantino,MT
+5103809,2023,True,False,False,,,Figueirópolis D'Oeste,MT
+5104807,2023,True,False,False,,,Jaciara,MT
+5105234,2023,True,False,False,,,Lambari D'Oeste,MT
+5105622,2023,True,False,False,,,Mirassol d'Oeste,MT
+5106000,2023,True,False,False,,,Nortelândia,MT
+5106372,2023,True,False,False,,,Pedra Preta,MT
+5106828,2023,True,False,False,,,Porto Esperidião,MT
+5107107,2023,True,False,False,,,São José dos Quatro Marcos,MT
+5107156,2023,True,False,False,,,Reserva do Cabaçal,MT
+5107750,2023,True,False,False,,,Salto do Céu,MT
+5107875,2023,True,False,False,,,Sapezal,MT
+5200050,2023,True,False,False,,,Abadia de Goiás,GO
+5200605,2023,True,False,False,,,Alto Paraíso de Goiás,GO
+5201454,2023,True,False,False,,,Aparecida do Rio Doce,GO
+5203203,2023,True,False,False,,,Barro Alto,GO
+5204201,2023,True,False,False,,,Cachoeira de Goiás,GO
+5204508,2023,True,False,False,,,Caldas Novas,GO
+5205109,2023,True,False,False,,,Catalão,GO
+5206909,2023,True,False,False,,,Davinópolis,GO
+5209291,2023,True,False,False,,,Guaraíta,GO
+5210109,2023,True,False,False,,,Ipameri,GO
+5211206,2023,True,False,False,,,Itapuranga,GO
+5211909,2023,True,False,False,,,Jataí,GO
+5215306,2023,True,False,False,,,Orizona,GO
+5215504,2023,True,False,False,,,Ouvidor,GO
+5216007,2023,True,False,False,,,Panamá,GO
+5219001,2023,True,False,False,,,Sanclerlândia,GO
+5300108,2023,True,False,False,,,Brasília,DF
+1100056,2024,True,False,False,,,Cerejeiras,RO
+1100205,2024,True,False,False,,,Porto Velho,RO
+1200203,2024,True,False,False,,,Cruzeiro do Sul,AC
+1200401,2024,True,True,False,"Implantar 14 ecopontos para recebemento temporário de resíduos secos, eletrônicos e volumosos.",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Rio Branco,AC
+1200427,2024,True,False,False,,,Rodrigues Alves,AC
+1300680,2024,True,False,False,,,Boa Vista do Ramos,AM
+1300706,2024,True,False,False,,,Boca do Acre,AM
+1300839,2024,True,False,False,,,Caapiranga,AM
+1302306,2024,True,False,False,,,Jutaí,AM
+1302405,2024,True,False,False,,,Lábrea,AM
+1303304,2024,True,False,False,,,Novo Aripuanã,AM
+1304104,2024,True,False,False,,,Tapauá,AM
+1304203,2024,True,False,False,,,Tefé,AM
+1500909,2024,True,False,False,,,Augusto Corrêa,PA
+1501006,2024,True,False,False,,,Aveiro,PA
+1501303,2024,True,False,False,,,Barcarena,PA
+1503408,2024,True,False,False,,,Inhangapi,PA
+1504208,2024,True,False,False,,,Marabá,PA
+1505502,2024,True,False,False,,,Paragominas,PA
+1506708,2024,True,False,False,,,Santana do Araguaia,PA
+1506807,2024,True,False,False,,,Santarém,PA
+1508407,2024,True,False,False,,,Xinguara,PA
+1700251,2024,True,False,False,,,Abreulândia,TO
+1700707,2024,True,False,False,,,Alvorada,TO
+1701903,2024,True,False,False,,,Araguacema,TO
+1702158,2024,True,False,False,,,Araguanã,TO
+1702208,2024,True,False,False,,,Araguatins,TO
+1702703,2024,True,False,False,,,Aurora do Tocantins,TO
+1703826,2024,True,False,False,,,Cachoeirinha,TO
+1703909,2024,True,False,False,,,Caseara,TO
+1704600,2024,True,False,False,,,Chapada de Areia,TO
+1705607,2024,True,False,False,,,Conceição do Tocantins,TO
+1707108,2024,True,False,False,,,Divinópolis do Tocantins,TO
+1707207,2024,True,False,False,,,Dois Irmãos do Tocantins,TO
+1707306,2024,True,False,False,,,Dueré,TO
+1709302,2024,True,False,False,,,Guaraí,TO
+1710508,2024,True,False,False,,,Itacajá,TO
+1710904,2024,True,False,False,,,Itapiratins,TO
+1712504,2024,True,False,False,,,Marianópolis do Tocantins,TO
+1712801,2024,True,False,False,,,Maurilândia do Tocantins,TO
+1713205,2024,True,False,False,,,Miracema do Tocantins,TO
+1713304,2024,True,False,False,,,Miranorte,TO
+1714203,2024,True,False,False,,,Natividade,TO
+1716109,2024,True,False,False,,,Paraíso do Tocantins,TO
+1716505,2024,True,False,False,,,Pedro Afonso,TO
+1717503,2024,True,False,False,,,Pium,TO
+1718865,2024,True,False,False,,,Santa Fé do Araguaia,TO
+1718907,2024,True,False,False,,,Santa Rosa do Tocantins,TO
+1719004,2024,True,False,False,,,Santa Tereza do Tocantins,TO
+1720937,2024,True,False,False,,,Taipas do Tocantins,TO
+1721109,2024,True,False,False,,,Tocantínia,TO
+2100055,2024,True,False,False,,,Açailândia,MA
+2100832,2024,True,False,False,,,Apicum-Açu,MA
+2100907,2024,True,False,False,,,Araioses,MA
+2101251,2024,True,False,False,,,Bacabeira,MA
+2102002,2024,True,False,False,,,Bom Jardim,MA
+2102036,2024,True,False,False,,,Bom Jesus das Selvas,MA
+2102606,2024,True,False,False,,,Cândido Mendes,MA
+2103208,2024,True,False,False,,,Chapadinha,MA
+2103307,2024,True,False,False,,,Codó,MA
+2103604,2024,True,False,False,,,Coroatá,MA
+2103752,2024,True,False,False,,,Davinópolis,MA
+2105302,2024,True,False,False,,,Imperatriz,MA
+2105401,2024,True,False,False,,,Itapecuru Mirim,MA
+2105427,2024,True,False,False,,,Itinga do Maranhão,MA
+2106508,2024,True,False,False,,,Matinha,MA
+2106631,2024,True,False,False,,,Matões do Norte,MA
+2106805,2024,True,False,False,,,Mirinzal,MA
+2107803,2024,True,False,False,,,Parnarama,MA
+2108207,2024,True,False,False,,,Pedreiras,MA
+2108603,2024,True,False,False,,,Pinheiro,MA
+2109601,2024,True,False,False,,,Rosário,MA
+2110005,2024,True,False,False,,,Santa Luzia,MA
+2110039,2024,True,False,False,,,Santa Luzia do Paruá,MA
+2110609,2024,True,False,False,,,São Bernardo,MA
+2110856,2024,True,False,False,,,São Francisco do Brejão,MA
+2111102,2024,True,False,False,,,São João dos Patos,MA
+2111607,2024,True,False,False,,,São Raimundo das Mangabeiras,MA
+2112001,2024,True,False,False,,,Tasso Fragoso,MA
+2112233,2024,True,False,False,,,Trizidela do Vale,MA
+2112506,2024,True,False,False,,,Tutóia,MA
+2112704,2024,True,False,False,,,Vargem Grande,MA
+2200251,2024,True,False,False,,,Alagoinha do Piauí,PI
+2200509,2024,True,False,False,,,Amarante,PI
+2201804,2024,True,False,False,,,Bocaina,PI
+2201929,2024,True,False,False,,,Bonfim do Piauí,PI
+2202737,2024,True,False,False,,,Coivaras,PI
+2202802,2024,True,False,False,,,Conceição do Canindé,PI
+2203271,2024,True,False,False,,,Curral Novo do Piauí,PI
+2203420,2024,True,False,False,,,Domingos Mourão,PI
+2203453,2024,True,False,False,,,Dom Inocêncio,PI
+2203800,2024,True,False,False,,,Flores do Piauí,PI
+2203909,2024,True,False,False,,,Floriano,PI
+2204006,2024,True,False,False,,,Francinópolis,PI
+2204105,2024,True,False,False,,,Francisco Ayres,PI
+2204352,2024,True,False,False,,,Geminiano,PI
+2205003,2024,True,False,False,,,Itainópolis,PI
+2205300,2024,True,False,False,,,Jerumenha,PI
+2205508,2024,True,False,False,,,José de Freitas,PI
+2205565,2024,True,False,False,,,Lagoa do Barro do Piauí,PI
+2205953,2024,True,False,False,,,Marcolândia,PI
+2206506,2024,True,False,False,,,Monsenhor Hipólito,PI
+2206654,2024,True,False,False,,,Morro Cabeça no Tempo,PI
+2206670,2024,True,False,False,,,Morro do Chapéu do Piauí,PI
+2206753,2024,True,False,False,,,Nossa Senhora de Nazaré,PI
+2207009,2024,True,False,False,,,Oeiras,PI
+2207207,2024,True,False,False,,,Padre Marcos,PI
+2207355,2024,True,False,False,,,Pajeú do Piauí,PI
+2207900,2024,True,False,False,,,Pedro II,PI
+2207934,2024,True,False,False,,,Pedro Laurentino,PI
+2208304,2024,True,False,False,,,Piracuruca,PI
+2208874,2024,True,False,False,,,Ribeira do Piauí,PI
+2208908,2024,True,False,False,,,Ribeiro Gonçalves,PI
+2209401,2024,True,False,False,,,Santo Antônio de Lisboa,PI
+2209658,2024,True,False,False,,,São Francisco de Assis do Piauí,PI
+2209955,2024,True,False,False,,,São João da Varjota,PI
+2210375,2024,True,False,False,,,São Luis do Piauí,PI
+2210631,2024,True,False,False,,,Sebastião Leal,PI
+2210805,2024,True,False,False,,,Simplício Mendes,PI
+2210938,2024,True,False,False,,,Sussuapara,PI
+2211704,2024,True,False,False,,,Wall Ferraz,PI
+2300101,2024,True,False,False,,,Abaiara,CE
+2300200,2024,True,False,False,,,Acaraú,CE
+2300408,2024,True,False,False,,,Aiuaba,CE
+2300705,2024,True,False,False,,,Alto Santo,CE
+2301208,2024,True,False,True,,,Aracoiaba,CE
+2301505,2024,True,False,False,,,Arneiroz,CE
+2301703,2024,True,False,False,,,Aurora,CE
+2302008,2024,True,False,False,,,Barro,CE
+2302503,2024,True,False,False,,,Brejo Santo,CE
+2302602,2024,True,False,False,,,Camocim,CE
+2303303,2024,True,False,False,,,Cariús,CE
+2303600,2024,True,False,False,,,Catarina,CE
+2303659,2024,True,False,False,,,Catunda,CE
+2303709,2024,True,False,False,,,Caucaia,CE
+2303931,2024,True,False,False,,,Choró,CE
+2303956,2024,True,False,False,,,Chorozinho,CE
+2304202,2024,True,False,False,,,Crato,CE
+2304269,2024,True,False,True,,,Deputado Irapuan Pinheiro,CE
+2304277,2024,True,False,False,,,Ererê,CE
+2304806,2024,True,False,False,,,Granjeiro,CE
+2305100,2024,True,False,False,,,Guaramiranga,CE
+2305357,2024,True,False,False,,,Icapuí,CE
+2306009,2024,True,False,False,,,Iracema,CE
+2306256,2024,True,False,False,,,Itaitinga,CE
+2306405,2024,True,False,False,,,Itapipoca,CE
+2306801,2024,True,False,False,,,Jaguaribara,CE
+2307007,2024,True,False,False,,,Jaguaruana,CE
+2307304,2024,True,False,True,,,Juazeiro do Norte,CE
+2307601,2024,True,False,False,,,Limoeiro do Norte,CE
+2307635,2024,True,False,False,,,Madalena,CE
+2307700,2024,True,False,False,,,Maranguape,CE
+2308302,2024,True,False,False,,,Milagres,CE
+2308500,2024,True,False,False,,,Mombaça,CE
+2308609,2024,True,False,False,,,Monsenhor Tabosa,CE
+2308708,2024,True,False,False,,,Morada Nova,CE
+2309003,2024,True,False,False,,,Mucambo,CE
+2309300,2024,True,False,False,,,Nova Russas,CE
+2309409,2024,True,False,False,,,Novo Oriente,CE
+2309904,2024,True,False,False,,,Pacujá,CE
+2310001,2024,True,False,False,,,Palhano,CE
+2310308,2024,True,False,False,,,Parambu,CE
+2310407,2024,True,False,False,,,Paramoti,CE
+2310803,2024,True,False,False,,,Pereiro,CE
+2310902,2024,True,False,False,,,Piquet Carneiro,CE
+2311108,2024,True,False,False,,,Porteiras,CE
+2311355,2024,True,False,False,,,Quixelô,CE
+2311504,2024,True,False,False,,,Quixeré,CE
+2311603,2024,True,False,False,,,Redenção,CE
+2311801,2024,True,False,False,,,Russas,CE
+2311900,2024,True,False,False,,,Saboeiro,CE
+2312007,2024,True,False,False,,,Santana do Acaraú,CE
+2312205,2024,True,False,False,,,Santa Quitéria,CE
+2312304,2024,True,False,False,,,São Benedito,CE
+2312502,2024,True,False,False,,,São João do Jaguaribe,CE
+2312700,2024,True,False,False,,,Senador Pompeu,CE
+2312908,2024,True,False,False,,,Sobral,CE
+2313005,2024,True,False,False,,,Solonópole,CE
+2313302,2024,True,False,False,,,Tauá,CE
+2402006,2024,True,False,False,,,Caicó,RN
+2402402,2024,True,False,False,,,Carnaúba dos Dantas,RN
+2402709,2024,True,False,False,,,Cerro Corá,RN
+2402907,2024,True,False,False,,,Coronel João Pessoa,RN
+2403004,2024,True,False,False,,,Cruzeta,RN
+2403103,2024,True,False,False,,,Currais Novos,RN
+2403251,2024,True,False,False,,,Parnamirim,RN
+2403756,2024,True,False,False,,,Fernando Pedroza,RN
+2404804,2024,True,False,False,,,Ipueira,RN
+2406106,2024,True,False,False,,,Jucurutu,RN
+2406502,2024,True,False,False,,,Lagoa Nova,RN
+2408003,2024,True,False,False,,,Mossoró,RN
+2408102,2024,True,False,False,,,Natal,RN
+2408904,2024,True,False,False,,,Parelhas,RN
+2409332,2024,True,False,False,,,Santa Maria,RN
+2409407,2024,True,False,False,,,Pau dos Ferros,RN
+2410207,2024,True,False,False,,,Portalegre,RN
+2410504,2024,True,False,False,,,Rafael Fernandes,RN
+2410801,2024,True,False,False,,,Riacho de Santana,RN
+2411429,2024,True,False,False,,,Santana do Seridó,RN
+2412104,2024,True,False,False,,,São João do Sabugi,RN
+2412401,2024,True,False,False,,,São José do Seridó,RN
+2413409,2024,True,False,False,,,Serra Negra do Norte,RN
+2502706,2024,True,False,False,,,Borborema,PB
+2503704,2024,True,False,False,,,Cajazeiras,PB
+2504405,2024,True,False,False,,,Conceição,PB
+2507101,2024,True,False,False,,,Itapororoca,PB
+2508208,2024,True,False,False,,,Lagoa de Dentro,PB
+2516003,2024,True,False,False,,,Solânea,PB
+2601706,2024,True,False,False,,,Belo Jardim,PE
+2602001,2024,True,False,False,,,Bodocó,PE
+2603926,2024,True,False,False,,,Carnaubeira da Penha,PE
+2609303,2024,True,False,False,,,Mirandiba,PE
+2611533,2024,True,False,False,,,Quixaba,PE
+2612455,2024,True,False,False,,,Santa Cruz,PE
+2612554,2024,True,False,False,,,Santa Filomena,PE
+2613701,2024,True,False,False,,,São Lourenço da Mata,PE
+2615607,2024,True,False,False,,,Trindade,PE
+2700201,2024,True,False,False,,,Anadia,AL
+2701902,2024,True,False,False,,,Chã Preta,AL
+2702108,2024,True,False,False,,,Colônia Leopoldina,AL
+2702207,2024,True,False,False,,,Coqueiro Seco,AL
+2702405,2024,True,False,False,,,Delmiro Gouveia,AL
+2703106,2024,True,False,False,,,Igaci,AL
+2703205,2024,True,False,False,,,Igreja Nova,AL
+2703304,2024,True,False,False,,,Inhapi,AL
+2703601,2024,True,False,False,,,Japaratinga,AL
+2703700,2024,True,False,False,,,Jaramataia,AL
+2704005,2024,True,False,False,,,Junqueiro,AL
+2704302,2024,True,False,False,,,Maceió,AL
+2704708,2024,True,False,False,,,Marechal Deodoro,AL
+2704906,2024,True,False,False,,,Mar Vermelho,AL
+2705705,2024,True,False,False,,,Olho d'Água das Flores,AL
+2706208,2024,True,False,False,,,Palestina,AL
+2706307,2024,True,False,False,,,Palmeira dos Índios,AL
+2706406,2024,True,False,False,,,Pão de Açúcar,AL
+2706422,2024,True,False,False,,,Pariconha,AL
+2706802,2024,True,False,False,,,Piaçabuçu,AL
+2707404,2024,True,False,False,,,Porto de Pedras,AL
+2708006,2024,True,False,False,,,Santana do Ipanema,AL
+2708600,2024,True,False,False,,,São Miguel dos Campos,AL
+2709152,2024,True,False,False,,,Teotônio Vilela,AL
+2709202,2024,True,False,False,,,Traipu,AL
+2709301,2024,True,False,False,,,União dos Palmares,AL
+2709400,2024,True,False,False,,,Viçosa,AL
+2800209,2024,True,False,False,,,Aquidabã,SE
+2800407,2024,True,False,False,,,Arauá,SE
+2800605,2024,True,False,False,,,Barra dos Coqueiros,SE
+2801504,2024,True,False,False,,,Carmópolis,SE
+2801603,2024,True,False,False,,,Cedro de São João,SE
+2802304,2024,True,False,False,,,Frei Paulo,SE
+2802403,2024,True,False,False,,,Gararu,SE
+2802601,2024,True,False,False,,,Gracho Cardoso,SE
+2803500,2024,True,False,False,,,Lagarto,SE
+2803609,2024,True,False,False,,,Laranjeiras,SE
+2803708,2024,True,False,False,,,Macambira,SE
+2804102,2024,True,False,False,,,Moita Bonita,SE
+2804409,2024,True,False,False,,,Neópolis,SE
+2804508,2024,True,False,False,,,Nossa Senhora da Glória,SE
+2804706,2024,True,False,False,,,Nossa Senhora de Lourdes,SE
+2804904,2024,True,False,False,,,Pacatuba,SE
+2805000,2024,True,False,False,,,Pedra Mole,SE
+2805406,2024,True,False,False,,,Poço Redondo,SE
+2805802,2024,True,False,False,,,Riachão do Dantas,SE
+2806206,2024,True,False,False,,,Salgado,SE
+2806602,2024,True,False,False,,,Santo Amaro das Brotas,SE
+2806701,2024,True,False,False,,,São Cristóvão,SE
+2806909,2024,True,False,False,,,São Francisco,SE
+2901106,2024,True,False,False,,,Amélia Rodrigues,BA
+2904704,2024,True,False,False,,,Buerarema,BA
+2904753,2024,True,False,False,,,Buritirama,BA
+2905701,2024,True,False,False,,,Camaçari,BA
+2906303,2024,True,False,False,,,Canavieiras,BA
+2906402,2024,True,False,False,,,Candeal,BA
+2906907,2024,True,False,False,,,Caravelas,BA
+2907400,2024,True,False,False,,,Catolândia,BA
+2908507,2024,True,False,False,,,Conceição do Jacuípe,BA
+2912509,2024,True,False,False,,,Ibipitanga,BA
+2915007,2024,True,False,False,,,Itaeté,BA
+2918001,2024,True,False,False,,,Jequié,BA
+2921708,2024,True,False,False,,,Morro do Chapéu,BA
+2928901,2024,True,False,False,,,São Desidério,BA
+2929008,2024,True,False,False,,,São Félix,BA
+2929206,2024,True,False,True,,,São Francisco do Conde,BA
+2930204,2024,True,False,False,,,Sento Sé,BA
+3100104,2024,True,False,False,,,Abadia dos Dourados,MG
+3104502,2024,True,False,False,,,Arinos,MG
+3104908,2024,True,False,False,,,Baependi,MG
+3106101,2024,True,False,False,,,Belmiro Braga,MG
+3106655,2024,True,False,False,,,Berizal,MG
+3106903,2024,True,False,False,,,Bicas,MG
+3108206,2024,True,False,False,,,Bonfinópolis de Minas,MG
+3108305,2024,True,False,False,,,Borda da Mata,MG
+3108800,2024,True,False,False,,,Braúnas,MG
+3108909,2024,True,False,False,,,Brazópolis,MG
+3109303,2024,True,False,False,,,Buritis,MG
+3109709,2024,True,False,False,,,Cachoeira de Minas,MG
+3111101,2024,True,False,False,,,Campina Verde,MG
+3111606,2024,True,False,False,,,Campos Gerais,MG
+3113305,2024,True,False,False,,,Carangola,MG
+3113404,2024,True,False,False,,,Caratinga,MG
+3114709,2024,True,False,False,,,Carvalhópolis,MG
+3115003,2024,True,False,False,,,Cascalho Rico,MG
+3115474,2024,True,False,False,,,Catuti,MG
+3116159,2024,True,False,False,,,Chapada Gaúcha,MG
+3117801,2024,True,False,False,,,Conceição dos Ouros,MG
+3118601,2024,True,False,False,,,Contagem,MG
+3118700,2024,True,False,False,,,Coqueiral,MG
+3119302,2024,True,False,False,,,Coromandel,MG
+3119609,2024,True,False,False,,,Coronel Pacheco,MG
+3120508,2024,True,False,False,,,Cristina,MG
+3121100,2024,True,False,False,,,Delfim Moreira,MG
+3121902,2024,True,False,False,,,Divinésia,MG
+3122009,2024,True,False,False,,,Divino,MG
+3122454,2024,True,False,False,,,Divisópolis,MG
+3122470,2024,True,False,False,,,Dom Bosco,MG
+3122801,2024,True,False,False,,,Dom Viçoso,MG
+3123205,2024,True,False,False,,,Dores do Indaiá,MG
+3123502,2024,True,False,False,,,Douradoquara,MG
+3123601,2024,True,False,False,,,Elói Mendes,MG
+3124807,2024,True,False,False,,,Estrela do Sul,MG
+3125101,2024,True,False,False,,,Extrema,MG
+3126752,2024,True,False,False,,,Franciscópolis,MG
+3127008,2024,True,False,False,,,Fronteira,MG
+3127339,2024,True,False,False,,,Gameleiras,MG
+3127354,2024,True,False,False,,,Glaucilândia,MG
+3127909,2024,True,False,False,,,Grupiara,MG
+3128709,2024,True,False,False,,,Guaxupé,MG
+3129301,2024,True,False,False,,,Iapu,MG
+3129400,2024,True,False,False,,,Ibertioga,MG
+3129806,2024,True,False,False,,,Ibirité,MG
+3130705,2024,True,False,False,,,Indianópolis,MG
+3131158,2024,True,False,False,,,Ipaba,MG
+3131604,2024,True,False,False,,,Iraí de Minas,MG
+3131901,2024,True,False,False,,,Itabirito,MG
+3132008,2024,True,False,False,,,Itacambira,MG
+3132107,2024,True,False,False,,,Itacarambi,MG
+3132206,2024,True,False,False,,,Itaguara,MG
+3133303,2024,True,False,False,,,Itaobim,MG
+3134004,2024,True,False,False,,,Itinga,MG
+3134509,2024,True,False,False,,,Itutinga,MG
+3135100,2024,True,False,False,,,Janaúba,MG
+3137700,2024,True,False,False,,,Lajinha,MG
+3138401,2024,True,False,False,,,Leopoldina,MG
+3138609,2024,True,False,False,,,Lima Duarte,MG
+3139250,2024,True,False,False,,,Mamonas,MG
+3139300,2024,True,False,False,,,Manga,MG
+3140100,2024,True,False,False,,,Marilac,MG
+3140209,2024,True,False,False,,,Maripá de Minas,MG
+3140407,2024,True,False,False,,,Marmelópolis,MG
+3141009,2024,True,False,False,,,Mato Verde,MG
+3142809,2024,True,False,False,,,Monte Alegre de Minas,MG
+3143104,2024,True,False,False,,,Monte Carmelo,MG
+3143203,2024,True,False,False,,,Monte Santo de Minas,MG
+3144607,2024,True,False,False,,,Nepomuceno,MG
+3145059,2024,True,False,False,,,Nova Porteirinha,MG
+3145901,2024,True,False,False,,,Ouro Branco,MG
+3146107,2024,True,False,False,,,Ouro Preto,MG
+3146255,2024,True,False,False,,,Padre Carvalho,MG
+3146552,2024,True,False,False,,,Pai Pedro,MG
+3147600,2024,True,False,False,,,Passa Quatro,MG
+3147907,2024,True,False,False,,,Passos,MG
+3149101,2024,True,False,False,,,Pedralva,MG
+3149507,2024,True,False,False,,,Pequeri,MG
+3150802,2024,True,False,False,,,Piranga,MG
+3150901,2024,True,False,False,,,Piranguçu,MG
+3151008,2024,True,False,False,,,Piranguinho,MG
+3152204,2024,True,False,False,,,Porteirinha,MG
+3152600,2024,True,False,False,,,Pouso Alto,MG
+3154002,2024,True,False,False,,,Raul Soares,MG
+3155009,2024,True,False,False,,,Rio Doce,MG
+3155702,2024,True,False,False,,,Rio Piracicaba,MG
+3157336,2024,True,False,False,,,Santa Cruz de Minas,MG
+3158953,2024,True,False,False,,,Santana do Paraíso,MG
+3159357,2024,True,False,False,,,Santa Rita de Minas,MG
+3159605,2024,True,False,False,,,Santa Rita do Sapucaí,MG
+3159803,2024,True,False,False,,,Santa Vitória,MG
+3160405,2024,True,False,False,,,Santo Antônio do Monte,MG
+3160702,2024,True,False,False,,,Santos Dumont,MG
+3161403,2024,True,False,False,,,São Francisco do Glória,MG
+3161601,2024,True,False,False,,,São Geraldo da Piedade,MG
+3166808,2024,True,False,False,,,Serra do Salitre,MG
+3168051,2024,True,False,False,,,Taparuba,MG
+3169208,2024,True,False,False,,,Tombos,MG
+3170008,2024,True,False,False,,,Ubaí,MG
+3170057,2024,True,False,False,,,Ubaporanga,MG
+3170206,2024,True,False,False,,,Uberlândia,MG
+3170404,2024,True,False,False,,,Unaí,MG
+3171006,2024,True,False,False,,,Vazante,MG
+3171154,2024,True,False,False,,,Vermelho Novo,MG
+3171402,2024,True,False,False,,,Vieiras,MG
+3171709,2024,True,False,False,,,Virgínia,MG
+3200102,2024,True,False,False,,,Afonso Cláudio,ES
+3200300,2024,True,False,False,,,Alfredo Chaves,ES
+3200359,2024,True,False,False,,,Alto Rio Novo,ES
+3200805,2024,True,False,False,,,Baixo Guandu,ES
+3200904,2024,True,False,False,,,Barra de São Francisco,ES
+3201001,2024,True,False,False,,,Boa Esperança,ES
+3201100,2024,True,False,False,,,Bom Jesus do Norte,ES
+3201209,2024,True,False,False,,,Cachoeiro de Itapemirim,ES
+3201902,2024,True,False,False,,,Domingos Martins,ES
+3202009,2024,True,False,False,,,Dores do Rio Preto,ES
+3202108,2024,True,False,False,,,Ecoporanga,ES
+3202504,2024,True,False,False,,,Ibiraçu,ES
+3203007,2024,True,False,False,,,Iúna,ES
+3203163,2024,True,False,False,,,Laranja da Terra,ES
+3203304,2024,True,False,False,,,Mantenópolis,ES
+3203601,2024,True,False,False,,,Mucurici,ES
+3203700,2024,True,False,False,,,Muniz Freire,ES
+3203809,2024,True,False,False,,,Muqui,ES
+3204054,2024,True,False,False,,,Pedro Canário,ES
+3204559,2024,True,False,False,,,Santa Maria de Jetibá,ES
+3204708,2024,True,False,False,,,São Gabriel da Palha,ES
+3205002,2024,True,False,False,,,Serra,ES
+3205010,2024,True,False,False,,,Sooretama,ES
+3205069,2024,True,False,False,,,Venda Nova do Imigrante,ES
+3205101,2024,True,False,False,,,Viana,ES
+3205150,2024,True,False,False,,,Vila Pavão,ES
+3205200,2024,True,False,False,,,Vila Velha,ES
+3300159,2024,True,False,False,,,Aperibé,RJ
+3300258,2024,True,False,False,,,Arraial do Cabo,RJ
+3300407,2024,True,False,False,,,Barra Mansa,RJ
+3300936,2024,True,False,False,,,Carapebus,RJ
+3301108,2024,True,False,False,,,Cantagalo,RJ
+3301207,2024,True,False,False,,,Carmo,RJ
+3302007,2024,True,False,False,,,Itaguaí,RJ
+3302056,2024,True,False,False,,,Italva,RJ
+3302205,2024,True,False,False,,,Itaperuna,RJ
+3302270,2024,True,False,False,,,Japeri,RJ
+3302601,2024,True,False,False,,,Mangaratiba,RJ
+3302700,2024,True,False,False,,,Maricá,RJ
+3302809,2024,True,False,False,,,Mendes,RJ
+3303302,2024,True,False,False,,,Niterói,RJ
+3303500,2024,True,False,False,,,Nova Iguaçu,RJ
+3303609,2024,True,False,False,,,Paracambi,RJ
+3303856,2024,True,False,False,,,Paty do Alferes,RJ
+3303955,2024,True,False,False,,,Pinheiral,RJ
+3304102,2024,True,False,False,,,Porciúncula,RJ
+3304201,2024,True,False,False,,,Resende,RJ
+3304508,2024,True,False,False,,,Rio das Flores,RJ
+3304557,2024,True,False,False,,,Rio de Janeiro,RJ
+3304706,2024,True,False,False,,,Santo Antônio de Pádua,RJ
+3305000,2024,True,False,False,,,São João da Barra,RJ
+3305133,2024,True,False,False,,,São José de Ubá,RJ
+3305406,2024,True,False,False,,,Sapucaia,RJ
+3305604,2024,True,False,False,,,Silva Jardim,RJ
+3305752,2024,True,False,False,,,Tanguá,RJ
+3306107,2024,True,False,False,,,Valença,RJ
+3306206,2024,True,False,False,,,Vassouras,RJ
+3501905,2024,True,False,False,,,Amparo,SP
+3502002,2024,True,False,False,,,Analândia,SP
+3502200,2024,True,False,False,,,Angatuba,SP
+3502903,2024,True,False,False,,,Araçoiaba da Serra,SP
+3503356,2024,True,False,False,,,Arco-Íris,SP
+3503406,2024,True,False,False,,,Arealva,SP
+3503604,2024,True,False,False,,,Areiópolis,SP
+3503802,2024,True,False,False,,,Artur Nogueira,SP
+3504909,2024,True,False,False,,,Bananal,SP
+3506201,2024,True,False,False,,,Bento de Abreu,SP
+3507407,2024,True,False,False,,,Borborema,SP
+3508306,2024,True,False,False,,,Cabrália Paulista,SP
+3509908,2024,True,False,False,,,Cananéia,SP
+3510005,2024,True,False,False,,,Cândido Mota,SP
+3510104,2024,True,False,False,,,Cândido Rodrigues,SP
+3512704,2024,True,False,False,,,Corumbataí,SP
+3512803,2024,True,False,False,,,Cosmópolis,SP
+3513306,2024,True,False,False,,,Cruzália,SP
+3513850,2024,True,False,False,,,Dirce Reis,SP
+3514809,2024,True,False,False,,,Eldorado,SP
+3514908,2024,True,False,False,,,Elias Fausto,SP
+3514924,2024,True,False,False,,,Elisiário,SP
+3515657,2024,True,False,False,,,Fernão,SP
+3516200,2024,True,False,False,,,Franca,SP
+3516507,2024,True,False,False,,,Gabriel Monteiro,SP
+3516705,2024,True,False,False,,,Garça,SP
+3518107,2024,True,False,False,,,Guarantã,SP
+3518701,2024,True,False,False,,,Guarujá,SP
+3518800,2024,True,False,False,,,Guarulhos,SP
+3519055,2024,True,False,False,,,Holambra,SP
+3519071,2024,True,False,False,,,Hortolândia,SP
+3519105,2024,True,False,False,,,Iacanga,SP
+3520400,2024,True,False,False,,,Ilhabela,SP
+3520442,2024,True,False,True,,,Ilha Solteira,SP
+3520707,2024,True,False,False,,,Indiaporã,SP
+3521200,2024,True,False,False,,,Iporanga,SP
+3522901,2024,True,False,False,,,Itapuí,SP
+3523008,2024,True,False,False,,,Itapura,SP
+3523602,2024,True,False,False,,,Itirapina,SP
+3523909,2024,True,False,False,,,Itu,SP
+3524402,2024,True,False,False,,,Jacareí,SP
+3524709,2024,True,False,True,,,Jaguariúna,SP
+3524907,2024,True,False,False,,,Jambeiro,SP
+3526506,2024,True,False,False,,,Lavínia,SP
+3526704,2024,True,False,False,,,Leme,SP
+3526902,2024,True,False,False,,,Limeira,SP
+3527801,2024,True,False,False,,,Lupércio,SP
+3529203,2024,True,False,False,,,Martinópolis,SP
+3530607,2024,True,False,False,,,Mogi das Cruzes,SP
+3531308,2024,True,False,False,,,Monte Alto,SP
+3532405,2024,True,False,False,,,Nazaré Paulista,SP
+3532843,2024,True,False,False,,,Nova Canaã Paulista,SP
+3533908,2024,True,False,False,,,Olímpia,SP
+3534500,2024,True,False,False,,,Oscar Bressane,SP
+3535507,2024,True,True,False,ELETROELETRONICOS,Municipal - Solucoes Compartilhadas e Custos.csv · Solução,Paraguaçu Paulista,SP
+3536257,2024,True,False,False,,,Parisi,SP
+3537107,2024,True,False,False,,,Pedreira,SP
+3538303,2024,True,False,False,,,Piquerobi,SP
+3538600,2024,True,False,False,,,Piracaia,SP
+3538709,2024,True,False,False,,,Piracicaba,SP
+3539301,2024,True,False,False,,,Pirassununga,SP
+3539806,2024,True,False,False,,,Poá,SP
+3541307,2024,True,False,False,,,Presidente Epitácio,SP
+3542008,2024,True,False,False,,,Quintana,SP
+3542404,2024,True,False,False,,,Regente Feijó,SP
+3543303,2024,True,False,True,,,Ribeirão Pires,SP
+3546603,2024,True,False,False,,,Santa Fé do Sul,SP
+3546900,2024,True,False,False,,,Santa Lúcia,SP
+3547007,2024,True,False,False,,,Santa Maria da Serra,SP
+3547304,2024,True,False,False,,,Santana de Parnaíba,SP
+3548203,2024,True,False,False,,,Santo Antônio do Pinhal,SP
+3548906,2024,True,False,False,,,São Carlos,SP
+3549102,2024,True,False,False,,,São João da Boa Vista,SP
+3549508,2024,True,False,False,,,São José da Bela Vista,SP
+3549904,2024,True,False,False,,,São José dos Campos,SP
+3550605,2024,True,False,False,,,São Roque,SP
+3551009,2024,True,False,False,,,São Vicente,SP
+3553955,2024,True,True,True,"Logística reversa de lâmpadas, pneus, eletrônicos e resíduos da construção civil",Municipal - Solucoes Compartilhadas e Custos.csv · Solução,Tarumã,SP
+3554102,2024,True,False,False,,,Taubaté,SP
+3554508,2024,True,False,False,,,Tietê,SP
+3554805,2024,True,False,False,,,Tremembé,SP
+3556800,2024,True,False,False,,,Viradouro,SP
+4100509,2024,True,False,False,,,Altônia,PR
+4100905,2024,True,False,False,,,Amaporã,PR
+4101101,2024,True,False,False,,,Andirá,PR
+4101408,2024,True,False,False,,,Apucarana,PR
+4101804,2024,True,False,False,,,Araucária,PR
+4101903,2024,True,False,False,,,Assaí,PR
+4102000,2024,True,False,False,,,Assis Chateaubriand,PR
+4102307,2024,True,False,False,,,Balsa Nova,PR
+4103453,2024,True,False,False,,,Cafelândia,PR
+4103701,2024,True,False,False,,,Cambé,PR
+4104204,2024,True,False,False,,,Campo Largo,PR
+4104253,2024,True,False,False,,,Campo Magro,PR
+4104402,2024,True,False,False,,,Cândido de Abreu,PR
+4104600,2024,True,False,False,,,Capitão Leônidas Marques,PR
+4104808,2024,True,False,False,,,Cascavel,PR
+4104907,2024,True,False,False,,,Castro,PR
+4105003,2024,True,False,False,,,Catanduvas,PR
+4105102,2024,True,False,False,,,Centenário do Sul,PR
+4105409,2024,True,False,False,,,Chopinzinho,PR
+4105706,2024,True,False,False,,,Clevelândia,PR
+4106704,2024,True,False,False,,,Cruzeiro do Sul,PR
+4106902,2024,True,False,False,,,Curitiba,PR
+4107504,2024,True,False,False,,,Engenheiro Beltrão,PR
+4107538,2024,True,False,False,,,Entre Rios do Oeste,PR
+4107702,2024,True,False,False,,,Fênix,PR
+4108403,2024,True,False,False,,,Francisco Beltrão,PR
+4108650,2024,True,False,False,,,Goioxim,PR
+4108809,2024,True,False,False,,,Guaíra,PR
+4109104,2024,True,False,False,,,Guaporema,PR
+4109401,2024,True,False,False,,,Guarapuava,PR
+4110003,2024,True,False,False,,,Iguaraçu,PR
+4110904,2024,True,False,False,,,Itaguajé,PR
+4110953,2024,True,False,False,,,Itaipulândia,PR
+4111209,2024,True,False,False,,,Itapejara d'Oeste,PR
+4111506,2024,True,False,False,,,Ivaiporã,PR
+4112207,2024,True,False,False,,,Janiópolis,PR
+4112504,2024,True,False,False,,,Jardim Alegre,PR
+4112603,2024,True,False,False,,,Jardim Olinda,PR
+4114203,2024,True,False,False,,,Mandaguari,PR
+4114302,2024,True,False,False,,,Mandirituba,PR
+4114609,2024,True,False,False,,,Marechal Cândido Rondon,PR
+4114807,2024,True,False,False,,,Marialva,PR
+4115200,2024,True,False,False,,,Maringá,PR
+4115309,2024,True,False,False,,,Mariópolis,PR
+4115408,2024,True,False,False,,,Marmeleiro,PR
+4115606,2024,True,False,False,,,Matelândia,PR
+4116059,2024,True,False,False,,,Missal,PR
+4116802,2024,True,False,False,,,Nova Cantu,PR
+4116901,2024,True,False,False,,,Nova Esperança,PR
+4117297,2024,True,False,False,,,Novo Itacolomi,PR
+4117602,2024,True,False,False,,,Palmas,PR
+4118204,2024,True,False,False,,,Paranaguá,PR
+4118501,2024,True,False,False,,,Pato Branco,PR
+4118857,2024,True,False,False,,,Perobal,PR
+4118907,2024,True,False,False,,,Pérola,PR
+4119152,2024,True,False,False,,,Pinhais,PR
+4119954,2024,True,False,False,,,Pontal do Paraná,PR
+4120333,2024,True,False,False,,,Prado Ferreira,PR
+4120606,2024,True,False,False,,,Prudentópolis,PR
+4120655,2024,True,False,False,,,Quarto Centenário,PR
+4120804,2024,True,False,False,,,Quatro Barras,PR
+4120853,2024,True,False,False,,,Quatro Pontes,PR
+4122206,2024,True,False,False,,,Rio Branco do Sul,PR
+4122701,2024,True,False,False,,,Sabáudia,PR
+4123501,2024,True,False,False,,,Santa Helena,PR
+4123808,2024,True,False,False,,,Santa Izabel do Oeste,PR
+4123824,2024,True,False,False,,,Santa Lúcia,PR
+4123907,2024,True,False,False,,,Santa Mariana,PR
+4125357,2024,True,False,False,,,São Jorge do Patrocínio,PR
+4125407,2024,True,False,False,,,São José da Boa Vista,PR
+4125555,2024,True,False,False,,,São Manoel do Paraná,PR
+4125704,2024,True,False,False,,,São Miguel do Iguaçu,PR
+4125803,2024,True,False,False,,,São Pedro do Ivaí,PR
+4126009,2024,True,False,False,,,São Sebastião da Amoreira,PR
+4126306,2024,True,False,False,,,Sengés,PR
+4126702,2024,True,False,False,,,Tamboara,PR
+4126900,2024,True,False,False,,,Tapira,PR
+4127304,2024,True,False,False,,,Terra Rica,PR
+4127502,2024,True,False,False,,,Tibagi,PR
+4128203,2024,True,False,False,,,União da Vitória,PR
+4128559,2024,True,False,False,,,Vera Cruz do Oeste,PR
+4200101,2024,True,False,False,,,Abelardo Luz,SC
+4200200,2024,True,False,False,,,Agrolândia,SC
+4200408,2024,True,False,False,,,Água Doce,SC
+4200556,2024,True,False,False,,,Águas Frias,SC
+4200705,2024,True,False,False,,,Alfredo Wagner,SC
+4201109,2024,True,False,False,,,Anitápolis,SC
+4201257,2024,True,False,False,,,Apiúna,SC
+4201703,2024,True,False,False,,,Ascurra,SC
+4201802,2024,True,False,False,,,Atalanta,SC
+4201901,2024,True,False,False,,,Aurora,SC
+4201950,2024,True,False,False,,,Balneário Arroio do Silva,SC
+4202008,2024,True,False,False,,,Balneário Camboriú,SC
+4202057,2024,True,False,False,,,Balneário Barra do Sul,SC
+4202156,2024,True,False,False,,,Belmonte,SC
+4202206,2024,True,False,False,,,Benedito Novo,SC
+4202404,2024,True,False,False,,,Blumenau,SC
+4202859,2024,True,False,False,,,Braço do Trombudo,SC
+4202875,2024,True,False,False,,,Brunópolis,SC
+4203006,2024,True,False,False,,,Caçador,SC
+4203154,2024,True,False,False,,,Calmon,SC
+4203402,2024,True,False,False,,,Campo Belo do Sul,SC
+4203907,2024,True,False,False,,,Capinzal,SC
+4203956,2024,True,False,False,,,Capivari de Baixo,SC
+4204103,2024,True,False,False,,,Caxambu do Sul,SC
+4204152,2024,True,False,False,,,Celso Ramos,SC
+4204194,2024,True,False,False,,,Chapadão do Lageado,SC
+4204202,2024,True,False,False,,,Chapecó,SC
+4204301,2024,True,False,False,,,Concórdia,SC
+4204608,2024,True,False,False,,,Criciúma,SC
+4205100,2024,True,False,False,,,Dona Emma,SC
+4205159,2024,True,False,False,,,Doutor Pedrinho,SC
+4205175,2024,True,False,False,,,Entre Rios,SC
+4205308,2024,True,False,False,,,Faxinal dos Guedes,SC
+4205407,2024,True,False,False,,,Florianópolis,SC
+4205431,2024,True,False,False,,,Formosa do Sul,SC
+4205456,2024,True,False,False,,,Forquilhinha,SC
+4205704,2024,True,False,False,,,Garopaba,SC
+4205902,2024,True,False,False,,,Gaspar,SC
+4206207,2024,True,False,False,,,Gravatal,SC
+4206306,2024,True,False,False,,,Guabiruba,SC
+4206900,2024,True,False,False,,,Ibirama,SC
+4207205,2024,True,False,False,,,Imaruí,SC
+4207650,2024,True,False,False,,,Iporã do Oeste,SC
+4207858,2024,True,False,False,,,Irati,SC
+4207908,2024,True,False,False,,,Irineópolis,SC
+4208203,2024,True,False,False,,,Itajaí,SC
+4208500,2024,True,False,False,,,Ituporanga,SC
+4208906,2024,True,False,False,,,Jaraguá do Sul,SC
+4209102,2024,True,False,False,,,Joinville,SC
+4209177,2024,True,False,False,,,Jupiá,SC
+4209201,2024,True,False,False,,,Lacerdópolis,SC
+4209607,2024,True,False,False,,,Lauro Muller,SC
+4209805,2024,True,False,False,,,Leoberto Leal,SC
+4210035,2024,True,False,False,,,Luzerna,SC
+4210100,2024,True,False,False,,,Mafra,SC
+4210209,2024,True,False,False,,,Major Gercino,SC
+4210308,2024,True,False,False,,,Major Vieira,SC
+4210407,2024,True,False,False,,,Maracajá,SC
+4210803,2024,True,False,False,,,Meleiro,SC
+4210852,2024,True,False,False,,,Mirim Doce,SC
+4211009,2024,True,False,False,,,Mondaí,SC
+4211207,2024,True,False,False,,,Morro da Fumaça,SC
+4211306,2024,True,False,False,,,Navegantes,SC
+4211504,2024,True,False,False,,,Nova Trento,SC
+4211751,2024,True,False,False,,,Otacílio Costa,SC
+4211892,2024,True,False,False,,,Painel,SC
+4211900,2024,True,False,False,,,Palhoça,SC
+4212007,2024,True,False,False,,,Palma Sola,SC
+4212403,2024,True,False,False,,,Pedras Grandes,SC
+4212650,2024,True,False,False,,,Pescaria Brava,SC
+4212700,2024,True,False,False,,,Petrolândia,SC
+4212809,2024,True,False,False,,,Balneário Piçarras,SC
+4212908,2024,True,False,False,,,Pinhalzinho,SC
+4213153,2024,True,False,False,,,Planalto Alegre,SC
+4213203,2024,True,False,False,,,Pomerode,SC
+4213401,2024,True,False,False,,,Ponte Serrada,SC
+4213500,2024,True,False,False,,,Porto Belo,SC
+4213609,2024,True,False,True,,,Porto União,SC
+4214003,2024,True,False,False,,,Presidente Getúlio,SC
+4214201,2024,True,False,False,,,Quilombo,SC
+4214409,2024,True,False,False,,,Rio das Antas,SC
+4214508,2024,True,False,False,,,Rio do Campo,SC
+4214805,2024,True,False,False,,,Rio do Sul,SC
+4214904,2024,True,False,False,,,Rio Fortuna,SC
+4215000,2024,True,False,False,,,Rio Negrinho,SC
+4215307,2024,True,False,False,,,Salete,SC
+4215604,2024,True,False,False,,,Santa Rosa de Lima,SC
+4215653,2024,True,False,False,,,Santa Rosa do Sul,SC
+4215687,2024,True,False,False,,,Santa Terezinha do Progresso,SC
+4215703,2024,True,False,False,,,Santo Amaro da Imperatriz,SC
+4215752,2024,True,False,False,,,São Bernardino,SC
+4215802,2024,True,False,False,,,São Bento do Sul,SC
+4215901,2024,True,False,False,,,São Bonifácio,SC
+4216008,2024,True,False,False,,,São Carlos,SC
+4216057,2024,True,False,False,,,São Cristovão do Sul,SC
+4216107,2024,True,False,False,,,São Domingos,SC
+4216602,2024,True,True,False,"…implantado, para resíduos de pode e capina, construção civil, recicláveis e eletroeletrônicos.",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,São José,SC
+4216701,2024,True,False,False,,,São José do Cedro,SC
+4216800,2024,True,False,False,,,São José do Cerrito,SC
+4216909,2024,True,False,False,,,São Lourenço do Oeste,SC
+4217006,2024,True,False,False,,,São Ludgero,SC
+4217154,2024,True,False,False,,,São Miguel da Boa Vista,SC
+4217402,2024,True,False,False,,,Schroeder,SC
+4217758,2024,True,False,False,,,Sul Brasil,SC
+4217808,2024,True,True,False,"…recolhimento e destinação correta de pilhas, baterias, lâmpadas, pneus e eletrônicos.",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Taió,SC
+4217907,2024,True,False,False,,,Tangará,SC
+4218202,2024,True,False,False,,,Timbó,SC
+4218350,2024,True,False,False,,,Treviso,SC
+4218400,2024,True,False,False,,,Treze de Maio,SC
+4218707,2024,True,False,False,,,Tubarão,SC
+4218855,2024,True,False,False,,,União do Oeste,SC
+4219200,2024,True,False,False,,,Vidal Ramos,SC
+4219309,2024,True,False,True,,,Videira,SC
+4219606,2024,True,False,False,,,Xavantina,SC
+4300307,2024,True,True,False,"Campanhas de recolhimento de lixo eletrônico, pilhas e baterias, lâmpadas. Coleta seletiva destinada a separação e reciclagem dos resíduos.",Municipal - Mecanismo para Criação de Fonte.csv · Descrição Mecanismo Fonte.1,Alecrim,RS
+4301073,2024,True,False,False,,,Arroio do Padre,RS
+4302501,2024,True,False,False,,,Bossoroca,RS
+4302584,2024,True,False,False,,,Bozano,RS
+4302808,2024,True,False,False,,,Caçapava do Sul,RS
+4303103,2024,True,False,False,,,Cachoeirinha,RS
+4303400,2024,True,False,False,,,Caiçara,RS
+4303905,2024,True,False,False,,,Campo Bom,RS
+4304002,2024,True,False,False,,,Campo Novo,RS
+4304606,2024,True,False,False,,,Canoas,RS
+4304804,2024,True,False,False,,,Carlos Barbosa,RS
+4304903,2024,True,False,False,,,Casca,RS
+4305108,2024,True,False,False,,,Caxias do Sul,RS
+4305124,2024,True,False,False,,,Cerrito,RS
+4305157,2024,True,False,False,,,Cerro Grande,RS
+4305603,2024,True,False,False,,,Colorado,RS
+4305975,2024,True,False,False,,,Coxilha,RS
+4306403,2024,True,False,False,,,Dois Irmãos,RS
+4306452,2024,True,False,False,,,Dois Lajeados,RS
+4306601,2024,True,False,False,,,Dom Pedrito,RS
+4306908,2024,True,False,False,,,Encruzilhada do Sul,RS
+4307559,2024,True,False,False,,,Estação,RS
+4307864,2024,True,False,False,,,Fagundes Varela,RS
+4308078,2024,True,False,False,,,Fazenda Vilanova,RS
+4308409,2024,True,False,False,,,Formigueiro,RS
+4308433,2024,True,False,False,,,Forquetinha,RS
+4309126,2024,True,False,False,,,Gramado dos Loureiros,RS
+4309407,2024,True,False,False,,,Guaporé,RS
+4310009,2024,True,False,False,,,Ibirubá,RS
+4310207,2024,True,False,False,,,Ijuí,RS
+4310538,2024,True,False,False,,,Itaara,RS
+4311007,2024,True,False,False,,,Jaguarão,RS
+4311106,2024,True,False,False,,,Jaguari,RS
+4311601,2024,True,False,False,,,Liberato Salzano,RS
+4311759,2024,True,False,False,,,Manoel Viana,RS
+4312401,2024,True,False,False,,,Montenegro,RS
+4312443,2024,True,False,False,,,Morrinhos do Sul,RS
+4312476,2024,True,False,False,,,Morro Reuter,RS
+4312500,2024,True,False,False,,,Mostardas,RS
+4312625,2024,True,False,False,,,Muliterno,RS
+4312757,2024,True,False,False,,,Nova Alvorada,RS
+4312906,2024,True,False,False,,,Nova Bassano,RS
+4313086,2024,True,False,False,,,Nova Pádua,RS
+4313102,2024,True,False,False,,,Nova Palma,RS
+4313375,2024,True,False,False,,,Nova Santa Rita,RS
+4313409,2024,True,False,False,,,Novo Hamburgo,RS
+4313805,2024,True,False,False,,,Palmitinho,RS
+4314001,2024,True,False,False,,,Paraí,RS
+4314308,2024,True,False,False,,,Pejuçara,RS
+4314423,2024,True,False,False,,,Picada Café,RS
+4314456,2024,True,False,False,,,Pinhal,RS
+4314803,2024,True,False,False,,,Portão,RS
+4315354,2024,True,False,False,,,Quinze de Novembro,RS
+4315453,2024,True,False,False,,,Relvado,RS
+4315909,2024,True,False,False,,,Rodeio Bonito,RS
+4316006,2024,True,False,False,,,Rolante,RS
+4316709,2024,True,False,False,,,Santa Bárbara do Sul,RS
+4316808,2024,True,False,False,,,Santa Cruz do Sul,RS
+4317103,2024,True,False,False,,,Sant'Ana do Livramento,RS
+4318051,2024,True,False,False,,,São Domingos do Sul,RS
+4318408,2024,True,False,False,,,São Jerônimo,RS
+4318499,2024,True,False,False,,,São José do Inhacorá,RS
+4319364,2024,True,False,False,,,São Pedro das Missões,RS
+4319505,2024,True,False,False,,,São Sebastião do Caí,RS
+4319901,2024,True,False,False,,,Sapiranga,RS
+4320008,2024,True,False,False,,,Sapucaia do Sul,RS
+4320503,2024,True,False,False,,,Sertão,RS
+4320602,2024,True,False,False,,,Severiano de Almeida,RS
+4321352,2024,True,False,False,,,Tavares,RS
+4321600,2024,True,False,False,,,Tramandaí,RS
+4321634,2024,True,False,False,,,Três Arroios,RS
+4322806,2024,True,False,False,,,Veranópolis,RS
+4322905,2024,True,False,False,,,Viadutos,RS
+4323200,2024,True,False,False,,,Victor Graeff,RS
+4323358,2024,True,False,False,,,Vila Lângaro,RS
+4323457,2024,True,False,False,,,Vila Nova do Sul,RS
+4323705,2024,True,False,False,,,Vista Gaúcha,RS
+5001904,2024,True,False,False,,,Bataguassu,MS
+5002209,2024,True,False,False,,,Bonito,MS
+5002704,2024,True,True,False,"…pequenos geradores de resíduos da construção civil, volumosos, podas, eletro-eletrônicos e recicláveis",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Campo Grande,MS
+5002951,2024,True,False,False,,,Chapadão do Sul,MS
+5003751,2024,True,False,False,,,Eldorado,MS
+5004601,2024,True,False,False,,,Itaquiraí,MS
+5006309,2024,True,False,False,,,Paranaíba,MS
+5006606,2024,True,False,False,,,Ponta Porã,MS
+5007703,2024,True,False,False,,,Sete Quedas,MS
+5008305,2024,True,False,False,,,Três Lagoas,MS
+5103205,2024,True,False,False,,,Colíder,MT
+5103254,2024,True,False,False,,,Colniza,MT
+5105622,2024,True,False,False,,,Mirassol d'Oeste,MT
+5106000,2024,True,False,False,,,Nortelândia,MT
+5106224,2024,True,False,False,,,Nova Mutum,MT
+5107305,2024,True,False,False,,,São José do Rio Claro,MT
+5107768,2024,True,False,False,,,Santa Rita do Trivelato,MT
+5200605,2024,True,False,False,,,Alto Paraíso de Goiás,GO
+5200902,2024,True,False,False,,,Amorinópolis,GO
+5201454,2024,True,False,False,,,Aparecida do Rio Doce,GO
+5201603,2024,True,False,False,,,Araçu,GO
+5202809,2024,True,False,False,,,Avelinópolis,GO
+5203203,2024,True,False,False,,,Barro Alto,GO
+5203962,2024,True,False,False,,,Buritinópolis,GO
+5204102,2024,True,False,False,,,Cachoeira Alta,GO
+5204300,2024,True,False,False,,,Caçu,GO
+5204557,2024,True,False,False,,,Caldazinha,GO
+5204656,2024,True,False,False,,,Campinaçu,GO
+5204953,2024,True,False,False,,,Campos Verdes,GO
+5205109,2024,True,False,False,,,Catalão,GO
+5205208,2024,True,False,False,,,Caturaí,GO
+5205406,2024,True,False,False,,,Ceres,GO
+5205802,2024,True,False,False,,,Corumbá de Goiás,GO
+5206305,2024,True,False,False,,,Cristianópolis,GO
+5206800,2024,True,False,False,,,Damolândia,GO
+5207105,2024,True,False,False,,,Diorama,GO
+5207402,2024,True,False,False,,,Edéia,GO
+5207907,2024,True,False,False,,,Flores de Goiás,GO
+5208608,2024,True,False,False,,,Goianésia,GO
+5209408,2024,True,False,False,,,Guarani de Goiás,GO
+5210109,2024,True,False,False,,,Ipameri,GO
+5210307,2024,True,False,False,,,Israelândia,GO
+5211008,2024,True,False,False,,,Itapirapuã,GO
+5211206,2024,True,False,False,,,Itapuranga,GO
+5211701,2024,True,False,False,,,Jandaia,GO
+5212055,2024,True,False,False,,,Jesúpolis,GO
+5212303,2024,True,False,False,,,Leopoldo de Bulhões,GO
+5212501,2024,True,False,False,,,Luziânia,GO
+5212709,2024,True,False,False,,,Mambaí,GO
+5212808,2024,True,False,False,,,Mara Rosa,GO
+5212907,2024,True,False,False,,,Marzagão,GO
+5213756,2024,True,False,False,,,Montividiu,GO
+5213905,2024,True,False,False,,,Mossâmedes,GO
+5214051,2024,True,False,False,,,Mundo Novo,GO
+5214507,2024,True,False,False,,,Nerópolis,GO
+5214804,2024,True,False,False,,,Nova Aurora,GO
+5215009,2024,True,False,False,,,Nova Veneza,GO
+5215306,2024,True,False,False,,,Orizona,GO
+5215405,2024,True,False,False,,,Ouro Verde de Goiás,GO
+5215504,2024,True,False,False,,,Ouvidor,GO
+5215603,2024,True,False,False,,,Padre Bernardo,GO
+5215801,2024,True,False,False,,,Palmelo,GO
+5216007,2024,True,False,False,,,Panamá,GO
+5216304,2024,True,False,False,,,Paranaiguara,GO
+5216403,2024,True,False,False,,,Paraúna,GO
+5217104,2024,True,False,False,,,Piracanjuba,GO
+5218789,2024,True,False,False,,,Rio Quente,GO
+5218904,2024,True,False,False,,,Rubiataba,GO
+5219209,2024,True,False,False,,,Santa Cruz de Goiás,GO
+5219738,2024,True,False,False,,,Santo Antônio de Goiás,GO
+5219803,2024,True,False,False,,,São Domingos,GO
+5219902,2024,True,False,False,,,São Francisco de Goiás,GO
+5220280,2024,True,False,False,,,São Patrício,GO
+5221007,2024,True,False,False,,,Taquaral de Goiás,GO
+5221403,2024,True,False,False,,,Trindade,GO
+5221601,2024,True,False,False,,,Uruaçu,GO
+5221809,2024,True,False,False,,,Urutaí,GO
+5222005,2024,True,False,False,,,Vianópolis,GO
+1100064,2025,True,False,False,,,Colorado do Oeste,RO
+1100288,2025,True,False,False,,,Rolim de Moura,RO
+1100338,2025,True,False,False,,,Nova Mamoré,RO
+1100403,2025,True,False,False,,,Alto Paraíso,RO
+1200203,2025,True,False,False,,,Cruzeiro do Sul,AC
+1300060,2025,True,False,False,,,Amaturá,AM
+1300144,2025,True,False,False,,,Apuí,AM
+1300607,2025,True,False,False,,,Benjamin Constant,AM
+1300680,2025,True,False,False,,,Boa Vista do Ramos,AM
+1300805,2025,True,False,False,,,Borba,AM
+1301308,2025,True,False,False,,,Codajás,AM
+1301407,2025,True,False,False,,,Eirunepé,AM
+1301506,2025,True,False,False,,,Envira,AM
+1301605,2025,True,False,False,,,Fonte Boa,AM
+1301654,2025,True,False,False,,,Guajará,AM
+1301803,2025,True,False,False,,,Ipixuna,AM
+1302306,2025,True,False,False,,,Jutaí,AM
+1302405,2025,True,False,False,,,Lábrea,AM
+1302900,2025,True,False,True,,,Maués,AM
+1303007,2025,True,False,False,,,Nhamundá,AM
+1303304,2025,True,False,False,,,Novo Aripuanã,AM
+1303809,2025,True,False,False,,,São Gabriel da Cachoeira,AM
+1303957,2025,True,False,False,,,São Sebastião do Uatumã,AM
+1304104,2025,True,False,False,,,Tapauá,AM
+1304203,2025,True,False,False,,,Tefé,AM
+1304260,2025,True,False,False,,,Uarini,AM
+1304302,2025,True,False,False,,,Urucará,AM
+1304401,2025,True,False,False,,,Urucurituba,AM
+1400308,2025,True,False,False,,,Mucajaí,RR
+1500107,2025,True,False,False,,,Abaetetuba,PA
+1500404,2025,True,False,False,,,Alenquer,PA
+1500800,2025,True,True,False,…implantou um projeto voltado à coleta e destinação ambientalmente adequada dos resíduos eletrônicos em Ananindeua. A iniciativa prevê dois mecanismos de coleta: Pontos de Entrega Voluntária…,Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Ananindeua,PA
+1500909,2025,True,False,False,,,Augusto Corrêa,PA
+1501204,2025,True,False,False,,,Baião,PA
+1501303,2025,True,False,False,,,Barcarena,PA
+1504208,2025,True,False,False,,,Marabá,PA
+1505106,2025,True,False,False,,,Óbidos,PA
+1505502,2025,True,False,False,,,Paragominas,PA
+1505551,2025,True,False,False,,,Pau d'Arco,PA
+1506138,2025,True,False,False,,,Redenção,PA
+1506807,2025,True,False,False,,,Santarém,PA
+1507201,2025,True,False,False,,,São Domingos do Capim,PA
+1700251,2025,True,False,False,,,Abreulândia,TO
+1700350,2025,True,False,False,,,Aliança do Tocantins,TO
+1700400,2025,True,False,False,,,Almas,TO
+1700707,2025,True,False,False,,,Alvorada,TO
+1701309,2025,True,False,False,,,Aragominas,TO
+1701903,2025,True,False,False,,,Araguacema,TO
+1702158,2025,True,False,False,,,Araguanã,TO
+1702208,2025,True,False,False,,,Araguatins,TO
+1702703,2025,True,False,False,,,Aurora do Tocantins,TO
+1703206,2025,True,False,False,,,Bernardo Sayão,TO
+1703602,2025,True,False,False,,,Brasilândia do Tocantins,TO
+1703701,2025,True,False,False,,,Brejinho de Nazaré,TO
+1703826,2025,True,False,False,,,Cachoeirinha,TO
+1703909,2025,True,False,False,,,Caseara,TO
+1704600,2025,True,False,False,,,Chapada de Areia,TO
+1705557,2025,True,False,False,,,Combinado,TO
+1705607,2025,True,False,False,,,Conceição do Tocantins,TO
+1706100,2025,True,False,False,,,Cristalândia,TO
+1707009,2025,True,False,False,,,Dianópolis,TO
+1707108,2025,True,False,False,,,Divinópolis do Tocantins,TO
+1707207,2025,True,False,False,,,Dois Irmãos do Tocantins,TO
+1707306,2025,True,False,False,,,Dueré,TO
+1707652,2025,True,False,False,,,Figueirópolis,TO
+1709302,2025,True,False,False,,,Guaraí,TO
+1709807,2025,True,False,False,,,Ipueiras,TO
+1710508,2025,True,False,False,,,Itacajá,TO
+1710904,2025,True,False,False,,,Itapiratins,TO
+1711100,2025,True,False,False,,,Itaporã do Tocantins,TO
+1711803,2025,True,False,False,,,Juarina,TO
+1712009,2025,True,False,False,,,Lajeado,TO
+1712157,2025,True,False,False,,,Lavandeira,TO
+1712504,2025,True,False,False,,,Marianópolis do Tocantins,TO
+1712801,2025,True,False,False,,,Maurilândia do Tocantins,TO
+1713205,2025,True,False,False,,,Miracema do Tocantins,TO
+1713304,2025,True,False,False,,,Miranorte,TO
+1713957,2025,True,False,False,,,Muricilândia,TO
+1714203,2025,True,False,False,,,Natividade,TO
+1715101,2025,True,False,False,,,Novo Acordo,TO
+1715754,2025,True,False,False,,,Palmeirópolis,TO
+1716208,2025,True,False,False,,,Paranã,TO
+1716505,2025,True,False,False,,,Pedro Afonso,TO
+1716604,2025,True,False,False,,,Peixe,TO
+1716653,2025,True,False,False,,,Pequizeiro,TO
+1717008,2025,True,False,False,,,Pindorama do Tocantins,TO
+1717503,2025,True,False,False,,,Pium,TO
+1717909,2025,True,False,False,,,Ponte Alta do Tocantins,TO
+1718865,2025,True,False,False,,,Santa Fé do Araguaia,TO
+1718907,2025,True,False,False,,,Santa Rosa do Tocantins,TO
+1719004,2025,True,False,False,,,Santa Tereza do Tocantins,TO
+1720200,2025,True,False,False,,,São Miguel do Tocantins,TO
+1720259,2025,True,False,False,,,São Salvador do Tocantins,TO
+1720655,2025,True,False,False,,,Silvanópolis,TO
+1720937,2025,True,False,False,,,Taipas do Tocantins,TO
+1721109,2025,True,False,False,,,Tocantínia,TO
+1721307,2025,True,False,False,,,Tupiratins,TO
+2100055,2025,True,False,False,,,Açailândia,MA
+2100105,2025,True,False,False,,,Afonso Cunha,MA
+2100402,2025,True,False,False,,,Altamira do Maranhão,MA
+2100436,2025,True,False,False,,,Alto Alegre do Maranhão,MA
+2100477,2025,True,False,False,,,Alto Alegre do Pindaré,MA
+2100501,2025,True,False,False,,,Alto Parnaíba,MA
+2100600,2025,True,False,False,,,Amarante do Maranhão,MA
+2100956,2025,True,False,False,,,Arame,MA
+2101202,2025,True,False,False,,,Bacabal,MA
+2101251,2025,True,False,False,,,Bacabeira,MA
+2101608,2025,True,False,False,,,Barra do Corda,MA
+2101905,2025,True,False,False,,,Bequimão,MA
+2102002,2025,True,False,False,,,Bom Jardim,MA
+2102036,2025,True,False,False,,,Bom Jesus das Selvas,MA
+2102325,2025,True,False,False,,,Buriticupu,MA
+2102408,2025,True,False,False,,,Cajapió,MA
+2102705,2025,True,False,False,,,Cantanhede,MA
+2103208,2025,True,False,False,,,Chapadinha,MA
+2103257,2025,True,False,False,,,Cidelândia,MA
+2103554,2025,True,False,False,,,Conceição do Lago-Açu,MA
+2103604,2025,True,False,False,,,Coroatá,MA
+2103703,2025,True,False,False,,,Cururupu,MA
+2103752,2025,True,False,False,,,Davinópolis,MA
+2103901,2025,True,False,False,,,Duque Bacelar,MA
+2104008,2025,True,False,False,,,Esperantinópolis,MA
+2104107,2025,True,False,False,,,Fortaleza dos Nogueiras,MA
+2104206,2025,True,False,False,,,Fortuna,MA
+2104602,2025,True,False,False,,,Governador Eugênio Barros,MA
+2104677,2025,True,False,False,,,Governador Nunes Freire,MA
+2104800,2025,True,False,False,,,Grajaú,MA
+2105203,2025,True,False,False,,,Igarapé Grande,MA
+2105302,2025,True,False,False,,,Imperatriz,MA
+2105427,2025,True,False,False,,,Itinga do Maranhão,MA
+2105708,2025,True,False,False,,,Lago da Pedra,MA
+2106003,2025,True,False,False,,,Lima Campos,MA
+2106300,2025,True,False,False,,,Magalhães de Almeida,MA
+2106375,2025,True,False,False,,,Maranhãozinho,MA
+2106508,2025,True,False,False,,,Matinha,MA
+2106672,2025,True,False,False,,,Milagres do Maranhão,MA
+2106755,2025,True,False,False,,,Miranda do Norte,MA
+2106904,2025,True,False,False,,,Monção,MA
+2107100,2025,True,False,False,,,Morros,MA
+2107357,2025,True,False,False,,,Nova Olinda do Maranhão,MA
+2107506,2025,True,False,False,,,Paço do Lumiar,MA
+2107704,2025,True,False,False,,,Paraibano,MA
+2107803,2025,True,False,False,,,Parnarama,MA
+2107902,2025,True,False,False,,,Passagem Franca,MA
+2108207,2025,True,False,False,,,Pedreiras,MA
+2108256,2025,True,False,False,,,Pedro do Rosário,MA
+2108306,2025,True,False,False,,,Penalva,MA
+2108454,2025,True,False,False,,,Peritoró,MA
+2108504,2025,True,False,False,,,Pindaré-Mirim,MA
+2108603,2025,True,False,False,,,Pinheiro,MA
+2108801,2025,True,False,False,,,Pirapemas,MA
+2109205,2025,True,False,False,,,Presidente Juscelino,MA
+2109403,2025,True,False,False,,,Primeira Cruz,MA
+2109452,2025,True,False,False,,,Raposa,MA
+2109601,2025,True,False,False,,,Rosário,MA
+2109908,2025,True,False,False,,,Santa Inês,MA
+2110005,2025,True,False,False,,,Santa Luzia,MA
+2110039,2025,True,False,False,,,Santa Luzia do Paruá,MA
+2110203,2025,True,False,True,,,Santa Rita,MA
+2110278,2025,True,False,False,,,Santo Amaro do Maranhão,MA
+2110302,2025,True,False,False,,,Santo Antônio dos Lopes,MA
+2110708,2025,True,False,False,,,São Domingos do Maranhão,MA
+2111029,2025,True,False,False,,,São João do Carú,MA
+2111052,2025,True,False,False,,,São João do Paraíso,MA
+2111201,2025,True,False,False,,,São José de Ribamar,MA
+2111300,2025,True,False,False,,,São Luís,MA
+2111409,2025,True,False,False,,,São Luís Gonzaga do Maranhão,MA
+2111508,2025,True,False,False,,,São Mateus do Maranhão,MA
+2111532,2025,True,False,False,,,São Pedro da Água Branca,MA
+2111607,2025,True,False,False,,,São Raimundo das Mangabeiras,MA
+2111722,2025,True,False,False,,,Satubinha,MA
+2111748,2025,True,False,False,,,Senador Alexandre Costa,MA
+2111763,2025,True,False,False,,,Senador La Rocque,MA
+2111805,2025,True,False,False,,,Sítio Novo,MA
+2112233,2025,True,False,False,,,Trizidela do Vale,MA
+2112506,2025,True,False,False,,,Tutóia,MA
+2112803,2025,True,False,False,,,Viana,MA
+2113009,2025,True,False,False,,,Vitorino Freire,MA
+2200707,2025,True,False,False,,,Anísio de Abreu,PI
+2201919,2025,True,False,False,,,Bom Princípio do Piauí,PI
+2205532,2025,True,False,False,,,Jurema,PI
+2205565,2025,True,False,False,,,Lagoa do Barro do Piauí,PI
+2207900,2025,True,False,False,,,Pedro II,PI
+2208551,2025,True,False,False,,,Porto Alegre do Piauí,PI
+2300101,2025,True,False,False,,,Abaiara,CE
+2300150,2025,True,False,False,,,Acarape,CE
+2300408,2025,True,False,False,,,Aiuaba,CE
+2300507,2025,True,False,False,,,Alcântaras,CE
+2300705,2025,True,False,False,,,Alto Santo,CE
+2301208,2025,True,False,False,,,Aracoiaba,CE
+2301901,2025,True,False,False,,,Barbalha,CE
+2302008,2025,True,False,False,,,Barro,CE
+2302503,2025,True,False,False,,,Brejo Santo,CE
+2303303,2025,True,False,False,,,Cariús,CE
+2303501,2025,True,False,False,,,Cascavel,CE
+2303659,2025,True,False,False,,,Catunda,CE
+2303931,2025,True,False,False,,,Choró,CE
+2304004,2025,True,False,False,,,Coreaú,CE
+2304202,2025,True,False,False,,,Crato,CE
+2304236,2025,True,False,False,,,Croatá,CE
+2304277,2025,True,False,False,,,Ererê,CE
+2304509,2025,True,False,False,,,Frecheirinha,CE
+2304657,2025,True,False,False,,,Graça,CE
+2305233,2025,True,False,False,,,Horizonte,CE
+2305357,2025,True,False,False,,,Icapuí,CE
+2305605,2025,True,False,False,,,Independência,CE
+2305704,2025,True,False,False,,,Ipaumirim,CE
+2305803,2025,True,False,False,,,Ipu,CE
+2306009,2025,True,False,False,,,Iracema,CE
+2306108,2025,True,False,False,,,Irauçuba,CE
+2306405,2025,True,False,False,,,Itapipoca,CE
+2307007,2025,True,False,False,,,Jaguaruana,CE
+2307106,2025,True,False,False,,,Jardim,CE
+2307254,2025,True,False,False,,,Jijoca de Jericoacoara,CE
+2307304,2025,True,False,False,,,Juazeiro do Norte,CE
+2307403,2025,True,False,False,,,Jucás,CE
+2307601,2025,True,False,False,,,Limoeiro do Norte,CE
+2307635,2025,True,False,False,,,Madalena,CE
+2307700,2025,True,False,False,,,Maranguape,CE
+2308302,2025,True,False,False,,,Milagres,CE
+2308500,2025,True,False,False,,,Mombaça,CE
+2308708,2025,True,False,False,,,Morada Nova,CE
+2309003,2025,True,False,False,,,Mucambo,CE
+2309102,2025,True,False,False,,,Mulungu,CE
+2309300,2025,True,False,False,,,Nova Russas,CE
+2309409,2025,True,False,False,,,Novo Oriente,CE
+2309458,2025,True,False,False,,,Ocara,CE
+2309508,2025,True,False,False,,,Orós,CE
+2309607,2025,True,False,False,,,Pacajus,CE
+2309904,2025,True,False,False,,,Pacujá,CE
+2310001,2025,True,False,False,,,Palhano,CE
+2310407,2025,True,False,False,,,Paramoti,CE
+2310506,2025,True,False,False,,,Pedra Branca,CE
+2310902,2025,True,False,False,,,Piquet Carneiro,CE
+2311108,2025,True,False,False,,,Porteiras,CE
+2311306,2025,True,False,False,,,Quixadá,CE
+2311355,2025,True,False,False,,,Quixelô,CE
+2311603,2025,True,False,False,,,Redenção,CE
+2311702,2025,True,False,False,,,Reriutaba,CE
+2311801,2025,True,False,False,,,Russas,CE
+2311900,2025,True,False,False,,,Saboeiro,CE
+2312007,2025,True,False,False,,,Santana do Acaraú,CE
+2312205,2025,True,False,False,,,Santa Quitéria,CE
+2312304,2025,True,False,False,,,São Benedito,CE
+2312700,2025,True,False,False,,,Senador Pompeu,CE
+2312908,2025,True,False,False,,,Sobral,CE
+2313203,2025,True,False,False,,,Tamboril,CE
+2313252,2025,True,False,False,,,Tarrafas,CE
+2313302,2025,True,True,True,"…programas que facilitem o reuso direto de itens, como roupas, móveis, eletrônicos, entre outros, antes que se tornem resíduos.",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Tauá,CE
+2313906,2025,True,False,False,,,Uruoca,CE
+2313955,2025,True,False,False,,,Varjota,CE
+2314003,2025,True,False,False,,,Várzea Alegre,CE
+2400406,2025,True,False,False,,,Água Nova,RN
+2401107,2025,True,False,False,,,Areia Branca,RN
+2402303,2025,True,False,False,,,Caraúbas,RN
+2402501,2025,True,False,False,,,Carnaubais,RN
+2403251,2025,True,False,False,,,Parnamirim,RN
+2403756,2025,True,False,False,,,Fernando Pedroza,RN
+2404101,2025,True,False,False,,,Galinhos,RN
+2404705,2025,True,False,False,,,Ipanguaçu,RN
+2404903,2025,True,False,False,,,Itaú,RN
+2405207,2025,True,False,False,,,Janduís,RN
+2405405,2025,True,False,False,,,Japi,RN
+2406502,2025,True,False,False,,,Lagoa Nova,RN
+2408102,2025,True,False,False,,,Natal,RN
+2409407,2025,True,False,False,,,Pau dos Ferros,RN
+2410801,2025,True,False,False,,,Riacho de Santana,RN
+2411007,2025,True,False,False,,,Rodolfo Fernandes,RN
+2414001,2025,True,False,False,,,Tangará,RN
+2500601,2025,True,False,False,,,Alhandra,PB
+2503001,2025,True,False,False,,,Caaporã,PB
+2503704,2025,True,False,False,,,Cajazeiras,PB
+2600609,2025,True,False,False,,,Alagoinha,PE
+2602001,2025,True,False,False,,,Bodocó,PE
+2603926,2025,True,False,False,,,Carnaubeira da Penha,PE
+2605004,2025,True,False,False,,,Cupira,PE
+2605152,2025,True,False,False,,,Dormentes,PE
+2607307,2025,True,False,False,,,Ipubi,PE
+2607901,2025,True,False,False,,,Jaboatão dos Guararapes,PE
+2608503,2025,True,False,False,,,Lagoa de Itaenga,PE
+2609303,2025,True,False,False,,,Mirandiba,PE
+2611533,2025,True,False,False,,,Quixaba,PE
+2611606,2025,True,False,False,,,Recife,PE
+2612455,2025,True,False,False,,,Santa Cruz,PE
+2612554,2025,True,False,False,,,Santa Filomena,PE
+2613909,2025,True,False,False,,,Serra Talhada,PE
+2615607,2025,True,False,False,,,Trindade,PE
+2616308,2025,True,False,False,,,Vicência,PE
+2700201,2025,True,False,False,,,Anadia,AL
+2702108,2025,True,False,False,,,Colônia Leopoldina,AL
+2702207,2025,True,False,False,,,Coqueiro Seco,AL
+2702306,2025,True,False,False,,,Coruripe,AL
+2702355,2025,True,False,False,,,Craíbas,AL
+2702405,2025,True,False,False,,,Delmiro Gouveia,AL
+2703304,2025,True,False,False,,,Inhapi,AL
+2704302,2025,True,False,False,,,Maceió,AL
+2706109,2025,True,False,False,,,Ouro Branco,AL
+2706208,2025,True,False,False,,,Palestina,AL
+2706406,2025,True,False,False,,,Pão de Açúcar,AL
+2706422,2025,True,False,False,,,Pariconha,AL
+2707107,2025,True,False,False,,,Piranhas,AL
+2707602,2025,True,False,False,,,Quebrangulo,AL
+2708600,2025,True,False,False,,,São Miguel dos Campos,AL
+2709103,2025,True,False,False,,,Taquarana,AL
+2709301,2025,True,False,False,,,União dos Palmares,AL
+2709400,2025,True,False,False,,,Viçosa,AL
+2800209,2025,True,False,False,,,Aquidabã,SE
+2800506,2025,True,False,False,,,Areia Branca,SE
+2801603,2025,True,False,False,,,Cedro de São João,SE
+2802007,2025,True,False,False,,,Divina Pastora,SE
+2802106,2025,True,False,False,,,Estância,SE
+2802601,2025,True,False,False,,,Gracho Cardoso,SE
+2803005,2025,True,False,False,,,Itabaianinha,SE
+2803104,2025,True,False,False,,,Itabi,SE
+2803708,2025,True,False,False,,,Macambira,SE
+2803807,2025,True,False,False,,,Malhada dos Bois,SE
+2804102,2025,True,False,False,,,Moita Bonita,SE
+2804458,2025,True,False,False,,,Nossa Senhora Aparecida,SE
+2804508,2025,True,False,False,,,Nossa Senhora da Glória,SE
+2805000,2025,True,False,False,,,Pedra Mole,SE
+2806305,2025,True,False,False,,,Santa Luzia do Itanhy,SE
+2806404,2025,True,False,False,,,Santana do São Francisco,SE
+2806701,2025,True,False,False,,,São Cristóvão,SE
+2806800,2025,True,False,False,,,São Domingos,SE
+2806909,2025,True,False,False,,,São Francisco,SE
+2807600,2025,True,False,False,,,Umbaúba,SE
+2901007,2025,True,True,True,"…garantir o retorno de produtos pós-consumo, como pilhas, baterias, pneus e eletroeletrônicos. sjnepomuceno.mg.gov.br +1 cbhmanhuacu.org.br +1 Criação de Pontos de Entrega Voluntária (PEVs):…",Municipal - Diagnostico.csv · Meta - Programa,Amargosa,BA
+2903201,2025,True,False,False,,,Barreiras,BA
+2903409,2025,True,False,False,,,Belmonte,BA
+2904506,2025,True,False,False,,,Brotas de Macaúbas,BA
+2904704,2025,True,False,False,,,Buerarema,BA
+2905701,2025,True,False,False,,,Camaçari,BA
+2906402,2025,True,False,False,,,Candeal,BA
+2908705,2025,True,False,False,,,Condeúba,BA
+2909505,2025,True,False,False,,,Cravolândia,BA
+2909802,2025,True,False,False,,,Cruz das Almas,BA
+2910776,2025,True,False,False,,,Feira da Mata,BA
+2912806,2025,True,False,False,,,Ibirapuã,BA
+2913507,2025,True,False,False,,,Iguaí,BA
+2917508,2025,True,False,False,,,Jacobina,BA
+2918407,2025,True,False,False,,,Juazeiro,BA
+2919207,2025,True,False,False,,,Lauro de Freitas,BA
+2920452,2025,True,False,False,,,Mansidão,BA
+2921708,2025,True,False,False,,,Morro do Chapéu,BA
+2922508,2025,True,False,False,,,Nazaré,BA
+2924009,2025,True,False,False,,,Paulo Afonso,BA
+2925402,2025,True,False,False,,,Potiraguá,BA
+2926657,2025,True,False,False,,,Ribeirão do Largo,BA
+2928406,2025,True,False,False,,,Santa Rita de Cássia,BA
+2928901,2025,True,False,False,,,São Desidério,BA
+2929008,2025,True,False,False,,,São Félix,BA
+2930204,2025,True,False,False,,,Sento Sé,BA
+2933307,2025,True,False,False,,,Vitória da Conquista,BA
+3100104,2025,True,False,False,,,Abadia dos Dourados,MG
+3100401,2025,True,False,False,,,Acaiaca,MG
+3100708,2025,True,False,False,,,Água Comprida,MG
+3100906,2025,True,False,False,,,Águas Formosas,MG
+3101805,2025,True,False,False,,,Alpercata,MG
+3102308,2025,True,False,False,,,Alvinópolis,MG
+3103504,2025,True,False,False,,,Araguari,MG
+3104502,2025,True,False,False,,,Arinos,MG
+3105509,2025,True,False,False,,,Barão de Monte Alto,MG
+3106200,2025,True,False,False,,,Belo Horizonte,MG
+3106408,2025,True,False,False,,,Belo Vale,MG
+3106655,2025,True,False,False,,,Berizal,MG
+3109105,2025,True,False,False,,,Bueno Brandão,MG
+3112406,2025,True,True,False,LIXO ELETRÕNICO,Municipal - Solucoes Compartilhadas e Custos.csv · Solução,Capetinga,MG
+3112703,2025,True,False,False,,,Capitão Enéas,MG
+3113305,2025,True,False,False,,,Carangola,MG
+3115003,2025,True,False,False,,,Cascalho Rico,MG
+3116001,2025,True,False,False,,,Chalé,MG
+3116159,2025,True,False,False,,,Chapada Gaúcha,MG
+3116407,2025,True,False,False,,,Claraval,MG
+3117702,2025,True,False,False,,,Conceição do Rio Verde,MG
+3118007,2025,True,False,False,,,Congonhas,MG
+3118601,2025,True,False,False,,,Contagem,MG
+3118700,2025,True,False,False,,,Coqueiral,MG
+3119203,2025,True,False,False,,,Coroaci,MG
+3119302,2025,True,False,False,,,Coromandel,MG
+3119906,2025,True,False,False,,,Córrego do Bom Jesus,MG
+3120003,2025,True,False,False,,,Córrego Novo,MG
+3120607,2025,True,False,False,,,Crucilândia,MG
+3120805,2025,True,False,False,,,Cruzília,MG
+3120904,2025,True,False,False,,,Curvelo,MG
+3121209,2025,True,False,False,,,Delfinópolis,MG
+3121308,2025,True,False,False,,,Descoberto,MG
+3121605,2025,True,False,True,,,Diamantina,MG
+3122009,2025,True,False,False,,,Divino,MG
+3123502,2025,True,False,False,,,Douradoquara,MG
+3124807,2025,True,False,False,,,Estrela do Sul,MG
+3126000,2025,True,False,False,,,Florestal,MG
+3127354,2025,True,False,False,,,Glaucilândia,MG
+3127503,2025,True,False,False,,,Gonzaga,MG
+3127909,2025,True,False,False,,,Grupiara,MG
+3128204,2025,True,False,False,,,Guaraciaba,MG
+3128253,2025,True,False,False,,,Guaraciama,MG
+3129806,2025,True,False,False,,,Ibirité,MG
+3130101,2025,True,False,False,,,Igarapé,MG
+3130705,2025,True,False,False,,,Indianópolis,MG
+3131604,2025,True,False,False,,,Iraí de Minas,MG
+3132008,2025,True,False,False,,,Itacambira,MG
+3133006,2025,True,False,False,,,Itamonte,MG
+3133303,2025,True,False,False,,,Itaobim,MG
+3133501,2025,True,False,False,,,Itapecerica,MG
+3134806,2025,True,True,False,"…correta de lâmpadas, óleo de cozinha usado, raio X, pilhas e baterias de eletrônicos, pneus, lixo eletrônico, colchões e blisters de medicamentos",Municipal - Solucoes Compartilhadas e Custos.csv · Solução,Jacuí,MG
+3134905,2025,True,False,False,,,Jacutinga,MG
+3135100,2025,True,False,False,,,Janaúba,MG
+3135407,2025,True,False,False,,,Jeceaba,MG
+3136108,2025,True,False,False,,,Joanésia,MG
+3136207,2025,True,False,False,,,João Monlevade,MG
+3136702,2025,True,False,False,,,Juiz de Fora,MG
+3137700,2025,True,False,False,,,Lajinha,MG
+3138203,2025,True,False,False,,,Lavras,MG
+3138625,2025,True,False,False,,,Limeira do Oeste,MG
+3138906,2025,True,False,False,,,Machacalis,MG
+3140001,2025,True,True,False,"…- resíduos da construção civil, ecoponto para armazenamento de pneus e eletrônicos, que pelo porte, apresenta potencial para atendimento regional, inclusive, em conjunto com…",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Mariana,MG
+3140555,2025,True,False,False,,,Mata Verde,MG
+3142304,2025,True,False,False,,,Moeda,MG
+3143104,2025,True,False,False,,,Monte Carmelo,MG
+3143203,2025,True,False,False,,,Monte Santo de Minas,MG
+3143302,2025,True,False,False,,,Montes Claros,MG
+3143906,2025,True,False,False,,,Muriaé,MG
+3144300,2025,True,False,False,,,Nanuque,MG
+3145109,2025,True,False,False,,,Nova Resende,MG
+3145604,2025,True,False,False,,,Oliveira,MG
+3145901,2025,True,False,False,,,Ouro Branco,MG
+3146701,2025,True,False,False,,,Palma,MG
+3147600,2025,True,False,False,,,Passa Quatro,MG
+3147907,2025,True,False,False,,,Passos,MG
+3152303,2025,True,False,False,,,Porto Firme,MG
+3152907,2025,True,False,False,,,Pratápolis,MG
+3153905,2025,True,False,False,,,Raposos,MG
+3154002,2025,True,False,False,,,Raul Soares,MG
+3154408,2025,True,False,False,,,Ressaquinha,MG
+3155009,2025,True,False,False,,,Rio Doce,MG
+3156403,2025,True,False,False,,,Romaria,MG
+3158953,2025,True,False,False,,,Santana do Paraíso,MG
+3159357,2025,True,False,False,,,Santa Rita de Minas,MG
+3159803,2025,True,False,False,,,Santa Vitória,MG
+3160959,2025,True,False,False,,,São Domingos das Dores,MG
+3161601,2025,True,False,False,,,São Geraldo da Piedade,MG
+3162708,2025,True,False,False,,,São João do Paraíso,MG
+3163706,2025,True,False,False,,,São Lourenço,MG
+3164308,2025,True,False,False,,,São Roque de Minas,MG
+3165503,2025,True,False,False,,,Sardoá,MG
+3170057,2025,True,False,False,,,Ubaporanga,MG
+3170438,2025,True,False,False,,,União de Minas,MG
+3171154,2025,True,False,False,,,Vermelho Novo,MG
+3171303,2025,True,False,False,,,Viçosa,MG
+3171709,2025,True,False,False,,,Virgínia,MG
+3200102,2025,True,False,False,,,Afonso Cláudio,ES
+3200904,2025,True,False,False,,,Barra de São Francisco,ES
+3201001,2025,True,False,False,,,Boa Esperança,ES
+3201209,2025,True,False,False,,,Cachoeiro de Itapemirim,ES
+3202108,2025,True,True,False,"…recolhimento de embalagens vazias de lubrificantes, pilhas e baterias e lixo eletrônico.",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Ecoporanga,ES
+3202454,2025,True,False,False,,,Ibatiba,ES
+3202652,2025,True,False,False,,,Irupi,ES
+3203346,2025,True,False,False,,,Marechal Floriano,ES
+3204203,2025,True,False,False,,,Piúma,ES
+3204252,2025,True,False,False,,,Ponto Belo,ES
+3204559,2025,True,False,False,,,Santa Maria de Jetibá,ES
+3204658,2025,True,False,False,,,São Domingos do Norte,ES
+3205002,2025,True,False,False,,,Serra,ES
+3205010,2025,True,False,False,,,Sooretama,ES
+3205150,2025,True,False,False,,,Vila Pavão,ES
+3300258,2025,True,False,False,,,Arraial do Cabo,RJ
+3300936,2025,True,False,False,,,Carapebus,RJ
+3301108,2025,True,False,False,,,Cantagalo,RJ
+3301207,2025,True,False,False,,,Carmo,RJ
+3302205,2025,True,False,False,,,Itaperuna,RJ
+3302601,2025,True,False,False,,,Mangaratiba,RJ
+3302858,2025,True,False,False,,,Mesquita,RJ
+3303104,2025,True,False,False,,,Natividade,RJ
+3303856,2025,True,False,False,,,Paty do Alferes,RJ
+3303955,2025,True,False,False,,,Pinheiral,RJ
+3304151,2025,True,False,False,,,Quissamã,RJ
+3304201,2025,True,False,False,,,Resende,RJ
+3304557,2025,True,False,False,,,Rio de Janeiro,RJ
+3304706,2025,True,False,False,,,Santo Antônio de Pádua,RJ
+3305554,2025,True,False,False,,,Seropédica,RJ
+3305802,2025,True,True,True,"…logística reversa para os resíduos especiais (pilhas, baterias, lâmpadas, eletroeletrônicos, pneus, embalagens de agrotóxicos e lubrificantes)",Municipal - Diagnostico.csv · Meta - Programa,Teresópolis,RJ
+3306008,2025,True,False,False,,,Três Rios,RJ
+3306156,2025,True,False,False,,,Varre-Sai,RJ
+3306206,2025,True,False,False,,,Vassouras,RJ
+3500402,2025,True,False,False,,,Águas da Prata,SP
+3501608,2025,True,False,False,,,Americana,SP
+3502200,2025,True,False,False,,,Angatuba,SP
+3502408,2025,True,False,False,,,Anhumas,SP
+3503307,2025,True,False,False,,,Araras,SP
+3503406,2025,True,False,False,,,Arealva,SP
+3503901,2025,True,False,False,,,Arujá,SP
+3506003,2025,True,False,False,,,Bauru,SP
+3506201,2025,True,False,False,,,Bento de Abreu,SP
+3506508,2025,True,False,False,,,Birigui,SP
+3507001,2025,True,False,False,,,Boituva,SP
+3507308,2025,True,False,False,,,Boracéia,SP
+3507407,2025,True,False,False,,,Borborema,SP
+3508108,2025,True,False,False,,,Buritama,SP
+3508306,2025,True,False,False,,,Cabrália Paulista,SP
+3509452,2025,True,False,False,,,Campina do Monte Alegre,SP
+3509502,2025,True,False,False,,,Campinas,SP
+3510005,2025,True,False,False,,,Cândido Mota,SP
+3510401,2025,True,False,False,,,Capivari,SP
+3512308,2025,True,False,False,,,Conchas,SP
+3512605,2025,True,False,False,,,Coronel Macedo,SP
+3512704,2025,True,False,False,,,Corumbataí,SP
+3513306,2025,True,False,False,,,Cruzália,SP
+3513702,2025,True,False,False,,,Descalvado,SP
+3513801,2025,True,False,False,,,Diadema,SP
+3513850,2025,True,False,False,,,Dirce Reis,SP
+3514106,2025,True,False,False,,,Dois Córregos,SP
+3515103,2025,True,False,False,,,Embu-Guaçu,SP
+3515186,2025,True,False,False,,,Espírito Santo do Pinhal,SP
+3515509,2025,True,False,False,,,Fernandópolis,SP
+3516200,2025,True,False,False,,,Franca,SP
+3518701,2025,True,False,False,,,Guarujá,SP
+3519071,2025,True,False,False,,,Hortolândia,SP
+3520400,2025,True,False,False,,,Ilhabela,SP
+3520442,2025,True,False,True,,,Ilha Solteira,SP
+3521200,2025,True,False,False,,,Iporanga,SP
+3522505,2025,True,False,False,,,Itapevi,SP
+3523404,2025,True,False,False,,,Itatiba,SP
+3523503,2025,True,False,False,,,Itatinga,SP
+3524105,2025,True,False,False,,,Ituverava,SP
+3524402,2025,True,False,False,,,Jacareí,SP
+3524600,2025,True,False,True,,,Jacupiranga,SP
+3524709,2025,True,False,False,,,Jaguariúna,SP
+3525904,2025,True,False,False,,,Jundiaí,SP
+3526506,2025,True,False,False,,,Lavínia,SP
+3526902,2025,True,False,False,,,Limeira,SP
+3528304,2025,True,False,False,,,Magda,SP
+3529104,2025,True,False,False,,,Marinópolis,SP
+3529500,2025,True,False,False,,,Mendonça,SP
+3529609,2025,True,False,False,,,Meridiano,SP
+3530607,2025,True,False,False,,,Mogi das Cruzes,SP
+3531902,2025,True,False,False,,,Morro Agudo,SP
+3532405,2025,True,False,False,,,Nazaré Paulista,SP
+3533304,2025,True,True,False,Multirão Regional de Lixo Eletrônico e Vidros,Municipal - Solucoes Compartilhadas e Custos.csv · Solução,Nova Luzitânia,SP
+3536109,2025,True,False,False,,,Pardinho,SP
+3536208,2025,True,False,False,,,Pariquera-Açu,SP
+3537107,2025,True,False,False,,,Pedreira,SP
+3537305,2025,True,False,False,,,Penápolis,SP
+3538709,2025,True,False,False,,,Piracicaba,SP
+3539806,2025,True,False,False,,,Poá,SP
+3540408,2025,True,False,False,,,Populina,SP
+3542008,2025,True,False,False,,,Quintana,SP
+3542404,2025,True,False,False,,,Regente Feijó,SP
+3542701,2025,True,False,False,,,Restinga,SP
+3543907,2025,True,False,False,,,Rio Claro,SP
+3546603,2025,True,False,False,,,Santa Fé do Sul,SP
+3547304,2025,True,False,False,,,Santana de Parnaíba,SP
+3547700,2025,True,False,False,,,Santo Anastácio,SP
+3549102,2025,True,False,False,,,São João da Boa Vista,SP
+3550308,2025,True,False,False,,,São Paulo,SP
+3550605,2025,True,False,False,,,São Roque,SP
+3551009,2025,True,False,False,,,São Vicente,SP
+3551702,2025,True,False,False,,,Sertãozinho,SP
+3551801,2025,True,False,False,,,Sete Barras,SP
+3552205,2025,True,False,False,,,Sorocaba,SP
+3554003,2025,True,False,False,,,Tatuí,SP
+3554508,2025,True,False,False,,,Tietê,SP
+3555802,2025,True,False,False,,,Urânia,SP
+3556206,2025,True,False,False,,,Valinhos,SP
+3556305,2025,True,False,False,,,Valparaíso,SP
+3556701,2025,True,False,False,,,Vinhedo,SP
+4100103,2025,True,False,False,,,Abatiá,PR
+4100202,2025,True,False,False,,,Adrianópolis,PR
+4100301,2025,True,False,False,,,Agudos do Sul,PR
+4100400,2025,True,False,False,,,Almirante Tamandaré,PR
+4100509,2025,True,False,False,,,Altônia,PR
+4100608,2025,True,False,False,,,Alto Paraná,PR
+4100707,2025,True,False,False,,,Alto Piquiri,PR
+4100806,2025,True,False,False,,,Alvorada do Sul,PR
+4100905,2025,True,False,False,,,Amaporã,PR
+4101051,2025,True,False,False,,,Anahy,PR
+4101101,2025,True,False,False,,,Andirá,PR
+4101150,2025,True,False,False,,,Ângulo,PR
+4101408,2025,True,False,False,,,Apucarana,PR
+4101507,2025,True,False,False,,,Arapongas,PR
+4101606,2025,True,False,False,,,Arapoti,PR
+4101655,2025,True,False,False,,,Arapuã,PR
+4101804,2025,True,False,False,,,Araucária,PR
+4101853,2025,True,False,False,,,Ariranha do Ivaí,PR
+4101903,2025,True,False,False,,,Assaí,PR
+4102000,2025,True,False,False,,,Assis Chateaubriand,PR
+4102307,2025,True,False,False,,,Balsa Nova,PR
+4102406,2025,True,False,False,,,Bandeirantes,PR
+4102505,2025,True,False,False,,,Barbosa Ferraz,PR
+4102703,2025,True,False,False,,,Barra do Jacaré,PR
+4102901,2025,True,False,False,,,Bituruna,PR
+4103024,2025,True,False,False,,,Boa Esperança do Iguaçu,PR
+4103040,2025,True,False,False,,,Boa Ventura de São Roque,PR
+4103206,2025,True,False,False,,,Bom Sucesso,PR
+4103305,2025,True,False,False,,,Borrazópolis,PR
+4103354,2025,True,False,False,,,Braganey,PR
+4103404,2025,True,False,False,,,Cafeara,PR
+4103453,2025,True,False,False,,,Cafelândia,PR
+4103701,2025,True,False,False,,,Cambé,PR
+4103958,2025,True,False,False,,,Campina do Simão,PR
+4104253,2025,True,False,False,,,Campo Magro,PR
+4104303,2025,True,False,False,,,Campo Mourão,PR
+4104402,2025,True,False,False,,,Cândido de Abreu,PR
+4104501,2025,True,False,False,,,Capanema,PR
+4104600,2025,True,False,False,,,Capitão Leônidas Marques,PR
+4104709,2025,True,False,False,,,Carlópolis,PR
+4104808,2025,True,False,False,,,Cascavel,PR
+4104907,2025,True,False,False,,,Castro,PR
+4105003,2025,True,False,False,,,Catanduvas,PR
+4105102,2025,True,False,False,,,Centenário do Sul,PR
+4105409,2025,True,False,False,,,Chopinzinho,PR
+4105508,2025,True,False,False,,,Cianorte,PR
+4105706,2025,True,False,False,,,Clevelândia,PR
+4105904,2025,True,False,True,,,Colorado,PR
+4106100,2025,True,False,False,,,Conselheiro Mairinck,PR
+4106209,2025,True,False,False,,,Contenda,PR
+4106308,2025,True,False,False,,,Corbélia,PR
+4106456,2025,True,False,False,,,Coronel Domingos Soares,PR
+4106506,2025,True,False,False,,,Coronel Vivida,PR
+4106555,2025,True,False,False,,,Corumbataí do Sul,PR
+4106605,2025,True,False,False,,,Cruzeiro do Oeste,PR
+4106704,2025,True,False,False,,,Cruzeiro do Sul,PR
+4106803,2025,True,False,False,,,Cruz Machado,PR
+4106902,2025,True,False,False,,,Curitiba,PR
+4107009,2025,True,False,False,,,Curiúva,PR
+4107157,2025,True,False,False,,,Diamante D'Oeste,PR
+4107207,2025,True,False,False,,,Dois Vizinhos,PR
+4107256,2025,True,False,False,,,Douradina,PR
+4107405,2025,True,False,False,,,Enéas Marques,PR
+4107504,2025,True,False,False,,,Engenheiro Beltrão,PR
+4107520,2025,True,False,False,,,Esperança Nova,PR
+4107538,2025,True,False,False,,,Entre Rios do Oeste,PR
+4107546,2025,True,False,False,,,Espigão Alto do Iguaçu,PR
+4107553,2025,True,False,False,,,Farol,PR
+4107603,2025,True,False,False,,,Faxinal,PR
+4107652,2025,True,False,False,,,Fazenda Rio Grande,PR
+4107702,2025,True,False,False,,,Fênix,PR
+4108106,2025,True,False,False,,,Flórida,PR
+4108205,2025,True,False,False,,,Formosa do Oeste,PR
+4108304,2025,True,False,False,,,Foz do Iguaçu,PR
+4108403,2025,True,False,False,,,Francisco Beltrão,PR
+4108502,2025,True,False,False,,,General Carneiro,PR
+4108551,2025,True,False,False,,,Godoy Moreira,PR
+4108650,2025,True,False,False,,,Goioxim,PR
+4108700,2025,True,False,False,,,Grandes Rios,PR
+4108809,2025,True,False,False,,,Guaíra,PR
+4108908,2025,True,False,False,,,Guairaçá,PR
+4108957,2025,True,False,False,,,Guamiranga,PR
+4109005,2025,True,False,False,,,Guapirama,PR
+4109104,2025,True,False,False,,,Guaporema,PR
+4109203,2025,True,False,False,,,Guaraci,PR
+4109302,2025,True,False,False,,,Guaraniaçu,PR
+4109401,2025,True,False,False,,,Guarapuava,PR
+4109658,2025,True,False,False,,,Honório Serpa,PR
+4109757,2025,True,False,False,,,Ibema,PR
+4109807,2025,True,False,False,,,Ibiporã,PR
+4110003,2025,True,False,False,,,Iguaraçu,PR
+4110052,2025,True,False,False,,,Iguatu,PR
+4110078,2025,True,False,False,,,Imbaú,PR
+4110201,2025,True,False,False,,,Inácio Martins,PR
+4110300,2025,True,False,False,,,Inajá,PR
+4110409,2025,True,False,False,,,Indianópolis,PR
+4110508,2025,True,False,False,,,Ipiranga,PR
+4110607,2025,True,False,False,,,Iporã,PR
+4110656,2025,True,False,False,,,Iracema do Oeste,PR
+4110706,2025,True,False,False,,,Irati,PR
+4110904,2025,True,False,False,,,Itaguajé,PR
+4110953,2025,True,False,False,,,Itaipulândia,PR
+4111209,2025,True,False,False,,,Itapejara d'Oeste,PR
+4111258,2025,True,False,False,,,Itaperuçu,PR
+4111407,2025,True,False,False,,,Ivaí,PR
+4111506,2025,True,False,False,,,Ivaiporã,PR
+4111555,2025,True,False,False,,,Ivaté,PR
+4111605,2025,True,False,False,,,Ivatuba,PR
+4111803,2025,True,False,False,,,Jacarezinho,PR
+4111902,2025,True,False,False,,,Jaguapitã,PR
+4112009,2025,True,False,False,,,Jaguariaíva,PR
+4112108,2025,True,False,False,,,Jandaia do Sul,PR
+4112207,2025,True,False,False,,,Janiópolis,PR
+4112306,2025,True,False,False,,,Japira,PR
+4112405,2025,True,False,False,,,Japurá,PR
+4112504,2025,True,False,False,,,Jardim Alegre,PR
+4112603,2025,True,False,False,,,Jardim Olinda,PR
+4112702,2025,True,False,False,,,Jataizinho,PR
+4112751,2025,True,False,False,,,Jesuítas,PR
+4113205,2025,True,False,False,,,Lapa,PR
+4113254,2025,True,False,False,,,Laranjal,PR
+4113429,2025,True,False,False,,,Lidianópolis,PR
+4113452,2025,True,False,False,,,Lindoeste,PR
+4113601,2025,True,False,False,,,Lobato,PR
+4113700,2025,True,False,False,,,Londrina,PR
+4113734,2025,True,False,False,,,Luiziana,PR
+4113759,2025,True,False,False,,,Lunardelli,PR
+4113908,2025,True,False,False,,,Mallet,PR
+4114203,2025,True,False,False,,,Mandaguari,PR
+4114401,2025,True,False,False,,,Mangueirinha,PR
+4114500,2025,True,False,False,,,Manoel Ribas,PR
+4114609,2025,True,False,False,,,Marechal Cândido Rondon,PR
+4114708,2025,True,False,False,,,Maria Helena,PR
+4114807,2025,True,False,False,,,Marialva,PR
+4115002,2025,True,False,False,,,Marilena,PR
+4115200,2025,True,False,False,,,Maringá,PR
+4115309,2025,True,False,False,,,Mariópolis,PR
+4115408,2025,True,False,False,,,Marmeleiro,PR
+4115606,2025,True,False,False,,,Matelândia,PR
+4115739,2025,True,False,False,,,Mato Rico,PR
+4115853,2025,True,False,False,,,Mercedes,PR
+4116000,2025,True,False,True,,,Miraselva,PR
+4116059,2025,True,False,False,,,Missal,PR
+4116109,2025,True,False,False,,,Moreira Sales,PR
+4116208,2025,True,False,False,,,Morretes,PR
+4116307,2025,True,False,False,,,Munhoz de Melo,PR
+4116406,2025,True,False,False,,,Nossa Senhora das Graças,PR
+4116802,2025,True,False,False,,,Nova Cantu,PR
+4116901,2025,True,False,False,,,Nova Esperança,PR
+4117008,2025,True,False,False,,,Nova Fátima,PR
+4117107,2025,True,False,False,,,Nova Londrina,PR
+4117214,2025,True,False,False,,,Nova Santa Bárbara,PR
+4117222,2025,True,False,False,,,Nova Santa Rosa,PR
+4117271,2025,True,False,False,,,Nova Tebas,PR
+4117297,2025,True,False,False,,,Novo Itacolomi,PR
+4117305,2025,True,False,False,,,Ortigueira,PR
+4117453,2025,True,False,False,,,Ouro Verde do Oeste,PR
+4117503,2025,True,False,False,,,Paiçandu,PR
+4117602,2025,True,False,False,,,Palmas,PR
+4117701,2025,True,False,False,,,Palmeira,PR
+4117800,2025,True,False,False,,,Palmital,PR
+4117909,2025,True,False,False,,,Palotina,PR
+4118006,2025,True,False,False,,,Paraíso do Norte,PR
+4118204,2025,True,False,False,,,Paranaguá,PR
+4118303,2025,True,False,False,,,Paranapoema,PR
+4118402,2025,True,False,False,,,Paranavaí,PR
+4118451,2025,True,False,False,,,Pato Bragado,PR
+4118501,2025,True,False,False,,,Pato Branco,PR
+4118600,2025,True,False,False,,,Paula Freitas,PR
+4118808,2025,True,False,False,,,Peabiru,PR
+4118907,2025,True,False,False,,,Pérola,PR
+4119152,2025,True,False,False,,,Pinhais,PR
+4119301,2025,True,False,False,,,Pinhão,PR
+4119400,2025,True,False,False,,,Piraí do Sul,PR
+4119509,2025,True,False,False,,,Piraquara,PR
+4119657,2025,True,False,False,,,Pitangueiras,PR
+4119707,2025,True,False,False,,,Planaltina do Paraná,PR
+4119905,2025,True,False,False,,,Ponta Grossa,PR
+4119954,2025,True,False,False,,,Pontal do Paraná,PR
+4120002,2025,True,False,False,,,Porecatu,PR
+4120101,2025,True,False,False,,,Porto Amazonas,PR
+4120150,2025,True,False,False,,,Porto Barreiro,PR
+4120200,2025,True,False,False,,,Porto Rico,PR
+4120309,2025,True,False,False,,,Porto Vitória,PR
+4120507,2025,True,False,False,,,Primeiro de Maio,PR
+4120606,2025,True,False,False,,,Prudentópolis,PR
+4120655,2025,True,False,False,,,Quarto Centenário,PR
+4120705,2025,True,False,False,,,Quatiguá,PR
+4120804,2025,True,False,False,,,Quatro Barras,PR
+4120853,2025,True,False,False,,,Quatro Pontes,PR
+4121000,2025,True,False,False,,,Querência do Norte,PR
+4121109,2025,True,False,False,,,Quinta do Sol,PR
+4121208,2025,True,False,False,,,Quitandinha,PR
+4121356,2025,True,False,False,,,Rancho Alegre D'Oeste,PR
+4121406,2025,True,False,False,,,Realeza,PR
+4121505,2025,True,False,False,,,Rebouças,PR
+4121604,2025,True,False,False,,,Renascença,PR
+4121703,2025,True,False,False,,,Reserva,PR
+4122008,2025,True,False,False,,,Rio Azul,PR
+4122156,2025,True,False,False,,,Rio Bonito do Iguaçu,PR
+4122206,2025,True,False,False,,,Rio Branco do Sul,PR
+4122305,2025,True,False,False,,,Rio Negro,PR
+4122404,2025,True,False,False,,,Rolândia,PR
+4122503,2025,True,False,False,,,Roncador,PR
+4122651,2025,True,False,False,,,Rosário do Ivaí,PR
+4122701,2025,True,False,False,,,Sabáudia,PR
+4123006,2025,True,False,False,,,Salto do Lontra,PR
+4123105,2025,True,False,False,,,Santa Amélia,PR
+4123402,2025,True,False,False,,,Santa Fé,PR
+4123501,2025,True,False,False,,,Santa Helena,PR
+4123709,2025,True,False,False,,,Santa Isabel do Ivaí,PR
+4123808,2025,True,False,False,,,Santa Izabel do Oeste,PR
+4123824,2025,True,False,False,,,Santa Lúcia,PR
+4123907,2025,True,False,False,,,Santa Mariana,PR
+4123956,2025,True,False,False,,,Santa Mônica,PR
+4124103,2025,True,False,False,,,Santo Antônio da Platina,PR
+4124707,2025,True,False,False,,,São Jerônimo da Serra,PR
+4124806,2025,True,False,False,,,São João,PR
+4125100,2025,True,False,False,,,São João do Triunfo,PR
+4125209,2025,True,False,False,,,São Jorge d'Oeste,PR
+4125407,2025,True,False,False,,,São José da Boa Vista,PR
+4125506,2025,True,False,False,,,São José dos Pinhais,PR
+4125555,2025,True,False,False,,,São Manoel do Paraná,PR
+4125605,2025,True,False,False,,,São Mateus do Sul,PR
+4125704,2025,True,False,False,,,São Miguel do Iguaçu,PR
+4125803,2025,True,False,False,,,São Pedro do Ivaí,PR
+4125902,2025,True,False,False,,,São Pedro do Paraná,PR
+4126009,2025,True,False,False,,,São Sebastião da Amoreira,PR
+4126108,2025,True,False,False,,,São Tomé,PR
+4126272,2025,True,False,False,,,Saudade do Iguaçu,PR
+4126306,2025,True,False,False,,,Sengés,PR
+4126355,2025,True,False,True,,,Serranópolis do Iguaçu,PR
+4126405,2025,True,False,False,,,Sertaneja,PR
+4126504,2025,True,False,False,,,Sertanópolis,PR
+4126652,2025,True,False,False,,,Sulina,PR
+4126702,2025,True,False,False,,,Tamboara,PR
+4126801,2025,True,False,False,,,Tapejara,PR
+4126900,2025,True,False,False,,,Tapira,PR
+4127007,2025,True,False,False,,,Teixeira Soares,PR
+4127205,2025,True,True,True,"…na importância da logística reversa, especialmente para resíduos como eletrônicos, lâmpadas, pneus, entre outros. Essas iniciativas, integradas e contínuas, visam promover…",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Terra Boa,PR
+4127304,2025,True,False,False,,,Terra Rica,PR
+4127403,2025,True,False,False,,,Terra Roxa,PR
+4127502,2025,True,False,False,,,Tibagi,PR
+4127601,2025,True,False,False,,,Tijucas do Sul,PR
+4127858,2025,True,False,False,,,Três Barras do Paraná,PR
+4127882,2025,True,False,False,,,Tunas do Paraná,PR
+4127965,2025,True,False,False,,,Turvo,PR
+4128005,2025,True,False,False,,,Ubiratã,PR
+4128104,2025,True,False,False,,,Umuarama,PR
+4128302,2025,True,False,False,,,Uniflor,PR
+4128401,2025,True,False,False,,,Uraí,PR
+4128500,2025,True,False,False,,,Wenceslau Braz,PR
+4128534,2025,True,False,False,,,Ventania,PR
+4128559,2025,True,False,False,,,Vera Cruz do Oeste,PR
+4128609,2025,True,False,False,,,Verê,PR
+4128625,2025,True,False,False,,,Alto Paraíso,PR
+4128658,2025,True,False,False,,,Virmond,PR
+4200903,2025,True,False,False,,,Angelina,SC
+4201109,2025,True,False,False,,,Anitápolis,SC
+4201307,2025,True,False,False,,,Araquari,SC
+4202057,2025,True,False,False,,,Balneário Barra do Sul,SC
+4202206,2025,True,False,False,,,Benedito Novo,SC
+4202404,2025,True,False,False,,,Blumenau,SC
+4202875,2025,True,False,False,,,Brunópolis,SC
+4202909,2025,True,False,False,,,Brusque,SC
+4203006,2025,True,False,False,,,Caçador,SC
+4203253,2025,True,False,False,,,Capão Alto,SC
+4203709,2025,True,True,True,"…Acordos com setores produtivos para logística reversa, especialmente de eletrônicos, pilhas, pneus, embalagens pós-consumo e óleo de cozinha. Instalação de ecopontos/PEVs em…",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Canelinha,SC
+4203956,2025,True,False,False,,,Capivari de Baixo,SC
+4204202,2025,True,False,False,,,Chapecó,SC
+4205159,2025,True,False,False,,,Doutor Pedrinho,SC
+4205407,2025,True,False,False,,,Florianópolis,SC
+4205456,2025,True,False,False,,,Forquilhinha,SC
+4205902,2025,True,False,True,,,Gaspar,SC
+4206306,2025,True,False,False,,,Guabiruba,SC
+4209102,2025,True,False,False,,,Joinville,SC
+4209300,2025,True,False,False,,,Lages,SC
+4210308,2025,True,False,False,,,Major Vieira,SC
+4211504,2025,True,False,False,,,Nova Trento,SC
+4211900,2025,True,False,False,,,Palhoça,SC
+4212809,2025,True,False,False,,,Balneário Piçarras,SC
+4213609,2025,True,False,True,,,Porto União,SC
+4214706,2025,True,False,False,,,Rio dos Cedros,SC
+4214805,2025,True,False,False,,,Rio do Sul,SC
+4215000,2025,True,False,False,,,Rio Negrinho,SC
+4215455,2025,True,False,False,,,Sangão,SC
+4215703,2025,True,False,False,,,Santo Amaro da Imperatriz,SC
+4215802,2025,True,False,False,,,São Bento do Sul,SC
+4215901,2025,True,False,False,,,São Bonifácio,SC
+4216602,2025,True,True,False,"…implantado, para resíduos de pode e capina, construção civil, recicláveis e eletroeletrônicos.",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,São José,SC
+4216701,2025,True,False,False,,,São José do Cedro,SC
+4218202,2025,True,False,False,,,Timbó,SC
+4218400,2025,True,False,False,,,Treze de Maio,SC
+4218954,2025,True,False,False,,,Urupema,SC
+4300646,2025,True,False,False,,,Ametista do Sul,RS
+4301503,2025,True,False,False,,,Augusto Pestana,RS
+4301750,2025,True,False,False,,,Barão do Triunfo,RS
+4301859,2025,True,False,False,,,Barra do Guarita,RS
+4302584,2025,True,False,False,,,Bozano,RS
+4303004,2025,True,False,False,,,Cachoeira do Sul,RS
+4303400,2025,True,False,False,,,Caiçara,RS
+4303905,2025,True,False,False,,,Campo Bom,RS
+4304200,2025,True,False,False,,,Candelária,RS
+4304606,2025,True,False,False,,,Canoas,RS
+4304804,2025,True,False,False,,,Carlos Barbosa,RS
+4304903,2025,True,False,False,,,Casca,RS
+4305108,2025,True,False,False,,,Caxias do Sul,RS
+4305124,2025,True,False,False,,,Cerrito,RS
+4305157,2025,True,False,False,,,Cerro Grande,RS
+4306320,2025,True,False,False,,,Derrubadas,RS
+4306403,2025,True,False,False,,,Dois Irmãos,RS
+4307302,2025,True,True,True,"…da separação dos resíduos recicláveis, descarte correto de elétricos e eletrônicos e outros pertencentes à logística reversa. E, posterior, visitas porta a porta na área urbana…",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Erval Seco,RS
+4308052,2025,True,False,False,,,Faxinalzinho,RS
+4308078,2025,True,False,False,,,Fazenda Vilanova,RS
+4308433,2025,True,False,False,,,Forquetinha,RS
+4308508,2025,True,False,False,,,Frederico Westphalen,RS
+4308607,2025,True,False,True,,,Garibaldi,RS
+4309126,2025,True,False,False,,,Gramado dos Loureiros,RS
+4310009,2025,True,False,False,,,Ibirubá,RS
+4310504,2025,True,False,False,,,Iraí,RS
+4310850,2025,True,False,False,,,Jaboticaba,RS
+4310900,2025,True,False,False,,,Jacutinga,RS
+4311007,2025,True,False,False,,,Jaguarão,RS
+4311155,2025,True,False,False,,,Jóia,RS
+4311429,2025,True,False,False,,,Lajeado do Bugre,RS
+4312443,2025,True,False,False,,,Morrinhos do Sul,RS
+4312617,2025,True,False,False,,,Muitos Capões,RS
+4312757,2025,True,False,False,,,Nova Alvorada,RS
+4313086,2025,True,False,False,,,Nova Pádua,RS
+4313441,2025,True,False,False,,,Novo Tiradentes,RS
+4313466,2025,True,False,False,,,Novo Xingu,RS
+4313607,2025,True,False,False,,,Paim Filho,RS
+4313805,2025,True,False,False,,,Palmitinho,RS
+4314308,2025,True,False,False,,,Pejuçara,RS
+4314456,2025,True,False,False,,,Pinhal,RS
+4314498,2025,True,True,False,"Aumentar as recolhas de vidros e eletrônicos, para que tenham o destino correto. Aumentar a recolha de galhos para uma área no município…",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Pinheirinho do Vale,RS
+4314506,2025,True,False,False,,,Pinheiro Machado,RS
+4315909,2025,True,False,False,,,Rodeio Bonito,RS
+4316006,2025,True,False,False,,,Rolante,RS
+4316428,2025,True,False,False,,,Sagrada Família,RS
+4316709,2025,True,False,False,,,Santa Bárbara do Sul,RS
+4318622,2025,True,False,False,,,São José dos Ausentes,RS
+4319364,2025,True,False,False,,,São Pedro das Missões,RS
+4319505,2025,True,False,False,,,São Sebastião do Caí,RS
+4319711,2025,True,False,False,,,São Valentim do Sul,RS
+4319901,2025,True,False,False,,,Sapiranga,RS
+4320008,2025,True,False,False,,,Sapucaia do Sul,RS
+4321329,2025,True,False,False,,,Taquaruçu do Sul,RS
+4321402,2025,True,False,False,,,Tenente Portela,RS
+4321451,2025,True,False,False,,,Teutônia,RS
+4321832,2025,True,False,False,,,Três Forquilhas,RS
+4321956,2025,True,False,False,,,Trindade do Sul,RS
+4322343,2025,True,False,False,,,Ubiretama,RS
+4322608,2025,True,False,False,,,Venâncio Aires,RS
+4323101,2025,True,False,False,,,Vicente Dutra,RS
+4323754,2025,True,False,False,,,Vitória das Missões,RS
+5000609,2025,True,False,False,,,Amambai,MS
+5001003,2025,True,False,False,,,Aparecida do Taboado,MS
+5001102,2025,True,False,False,,,Aquidauana,MS
+5001243,2025,True,False,False,,,Aral Moreira,MS
+5001904,2025,True,False,False,,,Bataguassu,MS
+5002159,2025,True,False,False,,,Bodoquena,MS
+5002209,2025,True,False,False,,,Bonito,MS
+5002308,2025,True,False,True,,,Brasilândia,MS
+5002407,2025,True,False,False,,,Caarapó,MS
+5002605,2025,True,False,False,,,Camapuã,MS
+5002704,2025,True,True,False,"…pequenos geradores de resíduos da construção civil, volumosos, podas, eletroeletrônicos e recicláveis",Municipal - Diagnostico.csv · Meta - Programa - Descritivo,Campo Grande,MS
+5002951,2025,True,False,False,,,Chapadão do Sul,MS
+5003207,2025,True,False,False,,,Corumbá,MS
+5003256,2025,True,False,False,,,Costa Rica,MS
+5003306,2025,True,False,False,,,Coxim,MS
+5003702,2025,True,False,False,,,Dourados,MS
+5003900,2025,True,False,False,,,Figueirão,MS
+5004502,2025,True,False,False,,,Itaporã,MS
+5004601,2025,True,False,False,,,Itaquiraí,MS
+5004809,2025,True,False,False,,,Japorã,MS
+5004908,2025,True,False,False,,,Jaraguari,MS
+5005103,2025,True,False,False,,,Jateí,MS
+5005251,2025,True,False,False,,,Laguna Carapã,MS
+5005608,2025,True,False,False,,,Miranda,MS
+5005681,2025,True,False,False,,,Mundo Novo,MS
+5006275,2025,True,False,False,,,Paraíso das Águas,MS
+5006309,2025,True,False,False,,,Paranaíba,MS
+5006408,2025,True,False,False,,,Pedro Gomes,MS
+5006606,2025,True,False,False,,,Ponta Porã,MS
+5007208,2025,True,False,False,,,Rio Brilhante,MS
+5007554,2025,True,False,False,,,Santa Rita do Pardo,MS
+5007703,2025,True,False,False,,,Sete Quedas,MS
+5007950,2025,True,False,False,,,Tacuru,MS
+5007976,2025,True,False,False,,,Taquarussu,MS
+5008305,2025,True,False,False,,,Três Lagoas,MS
+5008404,2025,True,False,False,,,Vicentina,MS
+5100201,2025,True,False,False,,,Água Boa,MT
+5102504,2025,True,False,False,,,Cáceres,MT
+5103254,2025,True,False,False,,,Colniza,MT
+5106224,2025,True,False,False,,,Nova Mutum,MT
+5200902,2025,True,False,False,,,Amorinópolis,GO
+5201603,2025,True,False,False,,,Araçu,GO
+5202809,2025,True,False,False,,,Avelinópolis,GO
+5203609,2025,True,False,False,,,Brazabrantes,GO
+5204656,2025,True,False,False,,,Campinaçu,GO
+5204805,2025,True,False,False,,,Campo Alegre de Goiás,GO
+5205109,2025,True,False,False,,,Catalão,GO
+5205208,2025,True,False,False,,,Caturaí,GO
+5205802,2025,True,False,False,,,Corumbá de Goiás,GO
+5206404,2025,True,False,False,,,Crixás,GO
+5206800,2025,True,False,False,,,Damolândia,GO
+5207402,2025,True,False,False,,,Edéia,GO
+5208004,2025,True,False,False,,,Formosa,GO
+5210109,2025,True,False,False,,,Ipameri,GO
+5210307,2025,True,False,False,,,Israelândia,GO
+5210901,2025,True,False,False,,,Itapaci,GO
+5211206,2025,True,False,False,,,Itapuranga,GO
+5211503,2025,True,False,False,,,Itumbiara,GO
+5212055,2025,True,False,False,,,Jesúpolis,GO
+5212303,2025,True,False,False,,,Leopoldo de Bulhões,GO
+5212501,2025,True,False,False,,,Luziânia,GO
+5213756,2025,True,False,False,,,Montividiu,GO
+5213772,2025,True,False,False,,,Montividiu do Norte,GO
+5214002,2025,True,False,False,,,Mozarlândia,GO
+5215009,2025,True,False,False,,,Nova Veneza,GO
+5215306,2025,True,False,False,,,Orizona,GO
+5215504,2025,True,False,False,,,Ouvidor,GO
+5215801,2025,True,False,False,,,Palmelo,GO
+5216403,2025,True,False,False,,,Paraúna,GO
+5216452,2025,True,False,False,,,Perolândia,GO
+5218300,2025,True,False,False,,,Posse,GO
+5219738,2025,True,False,False,,,Santo Antônio de Goiás,GO
+5219902,2025,True,False,False,,,São Francisco de Goiás,GO
+5220157,2025,True,False,False,,,São Luiz do Norte,GO
+5220504,2025,True,False,False,,,Serranópolis,GO
+5221452,2025,True,False,False,,,Trombas,GO
+5221551,2025,True,False,False,,,Turvelândia,GO
+5221809,2025,True,False,False,,,Urutaí,GO
+5222005,2025,True,False,False,,,Vianópolis,GO
+5222054,2025,True,False,False,,,Vicentinópolis,GO
+5300108,2025,True,False,False,,,Brasília,DF

@@ -4,24 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Painel REEE Brasil</title>
-<meta name="description" content="Protótipo de dashboard de monitoramento da logística reversa de eletroeletrônicos (REEE) com dados do SINIR 2019–2025.">
+<meta name="description" content="Protótipo de dashboard de monitoramento da logística reversa de eletroeletrônicos (REEE) com dados do SINIR 2023–2025.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="css/style.css">
+<script>
+  /* aplica o tema salvo antes de pintar a página (evita piscar o tema errado) */
+  try { var t = JSON.parse(localStorage.getItem("reee.tema")); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 </head>
 <body>
 <header class="topbar">
   <div class="wrap">
     <div class="brand">
       <h1>Painel REEE Brasil</h1>
-      <span class="tag">Logística reversa · SINIR 2019–2025</span>
+      <span class="tag">Logística reversa · SINIR 2023–2025</span>
     </div>
     <nav class="tabs" role="tablist" aria-label="Seções do painel">
       <button class="tab" role="tab" id="tab-gestor" aria-controls="panel-gestor" aria-selected="true">Gestor público</button>
       <button class="tab" role="tab" id="tab-cidadao" aria-controls="panel-cidadao" aria-selected="false">Cidadão</button>
       <button class="tab" role="tab" id="tab-dados" aria-controls="panel-dados" aria-selected="false">Dados abertos</button>
     </nav>
+    <button class="theme-btn" type="button" id="theme-btn" aria-label="Mudar para o tema escuro" title="Mudar para o tema escuro"></button>
   </div>
 </header>
 <div class="banner" id="banner" hidden>
@@ -47,6 +52,9 @@
       <span id="lbl-ano">Ano de referência</span>
       <div class="years" id="years" role="group" aria-labelledby="lbl-ano"></div>
     </div>
+    <label class="field"><span>Região</span>
+      <select id="f-reg"><option value="">Brasil</option><option>Norte</option><option>Nordeste</option><option>Centro-Oeste</option><option>Sudeste</option><option>Sul</option></select>
+    </label>
     <label class="field"><span>Unidade da federação</span>
       <select id="f-uf"><option value="">Brasil (todas)</option></select>
     </label>
@@ -102,6 +110,36 @@
         <div class="bars" id="tipos"></div>
       </div>
 
+      <div class="card span-6" id="card-peso">
+        <header><div><h2>Meta em peso</h2><p>Decreto 10.240/2020, Anexo II: % do peso colocado no mercado em 2018 (17 % em 2025)</p></div></header>
+        <div class="table-wrap"><table id="peso"><thead><tr><th>Ano</th><th class="r">Meta</th><th>Entidade</th><th class="r">Meta (t)</th><th class="r">Coletado (t)</th><th>Situação</th></tr></thead><tbody></tbody></table></div>
+        <p class="small muted" id="peso-nota"></p>
+      </div>
+      <div class="card span-6" id="card-analise" hidden>
+        <header><div><h2>Pontos de coleta x massa recolhida</h2><p id="analise-sub"></p></div></header>
+        <div class="chart-box"><canvas id="c-analise" aria-label="Dispersão de pontos por 100 mil habitantes e kg por habitante, por UF"></canvas></div>
+        <p class="small" id="analise-txt"></p>
+      </div>
+
+      <div class="card span-7" id="card-pontosmun">
+        <header><div><h2 id="pm-titulo">Mapa por município</h2><p id="pm-sub"></p></div>
+          <label class="field" style="min-width:16rem"><span>Camada</span>
+            <select id="pm-camada">
+              <option value="pev">Pontos de entrega da Green Eletron (2022)</option>
+              <option value="passivo">Passivos ambientais declarados (SINIR)</option>
+              <option value="ecoponto">Planos que preveem ecoponto/PEV (SINIR)</option>
+              <option value="reee">Planos que citam eletroeletrônicos (SINIR)</option>
+            </select></label></header>
+        <div class="map-wrap" id="mapa-mun"></div>
+        <p class="small muted" id="pm-nota"></p>
+      </div>
+      <div class="card span-5" id="card-custos">
+        <header><div><h2>Quanto custa o manejo dos resíduos</h2><p id="custos-sub">Mediana por habitante, declarada pelos municípios ao SINIR</p></div></header>
+        <div class="kpis-mini" id="custos-kpis"></div>
+        <div class="chart-box"><canvas id="c-custos" aria-label="Custo por habitante da coleta convencional e seletiva, por UF"></canvas></div>
+        <p class="small muted">Custos anuais declarados (R$) ÷ população do Censo 2022. Valores acima de R$ 1.000/hab./ano são descartados como erro de digitação. A coleta seletiva é a porta de entrada dos recicláveis; o REEE tem sistema próprio de pontos de recebimento.</p>
+      </div>
+
       <div class="card span-12" id="card-planos" hidden>
         <header>
           <div><h2>Planos municipais que citam eletroeletrônicos</h2>
@@ -136,9 +174,17 @@
         </div>
         <p class="small muted" id="prio-nota">Índice = 45 % déficit de pontos + 30 % população acima da capacidade da rede + 15 % coleta per capita abaixo da mediana da UF + 10 % ausência de ponto. Pesos editáveis em <span class="mono">src/reee/config.py</span>.</p>
       </div>
+      <div class="card span-12" id="card-atencao" hidden>
+        <header><div><h2>Municípios que pedem atenção</h2>
+          <p id="atencao-sub">Municípios-alvo do Decreto (aproximação: mais de 80 mil habitantes) e os sinais encontrados nos dados públicos</p></div></header>
+        <div class="table-wrap"><table id="atencao"><thead><tr><th>#</th><th>Município</th><th>UF</th><th class="r">População</th><th class="r">Pontos exigidos</th>
+          <th>Plano declarado</th><th>Plano cita REEE</th><th>Coleta seletiva</th><th>Plano prevê ecoponto/PEV</th><th>PEV listado (Green, 2022)</th><th class="r">Sinais</th></tr></thead><tbody></tbody></table></div>
+        <p class="small muted">Cada "não" é um sinal de atenção. Ordem: mais sinais primeiro e, no empate, maior população. O PEV listado vem só do relatório municipal da Green Eletron (2022); a ABREE não publica a lista de municípios.</p>
+      </div>
     </div>
   </section>
 
+  <!-- atenção municipal (dados do SINIR, 2023–2025) entra no fim do painel do gestor -->
   <!-- ===================== CIDADÃO ===================== -->
   <section class="panel" id="panel-cidadao" role="tabpanel" aria-labelledby="tab-cidadao" hidden>
     <div class="grid">
@@ -171,6 +217,7 @@
               <select id="p-tipo">
                 <option>Sugerir novo ponto de coleta</option>
                 <option>Relatar problema em ponto existente</option>
+                <option>Corrigir um dado do painel</option>
                 <option>Solicitar informação (LAI)</option>
                 <option>Elogio ou comentário</option>
               </select>
@@ -206,6 +253,11 @@
   <!-- ===================== DADOS ABERTOS ===================== -->
   <section class="panel" id="panel-dados" role="tabpanel" aria-labelledby="tab-dados" hidden>
     <div class="grid">
+      <div class="card span-12">
+        <header><div><h2>Funil dos dados do SINIR</h2><p>Onde a informação se perde, do total de municípios até a menção a eletroeletrônicos (por ano de exercício)</p></div></header>
+        <div class="table-wrap"><table id="funil"><thead><tr><th>Ano</th><th class="r">Municípios</th><th class="r">Declararam ao SINIR</th><th class="r">Citam logística reversa</th><th class="r">Preveem ecoponto/PEV</th><th class="r">Citam REEE</th></tr></thead><tbody></tbody></table></div>
+        <p class="small muted">O módulo Estados e Municípios não tem campo para eletroeletrônicos: a informação vem só do texto livre dos planos. O arquivo de 2023 publicado pelo SINIR não traz o diagnóstico municipal nem as soluções compartilhadas.</p>
+      </div>
       <div class="card span-7">
         <header><div><h2>Arquivos para download</h2><p>Tabelas tratadas pelo pipeline Python (UTF-8, separador vírgula).</p></div></header>
         <div class="table-wrap"><table id="arquivos"><thead><tr><th>Arquivo</th><th>Conteúdo</th></tr></thead><tbody></tbody></table></div>
@@ -223,7 +275,9 @@
       <div class="card span-5">
         <header><div><h2>Qualidade dos dados</h2><p>O que o pipeline corrigiu ou descartou</p></div></header>
         <div class="table-wrap"><table id="qualidade"><tbody></tbody></table></div>
-        <header><div><h2>Fontes e método</h2></div></header>
+      </div>
+      <div class="card span-12">
+        <header><div><h2>Fontes e método</h2><p>De onde vêm os números e como foram conferidos</p></div></header>
         <div class="prose small">
           <ul>
             <li>SINIR / MMA: pontos de recebimento e relatórios anuais dos sistemas de logística reversa de eletroeletrônicos.</li>

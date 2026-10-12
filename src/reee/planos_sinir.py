@@ -20,6 +20,7 @@ import difflib
 import re
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 from . import config as C
@@ -38,6 +39,11 @@ RE_REEE = _re(
     r"equipamentos? eletr(?:ic|on)\w*|"
     r"\beletronicos\b"
 )
+_PRE = re.compile(r"el[eé]tr|reee|lixo|sucata|log[ií]st|pev|ponto|eco", re.I)
+# Infraestrutura de entrega (objeto do painel: pontos de coleta). Ecopontos e PEVs recebem
+# vários resíduos; o plano que os prevê cria o lugar onde um ponto de REEE pode funcionar.
+RE_PEV = _re(r"eco-?pontos?|eco pontos?|\bpevs?\b|pontos? de entrega voluntaria|"
+             r"pontos? de (?:coleta|recebimento|descarte|entrega)|locais de entrega voluntaria")
 # "eletrônicos" como adjetivo de documento/sistema não é resíduo
 RE_FALSO = _re(
     r"(?:nota|notas) fisca\w* eletronic\w*|\b(?:sistema|sistemas|meio|meios|processo|processos|documento|documentos|"
@@ -59,7 +65,17 @@ def _alinhado(texto: str) -> str:
 
 # colunas de texto que descrevem ações (comparação feita no nome normalizado)
 COLUNAS_TEXTO = ("meta programa", "meta programa descritivo", "solucao", "solucao consorcio",
-                 "descricao mecanismo fonte", "caracterizacao descricao")
+                 "descricao mecanismo fonte", "caracterizacao descricao")  # referência; ver _colunas_texto
+# Como no ETL da equipe (etl_sinir.py), o texto é procurado em TODAS as colunas,
+# menos as de identificação, endereço e datas (onde uma menção não diz nada sobre o plano).
+NAO_TEXTO = re.compile(r"^(declaracao|ano|ano referencia|data .*|declarante|municipio declarante|uf declarante|"
+                       r"link.*|logradouro|numero|complemento|bairro|cidade|uf|cep|latitude|longitude|"
+                       r"orr descricao|massa .*|custo .*|.*percentual|"
+                       r"passivo ambiental.*)$")  # passivo descreve o problema (ex.: lixão com eletrônicos), não uma ação
+
+
+def _colunas_texto(df: pd.DataFrame) -> list[str]:
+    return [c for c in df.columns if not c.startswith("_") and not NAO_TEXTO.match(normalizar_texto(c).rstrip(" 0123456789"))]
 ARQUIVOS = re.compile(r"municipal", re.I)
 
 NOMES_UF = None
@@ -101,6 +117,24 @@ def classificar(texto) -> tuple[bool, bool, str]:
     return True, lr, trecho
 
 
+def _trecho(original: str, ini: int, fim: int) -> str:
+    ini, fim = max(0, ini - 70), min(len(original), fim + 90)
+    while ini > 0 and original[ini - 1] != " ":
+        ini -= 1
+    while fim < len(original) and original[fim] != " ":
+        fim += 1
+    return ("…" if ini > 0 else "") + original[ini:fim].strip() + ("…" if fim < len(original) else "")
+
+
+def cita_pev(texto) -> tuple[bool, str]:
+    """O texto prevê ecoponto, PEV ou ponto de entrega/coleta? (cita, trecho)"""
+    if texto is None or (isinstance(texto, float) and pd.isna(texto)):
+        return False, ""
+    original = re.sub(r"\s+", " ", str(texto)).strip()
+    m = RE_PEV.search(_alinhado(original))
+    return (True, _trecho(original, m.start(), m.end())) if m else (False, "")
+
+
 def _coluna(df: pd.DataFrame, *alvos: str) -> str | None:
     for c in df.columns:
         n = normalizar_texto(c)
@@ -137,14 +171,15 @@ def _casar(df: pd.DataFrame, mun: pd.DataFrame, q: dict) -> pd.Series:
 def processar(mun: pd.DataFrame, q: dict, pasta: Path | None = None) -> pd.DataFrame:
     """Uma linha por município e ano: declarou, cita_reee, cita_lr, trecho, fonte."""
     pasta = pasta or (C.RAW_SINIR / "extraido")
-    colunas = ["cod_ibge", "ano", "declarou_plano", "cita_reee", "cita_lr", "trecho", "fonte"]
+    colunas = ["cod_ibge", "ano", "declarou_plano", "cita_reee", "cita_lr", "trecho", "fonte",
+               "coleta_seletiva", "plano_gestao", "cita_pev", "trecho_pev"]
     if not pasta.exists():
         return pd.DataFrame(columns=colunas)
     partes = []
-    for dir_ano in sorted(p for p in pasta.iterdir() if p.is_dir() and p.name.isdigit()):
-        ano = int(dir_ano.name)
-        for arq in sorted(dir_ano.rglob("*")):
-            if arq.suffix.lower() not in {".csv", ".xlsx", ".xls"} or not ARQUIVOS.search(arq.name):
+    from .extract import planilhas_por_ano
+    for ano, arquivos in planilhas_por_ano(pasta, C.ANO_INICIAL, C.ANO_FINAL).items():
+        for arq in arquivos:
+            if not ARQUIVOS.search(arq.name):
                 continue
             try:
                 df = ler_tabela(arq)
@@ -155,7 +190,9 @@ def processar(mun: pd.DataFrame, q: dict, pasta: Path | None = None) -> pd.DataF
             c_uf = _coluna(df, "uf declarante", "uf")
             if not c_mun or not c_uf:
                 continue
-            textos = [c for c in df.columns if any(normalizar_texto(c).rstrip(" 0123456789") == t for t in COLUNAS_TEXTO)]
+            c_cs = _coluna(df, "possui coleta seletiva implantada")
+            c_pg = _coluna(df, "possui plano de gestao")
+            textos = _colunas_texto(df)
             df = df.assign(_mun=df[c_mun].map(_limpa_nome), _uf=df[c_uf].map(_uf_sigla))
             df = df[df["_mun"].map(normalizar_texto) != normalizar_texto(c_mun)]  # cabeçalho repetido
             df = df[df["_mun"].str.len() > 0]
@@ -166,13 +203,20 @@ def processar(mun: pd.DataFrame, q: dict, pasta: Path | None = None) -> pd.DataF
             res = []
             for _, linha in df.iterrows():
                 achou = (False, False, "", "")
-                lr_algum = False
+                lr_algum, pev, trecho_pev = False, False, ""
                 for c in textos:
-                    reee, lr, trecho = classificar(linha[c])
+                    v = linha[c]
+                    if not isinstance(v, str) or not _PRE.search(v):  # filtro barato antes da classificação
+                        continue
+                    reee, lr, trecho = classificar(v)
                     lr_algum |= lr
+                    if not pev:
+                        pev, trecho_pev = cita_pev(v)
                     if reee and not achou[0]:
                         achou = (True, lr, trecho, f"{arq.name} · {c}")
-                res.append((int(linha["cod_ibge"]), ano, True, achou[0], lr_algum, achou[2], achou[3]))
+                res.append((int(linha["cod_ibge"]), ano, True, achou[0], lr_algum, achou[2], achou[3],
+                            _sim_nao(linha[c_cs]) if c_cs else np.nan, _sim_nao(linha[c_pg]) if c_pg else np.nan,
+                            pev, trecho_pev))
             partes.append(pd.DataFrame(res, columns=colunas))
     if not partes:
         return pd.DataFrame(columns=colunas)
@@ -181,7 +225,9 @@ def processar(mun: pd.DataFrame, q: dict, pasta: Path | None = None) -> pd.DataF
     tudo = tudo.sort_values(["cita_reee", "cita_lr"], ascending=False)
     agg = (tudo.groupby(["cod_ibge", "ano"], as_index=False)
            .agg(declarou_plano=("declarou_plano", "max"), cita_reee=("cita_reee", "max"),
-                cita_lr=("cita_lr", "max"), trecho=("trecho", "first"), fonte=("fonte", "first")))
+                cita_lr=("cita_lr", "max"), trecho=("trecho", "first"), fonte=("fonte", "first"),
+                coleta_seletiva=("coleta_seletiva", "max"), plano_gestao=("plano_gestao", "max"),
+                cita_pev=("cita_pev", "max"), trecho_pev=("trecho_pev", lambda s: next((x for x in s if x), ""))))
     q["planos_declaracoes"] = int(len(agg))
     q["planos_citam_reee"] = int(agg["cita_reee"].sum())
     for chave_q in ("planos_nomes_corrigidos", "planos_nao_casados"):
@@ -190,11 +236,34 @@ def processar(mun: pd.DataFrame, q: dict, pasta: Path | None = None) -> pd.DataF
     return agg.sort_values(["ano", "cod_ibge"]).reset_index(drop=True)
 
 
+def _sim_nao(v) -> float:
+    t = normalizar_texto(v)
+    return 1.0 if t in ("sim", "s") else 0.0 if t in ("nao", "n") else np.nan
+
+
+SOMAS = ["planos_declarados", "planos_citam_reee", "planos_citam_pev", "planos_citam_lr", "coleta_seletiva_sim",
+         "coleta_seletiva_resp", "plano_gestao_sim", "plano_gestao_resp"]
+
+
+def agregar(base: pd.DataFrame, chave: list[str]) -> pd.DataFrame:
+    """Soma as contagens e recalcula os percentuais (sem informação fica nulo, não zero)."""
+    a = base.groupby(chave)[SOMAS].sum(min_count=1).reset_index()
+    pct = lambda n, d: (a[n] / a[d].where(a[d] > 0) * 100).round(1)  # noqa: E731
+    a["pct_planos_reee"] = pct("planos_citam_reee", "planos_declarados")
+    a["pct_planos_pev"] = pct("planos_citam_pev", "planos_declarados")
+    a["pct_planos_lr"] = pct("planos_citam_lr", "planos_declarados")
+    a["pct_coleta_seletiva"] = pct("coleta_seletiva_sim", "coleta_seletiva_resp")
+    a["pct_plano_gestao"] = pct("plano_gestao_sim", "plano_gestao_resp")
+    return a
+
+
 def agregar_uf(planos: pd.DataFrame, mun: pd.DataFrame) -> pd.DataFrame:
     if planos.empty:
-        return pd.DataFrame(columns=["uf", "ano", "planos_declarados", "planos_citam_reee", "pct_planos_reee"])
+        return pd.DataFrame(columns=["uf", "ano", *SOMAS, "pct_planos_reee", "pct_planos_pev", "pct_planos_lr",
+                                     "pct_coleta_seletiva", "pct_plano_gestao"])
     p = planos.merge(mun[["cod_ibge", "uf"]], on="cod_ibge")
-    a = (p.groupby(["uf", "ano"]).agg(planos_declarados=("declarou_plano", "sum"),
-                                      planos_citam_reee=("cita_reee", "sum")).reset_index())
-    a["pct_planos_reee"] = (a["planos_citam_reee"] / a["planos_declarados"] * 100).round(1)
-    return a
+    p = p.assign(planos_declarados=p["declarou_plano"].astype(float), planos_citam_reee=p["cita_reee"].astype(float),
+                 planos_citam_pev=p["cita_pev"].astype(float), planos_citam_lr=p["cita_lr"].astype(float),
+                 coleta_seletiva_sim=p["coleta_seletiva"], coleta_seletiva_resp=p["coleta_seletiva"].notna().astype(float),
+                 plano_gestao_sim=p["plano_gestao"], plano_gestao_resp=p["plano_gestao"].notna().astype(float))
+    return agregar(p, ["uf", "ano"])

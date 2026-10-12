@@ -1,5 +1,13 @@
 {
   "fonte": "relatorios_entidades",
+  "etl_sinir": "2023: 21 linhas candidatas, 5 citam eletroeletrônicos; 2024: 6312 linhas candidatas, 806 citam eletroeletrônicos; 2025: 6999 linhas candidatas, 1036 citam eletroeletrônicos",
+  "abas_lidas": 40,
+  "abas_com_codigo_ibge": 0,
+  "anos_com_campo_pontos": "nenhum",
+  "anos_com_campo_toneladas": "nenhum",
+  "anos_com_campo_possui": "nenhum",
+  "declaracoes_municipio_ano": 0,
+  "nota_sinir": "As planilhas do SINIR não têm campo de pontos de eletroeletrônicos; o painel usa os relatórios das entidades gestoras e os planos municipais.",
   "relatorio_municipios_nome_corrigido": [
     "Alagoinha/BA → Alagoinhas",
     "Águas Lindas/GO → Águas Lindas de Goiás",
@@ -10,5 +18,16 @@
     "Guarupuava/PR → Guarapuava"
   ],
   "relatorio_municipios_nao_casados": [],
-  "relatorios_validados": "somas por UF conferem com os totais impressos"
+  "relatorios_validados": "somas por UF conferem com os totais impressos",
+  "planos_nomes_corrigidos": [
+    "Brasópolis/MG → Brazópolis",
+    "Graccho Cardoso/SE → Gracho Cardoso",
+    "Lagoa do Itaenga/PE → Lagoa de Itaenga"
+  ],
+  "planos_declaracoes": 2689,
+  "planos_citam_reee": 24,
+  "custo_conv_descartados": 48,
+  "custo_sel_descartados": 223,
+  "custo_disp_descartados": 104,
+  "extras_municipio_ano": 2689
 }

@@ -47,6 +47,17 @@ flowchart LR
 
 **Tratamento de lacunas.** Município que não aparece no arquivo do ano, ou que aparece sem responder sobre eletroeletrônicos, fica **sem informação** (nulo), e nunca com zero pontos. Quem respondeu "Sim" sem informar quantidade conta como 1 ponto (mínimo declarado, marcado em `pontos_estimado`). O painel mostra o percentual de municípios com informação em cada ano e exclui quem não informou do déficit e do ranking.
 
+## 2.1.1 ETL do SINIR da equipe (`src/reee/etl_sinir.py`)
+
+Adaptado do script `etl_sinir.py` criado pela equipe. Lê os ZIPs oficiais do módulo Estados e Municípios (links diretos do portal do SINIR, agora a fonte principal da coleta; o portal de dados do MMA fica como alternativa) e gera:
+
+| Arquivo | Conteúdo |
+|---|---|
+| `inventario_arquivos_sinir.csv` | Cada arquivo/aba de cada ano de exercício, com nº de linhas e colunas |
+| `linhas_relacionadas_reee_sinir.csv` | Toda linha, de qualquer arquivo e coluna, que cita eletroeletrônicos ou logística reversa, com ano, arquivo e aba de origem |
+
+A busca por palavra-chave é ampla de propósito. Por isso, cada linha recebe a classificação do projeto: **cita eletroeletrônicos**, **só logística reversa (outros resíduos)** ou **falso positivo** (por exemplo, "pregão eletrônico"). O indicador dos planos usa a mesma abrangência do ETL: todos os campos de texto das planilhas municipais, exceto identificação, endereço, datas, valores e passivo ambiental (que descreve o problema, não uma ação). **Ano de exercício** Y refere-se, em geral, ao ano de referência Y-1.
+
 ## 2.2 Planos municipais: classificação dos textos
 
 O módulo Estados e Municípios do SINIR não tem campos numéricos de REEE (verificado nos arquivos de 2019 a 2024 com `scripts/procurar_reee.py`). Ele traz, porém, os **planos de gestão de resíduos** declarados pelos municípios, com metas, programas e soluções compartilhadas em texto livre. `src/reee/planos_sinir.py` transforma esses textos num indicador:
@@ -61,7 +72,7 @@ O módulo Estados e Municípios do SINIR não tem campos numéricos de REEE (ver
 | Cita logística reversa | "logística reversa" (registrado à parte; não conta como REEE) |
 | Evidência | Trecho de até ~160 caracteres do texto original, com palavras inteiras |
 
-Indicadores: `planos_declarados` (municípios com plano declarado no ano), `planos_citam_reee` e `pct_planos_reee`. **Limite:** citar não prova execução, e não citar não prova ausência de ação. O painel exibe o trecho original para que o leitor julgue.
+Indicadores: `planos_declarados` (municípios com plano declarado no ano), `planos_citam_reee` e `pct_planos_reee`; como apoio ao objeto do painel (pontos de coleta), `planos_citam_pev` (plano prevê ecoponto, PEV ou ponto de entrega/coleta) e `planos_citam_lr` (cita logística reversa de qualquer resíduo). O **funil dos dados** (aba Dados abertos) mostra, por ano, quantos municípios declararam e quantos citam cada tema. **Limite:** citar não prova execução, e não citar não prova ausência de ação. O painel exibe o trecho original para que o leitor julgue.
 
 ## 3. Regras de tratamento (Pandas)
 
@@ -92,7 +103,7 @@ Indicadores: `planos_declarados` (municípios com plano declarado no ano), `plan
 | `pct_obrigados_com_ponto` | obrigados com ponto ÷ obrigados × 100 | UF, Brasil |
 | `pontos_100k` | pontos ÷ pop × 100.000 | todos |
 | `kg_hab` | t × 1.000 ÷ pop | todos |
-| `meta_municipios` | meta acumulada da fase 2 do Decreto | Brasil |
+| `meta_municipios` | total de cidades atendidas exigido no ano (Anexo II do Decreto) | Brasil |
 | `indice_prioridade` | 100 × (0,45·déficit\* + 0,30·pop. descoberta\* + 0,15·lacuna de coleta + 0,10·sem ponto) | município candidato |
 
 \* normalizados por min–max sobre log(1+x) entre os candidatos. **Candidatos:** municípios obrigados com déficit e municípios com 20 mil hab. ou mais sem nenhum ponto. **Classes:** 20 % maiores = Alta, 40 % seguintes = Média, demais = Baixa.
@@ -106,6 +117,22 @@ Indicadores: `planos_declarados` (municípios com plano declarado no ano), `plan
 - **Três abas**: Gestor público, Cidadão e Dados abertos; filtros globais de ano e UF.
 - **Acessibilidade**: tema claro/escuro automático, estado nunca indicado só por cor (rótulo + ícone), navegação por teclado no ranking, tabela de dados disponível para todo gráfico.
 - **e-Participação** guardada em `localStorage` no protótipo; o ponto de integração com ouvidoria/Fala.BR é o handler `submit` de `#form-part` em `js/app.js`.
+
+## 5.1 Recursos que atendem ao texto do TCC
+
+| Texto do TCC | Recurso no painel |
+|---|---|
+| Recorte na região Sudeste (Introdução) | Filtro de **Região**; o painel abre no Sudeste (`REGIAO_PADRAO` em `config.py`) e soma as UFs da região |
+| Linhas verde, branca, marrom e azul (3.2) e entidades gestoras (3.4) | Gráficos por entidade com a linha atendida: ABREE (linha branca) e Green Eletron (linha verde) — aproximação descrita na seção 3.4 |
+| Meta de 17 % em peso (3.5) | Quadro **Meta em peso** por ano; base de 2018 da Green Eletron estimada pela meta de 2024 divulgada; ABREE sem base pública |
+| Correlação e regressão (3.6) | **Pontos de coleta x massa recolhida**: Pearson, Spearman e regressão linear por UF (ABREE, 2022, único ano com as duas medidas por estado) — `src/reee/analise.py` |
+| Gestor: áreas que pedem atenção (Introdução) | **Municípios que pedem atenção**: municípios-alvo (> 80 mil hab.) com os sinais dos dados públicos (plano declarado, plano cita REEE, coleta seletiva, PEV listado) |
+| Cidadão localiza pontos (Introdução) | Ficha da cidade com links para os localizadores oficiais da ABREE e da Green Eletron |
+| Cidadão corrige erros / e-participação | Formulário com a opção **Corrigir um dado do painel**; no servidor local e no Azure a contribuição é gravada (`/api/contribuicao`, sem dados pessoais) e publicada em `contribuicoes.csv` |
+
+| Visual pobre em 2024–2025 (revisão de 12/10/2026) | O painel abre em 2023 no Brasil; 2022 volta como **linha de base**; anos sem relatório mostram o **último dado publicado**, marcado como tal; mapa abre no indicador com dado em ao menos 10 UFs; **Mapa por município** (PEVs da Green Eletron 2022, passivos ambientais e planos com ecoponto/REEE); **custos do manejo** (R$/hab./ano) e passivos do SINIR — `src/reee/sinir_extras.py`; gráficos sem dado mostram aviso em vez de eixos vazios |
+
+Técnicas como DEA e AHP, citadas na seção 3.6, exigem séries e critérios que os dados públicos ainda não oferecem; ficam como trabalho futuro.
 
 ## 6. Alternativa em Power BI
 

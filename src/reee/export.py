@@ -63,6 +63,18 @@ def simplificar_geojson(origem, destino, casas: int = 2) -> None:
                        encoding="utf-8")
 
 
+def _flag(v):
+    return None if v is None or pd.isna(v) else int(v)
+
+
+def _anos_com_dados(fmun: pd.DataFrame, fbr: pd.DataFrame) -> list[int]:
+    """Anos com qualquer dado encontrado: pontos, massa ou planos municipais declarados."""
+    anos = set(int(a) for a in fmun.loc[fmun["tem_info"], "ano"].unique())
+    cols = [c for c in ("pontos", "toneladas", "planos_declarados") if c in fbr]
+    anos |= set(int(a) for a in fbr.loc[fbr[cols].notna().any(axis=1), "ano"])
+    return sorted(anos)
+
+
 def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str, proveniencia: dict | None = None,
              extras: dict | None = None) -> dict:
     extras = extras or {}
@@ -79,6 +91,9 @@ def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str, provenien
     # cópia para o dashboard publicar como dados abertos
     abertos = C.DASHBOARD_DATA / "abertos"
     abertos.mkdir(parents=True, exist_ok=True)
+    if "sinir_mun" in extras:
+        (extras["sinir_mun"].merge(mun[["cod_ibge", "municipio", "uf"]], on="cod_ibge")
+         .to_csv(C.PROCESSED / "sinir_custos_passivos.csv", index=False, encoding="utf-8-sig"))
     if "planos_mun" in extras:
         (extras["planos_mun"].merge(mun[["cod_ibge", "municipio", "uf"]], on="cod_ibge")
          .to_csv(C.PROCESSED / "planos_municipais_reee.csv", index=False, encoding="utf-8-sig"))
@@ -86,9 +101,17 @@ def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str, provenien
         (C.PROCESSED / "planos_municipais_reee.csv").unlink(missing_ok=True)
         (abertos / "planos_municipais_reee.csv").unlink(missing_ok=True)
     for nome in ("municipios", "indicadores_municipio_ano", "indicadores_uf_ano",
-                 "indicadores_brasil_ano", "prioridade_novos_pontos", "planos_municipais_reee"):
-        if (C.PROCESSED / f"{nome}.csv").exists():
+                 "indicadores_brasil_ano", "prioridade_novos_pontos", "planos_municipais_reee",
+                 "inventario_arquivos_sinir", "linhas_relacionadas_reee_sinir", "sinir_custos_passivos"):
+        if not (C.PROCESSED / f"{nome}.csv").exists():
+            (abertos / f"{nome}.csv").unlink(missing_ok=True)
+        else:
             (abertos / f"{nome}.csv").write_bytes((C.PROCESSED / f"{nome}.csv").read_bytes())
+
+    # e-participação: o arquivo existe desde o início (só cabeçalho) e cresce com as contribuições
+    from .participacao import para_csv
+    contrib = C.PROCESSED / "contribuicoes.jsonl"
+    (abertos / "contribuicoes.csv").write_bytes(para_csv(contrib.read_bytes() if contrib.exists() else b""))
 
     # ---- Power BI: modelo estrela ----
     dim.to_csv(C.POWERBI / "dim_municipio.csv", index=False, encoding="utf-8-sig")
@@ -120,8 +143,17 @@ def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str, provenien
         "meta": {
             "fonte": fonte,
             "proveniencia": proveniencia or {},
-            "anos_com_dados": sorted(int(a) for a in fmun.loc[fmun["tem_info"], "ano"].unique())
-                              or sorted(int(a) for a in fbr.loc[fbr["pontos"].notna() | fbr["toneladas"].notna(), "ano"]),
+            "anos_com_dados": _anos_com_dados(fmun, fbr),
+            "anos_painel": C.ANOS_PAINEL,
+            "ano_base": C.ANO_BASE,
+            "ano_inicial_painel": C.ANO_INICIAL_PAINEL,
+            "regiao_padrao": C.REGIAO_PADRAO,
+            "entidade_linha": C.ENTIDADE_LINHA,
+            "localizadores": C.LOCALIZADORES,
+            "base_peso_2018_t": C.BASE_PESO_2018_T,
+            "coleta_divulgada_t": [{"entidade": e, "ano": a, **v} for (e, a), v in C.COLETA_DIVULGADA_T.items()],
+            "analise_quantitativa": extras.get("analise"),
+            "funil": extras.get("funil", []),
             "fontes_relatorios": extras.get("fontes_relatorios", {}),
             "ano_prioridade": int(prio["ano"].iloc[0]) if len(prio) else None,
             "gerado_em": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -154,10 +186,17 @@ def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str, provenien
         "qualidade": qualidade,
         "uf_entidade": _registros(extras["uf_entidade"]) if "uf_entidade" in extras else [],
         "mun_entidade": _registros(extras["mun_entidade"].astype({"cod_ibge": int})) if "mun_entidade" in extras else [],
-        # [cod_ibge, ano, cita_reee, cita_lr, trecho] — trecho só quando cita REEE (mantém o pacote pequeno)
-        "planos_mun": [[int(r.cod_ibge), int(r.ano), int(r.cita_reee), int(r.cita_lr), r.trecho if r.cita_reee else ""]
+        # [cod_ibge, ano, cita_reee, cita_lr, trecho, coleta_seletiva, plano_gestao, cita_pev, trecho_pev]
+        # trecho só quando cita REEE (mantém o pacote pequeno); 1/0/None nas duas últimas
+        "planos_mun": [[int(r.cod_ibge), int(r.ano), int(r.cita_reee), int(r.cita_lr), r.trecho if r.cita_reee else "",
+                        _flag(getattr(r, "coleta_seletiva", None)), _flag(getattr(r, "plano_gestao", None)),
+                        _flag(getattr(r, "cita_pev", None)), getattr(r, "trecho_pev", "") if getattr(r, "cita_pev", False) and not r.cita_reee else ""]
                        for r in extras["planos_mun"].itertuples()] if "planos_mun" in extras else [],
         "planos_uf": _registros(extras["planos_uf"]) if "planos_uf" in extras else [],
+        # [cod_ibge, ano, custo_conv_hab, custo_sel_hab, custo_disp_hab, taxa, passivo, n_passivos]
+        "sinir_mun": [[int(r.cod_ibge), int(r.ano), *[None if pd.isna(v) else float(v) for v in
+                       (r.custo_conv_hab, r.custo_sel_hab, r.custo_disp_hab, r.taxa, r.passivo, r.n_passivos)]]
+                      for r in extras["sinir_mun"].itertuples()] if "sinir_mun" in extras else [],
     }
     # grava em arquivo temporário e troca de uma vez: o painel nunca lê um JSON pela metade
     tmp = C.DASHBOARD_DATA / "dashboard.json.tmp"

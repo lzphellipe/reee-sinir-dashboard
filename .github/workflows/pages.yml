@@ -1,0 +1,76 @@
+name: Dados e publicação do painel
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 6 1 * *"   # todo dia 1º, 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: |
+          pip install -r requirements-dev.txt
+          sudo apt-get install -y unar >/dev/null || true   # extração do RAR de 2025
+      - name: Testes
+        run: python -m pytest -q
+      - name: Cache dos downloads do SINIR
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/raw/sinir/_download
+            data/raw/sinir/manifesto.json
+            data/raw/ibge/populacao.csv
+          key: sinir-${{ github.run_id }}
+          restore-keys: sinir-
+      - name: Coleta (MMA/SINIR + IBGE) e tratamento
+        id: pipeline
+        env:
+          PYTHONPATH: src
+        run: |
+          if python -m reee.pipeline --coletar; then
+            echo "fonte=oficial" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::Coleta oficial falhou; publicando dados de demonstração"
+            python -m reee.pipeline --demo
+            echo "fonte=demo" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Guardar inventário e relatório de qualidade
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorios-dados
+          path: |
+            data/processed/inventario_sinir.md
+            data/processed/qualidade.json
+            data/raw/sinir/manifesto.json
+          if-no-files-found: ignore
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dashboard
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

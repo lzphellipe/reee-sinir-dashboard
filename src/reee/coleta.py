@@ -63,11 +63,27 @@ class FonteIndisponivel(RuntimeError):
     """A fonte oficial não respondeu (sem internet, proxy, site fora do ar)."""
 
 
+NAVEGADOR = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+             "Chrome/124.0 Safari/537.36")
+
+try:  # usa os certificados do sistema (Windows/macOS), que completam a cadeia dos sites gov.br
+    import truststore  # type: ignore
+    truststore.inject_into_ssl()
+except Exception:  # noqa: BLE001 – opcional
+    pass
+
+
 def _abrir(url: str, timeout: int = 60):
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     try:
         return urllib.request.urlopen(req, timeout=timeout)
     except urllib.error.HTTPError as e:
+        if e.code in (403, 406, 429):  # alguns portais recusam clientes que não parecem navegador
+            try:
+                req = urllib.request.Request(url, headers={"User-Agent": NAVEGADOR, "Accept": "*/*"})
+                return urllib.request.urlopen(req, timeout=timeout)
+            except Exception:  # noqa: BLE001
+                pass
         raise FonteIndisponivel(f"{urllib.parse.urlparse(url).netloc} respondeu HTTP {e.code}") from e
     except (urllib.error.URLError, TimeoutError, OSError) as e:
         motivo = getattr(e, "reason", e)
@@ -125,6 +141,22 @@ def _ano_do_recurso(*textos: str) -> int | None:
 
 
 def listar_recursos(progresso: Progresso = log.info) -> list[dict]:
+    """Recursos anuais: links diretos do SINIR (etl_sinir.py) e, como alternativa, o portal do MMA."""
+    from .etl_sinir import URLS
+    alternativos = {r["ano"]: r for r in _listar_ckan(progresso)}
+    recursos = []
+    for ano in sorted(set(URLS) | set(alternativos)):
+        alt = alternativos.get(ano)
+        if ano in URLS:
+            recursos.append({"ano": ano, "id": None, "nome": Path(URLS[ano]).name, "url": URLS[ano], "formato": "ZIP",
+                             "modificado": None, "tamanho": None, "fonte": "portal SINIR (link direto)",
+                             "alternativas": [alt["url"]] if alt and alt["url"] != URLS[ano] else []})
+        else:
+            recursos.append({**alt, "fonte": "portal de dados do MMA", "alternativas": []})
+    return recursos
+
+
+def _listar_ckan(progresso: Progresso = log.info) -> list[dict]:
     """Recursos anuais do módulo Estados e Municípios, via API CKAN (com fallback)."""
     try:
         dados = _get_json(f"{CKAN_BASE}/api/3/action/package_show?id={CKAN_DATASET}")
@@ -198,6 +230,8 @@ def _nome_no_zip(info: zipfile.ZipInfo) -> str:
                     break
                 except UnicodeDecodeError:
                     continue
+    # alguns ZIPs (gerados no macOS) gravam acentos como "#U00e7" em vez do caractere
+    nome = re.sub(r"#U([0-9a-fA-F]{4})", lambda m: chr(int(m.group(1), 16)), nome)
     nome = unicodedata.normalize("NFC", nome)
     partes = re.split(r"[\\/]", nome)
     return "/".join(_PROIBIDOS_WINDOWS.sub("_", p).rstrip(" .") or "_" for p in partes)
@@ -218,6 +252,8 @@ def extrair(arquivo: Path, destino: Path) -> list[Path]:
                 for info in z.infolist():
                     # nomes de arquivos em ZIPs brasileiros costumam vir em cp437/cp850
                     nome = _nome_no_zip(info)
+                    if nome.startswith("__MACOSX/") or "/._" in "/" + nome:  # metadados do macOS
+                        continue
                     caminho = (alvo / nome).resolve()
                     if not str(caminho).startswith(str(alvo.resolve())):  # zip slip
                         continue
@@ -244,13 +280,25 @@ def sincronizar_sinir(forcar: bool = False, progresso: Progresso = log.info) -> 
         nome = Path(urllib.request.url2pathname(r["url"].split("?")[0])).name or f"sinir_{ano}"
         destino = DIR_DOWNLOAD / f"{ano}_{nome}"
         anterior = manifesto["arquivos"].get(ano, {})
-        mudou = (forcar or not destino.exists() or anterior.get("url") != r["url"]
+        principal = r["url"]
+        if anterior.get("url_principal") == principal and anterior.get("arquivo_local"):
+            destino = DIR_DOWNLOAD / anterior["arquivo_local"]  # da última vez valeu o endereço alternativo
+        mudou = (forcar or not destino.exists() or anterior.get("url_principal", anterior.get("url")) != principal
                  or (r["modificado"] and anterior.get("modificado") != r["modificado"])
                  or (r["tamanho"] and anterior.get("tamanho") != r["tamanho"]))
         try:
             if mudou:
                 progresso(f"{ano}: baixando {nome}")
-                _baixar(r["url"], destino, progresso)
+                try:
+                    _baixar(r["url"], destino, progresso)
+                except Exception as e:  # noqa: BLE001 – tenta o endereço alternativo (portal do MMA)
+                    if not r.get("alternativas"):
+                        raise
+                    progresso(f"{ano}: link direto falhou ({e}); tentando o portal do MMA")
+                    r = {**r, "url": r["alternativas"][0], "fonte": "portal de dados do MMA (alternativa)"}
+                    nome = Path(urllib.request.url2pathname(r["url"].split("?")[0])).name or f"sinir_{ano}"
+                    destino = DIR_DOWNLOAD / f"{ano}_{nome}"
+                    _baixar(r["url"], destino, progresso)
             else:
                 progresso(f"{ano}: sem alterações desde a última coleta")
             pasta = DIR_EXTRAIDO / ano
@@ -260,7 +308,7 @@ def sincronizar_sinir(forcar: bool = False, progresso: Progresso = log.info) -> 
             else:
                 planilhas = sorted(p for p in pasta.rglob("*") if p.suffix.lower() in {".xlsx", ".xls", ".csv", ".ods"})
             manifesto["arquivos"][ano] = {
-                **r, "arquivo_local": destino.name, "sha256": _sha256(destino),
+                **({**anterior, **r} if not mudou else r), "url_principal": principal, "arquivo_local": destino.name, "sha256": _sha256(destino),
                 "bytes": destino.stat().st_size, "planilhas": [str(p.relative_to(pasta)) for p in planilhas],
                 "coletado_em": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             }
@@ -309,3 +357,35 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+def importar_compactados_locais(progresso: Progresso = log.info) -> list[str]:
+    """Extrai ZIP/RAR do SINIR que o usuário salvou à mão em data/raw/sinir/ (ou em extraido/).
+
+    Ex.: data/raw/sinir/EstadosMunicipios2025.zip -> data/raw/sinir/extraido/2025/.
+    Só extrai de novo se o arquivo mudar (nome e tamanho ficam anotados na pasta do ano).
+    """
+    feitos = []
+    for pasta in (C.RAW_SINIR, DIR_EXTRAIDO):
+        if not pasta.exists():
+            continue
+        for arq in sorted(pasta.iterdir()):
+            if not arq.is_file() or arq.suffix.lower() not in {".zip", ".rar"}:
+                continue
+            anos = re.findall(r"20\d{2}", arq.stem)
+            if not anos:
+                continue
+            destino = DIR_EXTRAIDO / anos[-1]
+            marca = destino / ".origem"
+            assinatura = f"{arq.name}|{arq.stat().st_size}"
+            if marca.exists() and marca.read_text(encoding="utf-8") == assinatura:
+                continue
+            try:
+                extrair(arq, destino)
+            except Exception as e:  # noqa: BLE001
+                progresso(f"Não foi possível extrair {arq.name}: {e}")
+                continue
+            marca.write_text(assinatura, encoding="utf-8")
+            feitos.append(arq.name)
+            progresso(f"Extraído {arq.name} em extraido/{anos[-1]}")
+    return feitos

@@ -90,3 +90,43 @@ def test_pipeline_publica_planos(pasta, tmp_path, monkeypatch):
     mg = [r for r in pacote["planos_uf"] if r["uf"] == "MG" and r["ano"] == 2021][0]
     assert mg["planos_declarados"] == 2 and mg["planos_citam_reee"] == 1
     assert (tmp_path / "dash" / "abertos" / "planos_municipais_reee.csv").exists()
+
+
+def test_acha_os_anos_em_qualquer_estrutura_de_pastas(tmp_path, monkeypatch):
+    """ZIP salvo à mão em data/raw/sinir/ e pasta sem nome de ano (como o usuário descompacta no Windows)."""
+    import zipfile
+    from reee import coleta
+    sinir = tmp_path / "sinir"
+    monkeypatch.setattr(C, "RAW_SINIR", sinir)
+    monkeypatch.setattr(coleta, "DIR_EXTRAIDO", sinir / "extraido")
+    base = dict(zip(COLS_DIAG, [""] * len(COLS_DIAG)))
+    def csv(ano, mun, uf, prog, coleta_sel):
+        linha = {**base, "Ano": str(ano), "Município Declarante": mun, "UF Declarante": uf,
+                 "Meta - Programa": prog, "Possui Coleta Seletiva Implantada": coleta_sel}
+        return pd.DataFrame([linha])[COLS_DIAG].to_csv(sep=";", index=False)
+    # o ZIP de 2024 do SINIR traz uma pasta chamada "EstadosMunicipios2023": vale a coluna Ano
+    sinir.mkdir(parents=True)
+    with zipfile.ZipFile(sinir / "EstadosMunicipios2024.zip", "w") as z:
+        z.writestr("EstadosMunicipios2023/Municipal - Diagnostico.csv", csv(2024, "Guaranésia", "MG", "lixo eletrônico", "Sim"))
+    # 2025 descompactado direto em extraido/, numa pasta sem nome de ano
+    p25 = sinir / "extraido" / "EstadosMunicipios2025" / "Municipal - Diagnostico.csv"
+    p25.parent.mkdir(parents=True)
+    p25.write_text(csv(2025, "Mogi Guaçu", "SP", "Coleta seletiva", "Não"), encoding="utf-8")
+
+    assert coleta.importar_compactados_locais() == ["EstadosMunicipios2024.zip"]
+    assert coleta.importar_compactados_locais() == []  # não extrai de novo
+    r = planos_sinir.processar(_mun(), {}).set_index("ano")
+    assert sorted(r.index) == [2024, 2025]
+    assert r.loc[2024, "cita_reee"] and r.loc[2024, "coleta_seletiva"] == 1
+    assert not r.loc[2025, "cita_reee"] and r.loc[2025, "coleta_seletiva"] == 0
+
+
+@pytest.mark.parametrize("texto,pev", [
+    ("Implantação de Ecopontos para resíduos volumosos", True),
+    ("Instalar PEVs nos bairros", True),
+    ("Ampliar os pontos de entrega voluntária", True),
+    ("economia de pontos na tarifa", False),
+    ("Coleta seletiva porta a porta", False),
+])
+def test_infraestrutura_de_entrega(texto, pev):
+    assert planos_sinir.cita_pev(texto)[0] is pev

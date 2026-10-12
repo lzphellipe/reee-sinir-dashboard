@@ -62,7 +62,7 @@ Fluxo operacional previsto no Decreto 10.240/2020, que o dashboard modela nas et
 3. transporte até o ponto de consolidação, quando necessário;
 4. destinação final ambientalmente adequada (reciclagem, recuperação ou disposição).
 
-**Regra de cobertura usada no protótipo** (`src/reee/config.py`): municípios com mais de 80 mil habitantes devem ter ao menos 1 ponto de recebimento para cada 25 mil habitantes. As metas da fase 2 crescem de 24 municípios e 1 % do peso (2021) até 400 municípios e 17 % do peso (2025), tendo como base o peso dos produtos colocados no mercado em 2018. **Confira os valores no Anexo I do Decreto antes de citá-los.**
+**Regra de cobertura usada no protótipo** (`src/reee/config.py`): pelo art. 48, § 2º, cada município da lista do Anexo III ("Municípios alvo") deve ter ao menos 1 ponto de recebimento a cada 25 mil habitantes. O Decreto não fixa um corte populacional; como a lista reúne os cerca de 400 municípios mais populosos (descritos pelas entidades gestoras como os de mais de 80 mil habitantes), o protótipo usa o corte de 80 mil habitantes como aproximação. As metas do Anexo II, anuais e não cumulativas (art. 49), são: 2021, 24 cidades e 1 % do peso; 2022, 68 e 3 %; 2023, 186 e 6 %; 2024, 294 e 12 %; 2025, 400 e 17 %, sobre o peso dos produtos colocados no mercado em 2018 (conferido no texto oficial em 11/10/2026).
 
 **Atores.** As entidades gestoras (no Brasil, principalmente ABREE e Green Eletron) organizam os sistemas coletivos; empresas podem manter sistemas individuais. Os municípios não são os responsáveis legais pela LR, mas podem firmar termos de cooperação (cedendo espaço para pontos, por exemplo) e são cobrados pela população quando o sistema falha. Daí a importância de um instrumento municipal de acompanhamento.
 
@@ -100,19 +100,27 @@ A literatura converge em três dimensões de cidade inteligente: **tecnologia** 
 | e-Consulta | Formulário de contribuição e avaliação | Cidadão › "Participe" e "Avalie" |
 | Qualidade da informação | Relatório do que foi limpo/descartado | Dados abertos › "Qualidade dos dados" |
 
-## 6. Referências para aprofundar
+## 6. Referências
 
+Conferidas em 11/10/2026 (existência, autores, ano e veículo).
+
+- ABNT. NBR ISO 37120: cidades e comunidades sustentáveis — indicadores para serviços urbanos e qualidade de vida. Rio de Janeiro: ABNT. (confira a edição vigente)
+- ABNT. NBR ISO 37122:2020: cidades e comunidades sustentáveis — indicadores para cidades inteligentes. Rio de Janeiro: ABNT, 2020.
+- ARNSTEIN, S. R. A ladder of citizen participation. *Journal of the American Institute of Planners*, v. 35, n. 4, p. 216-224, 1969.
+- BALDÉ, C. P. et al. *Global E-waste Monitor 2024*. Genebra/Bonn: ITU; UNITAR, 2024.
 - BRASIL. Lei nº 12.305, de 2 de agosto de 2010 (PNRS).
-- BRASIL. Decreto nº 10.240, de 12 de fevereiro de 2020.
-- BRASIL. Decreto nº 10.936, de 12 de janeiro de 2022.
 - BRASIL. Lei nº 12.527, de 18 de novembro de 2011 (LAI).
+- BRASIL. Decreto nº 8.777, de 11 de maio de 2016 (Política de Dados Abertos do Poder Executivo federal).
+- BRASIL. Decreto nº 10.240, de 12 de fevereiro de 2020 (art. 48, § 2º; Anexos II e III).
+- BRASIL. Ministério do Desenvolvimento Regional. *Carta Brasileira para Cidades Inteligentes*. Brasília, DF: MDR, 2020.
 - BRASIL. Lei nº 14.129, de 29 de março de 2021 (Governo Digital).
-- BRASIL. Ministério do Desenvolvimento Regional. *Carta Brasileira para Cidades Inteligentes*. 2020.
-- BRASIL. Ministério do Meio Ambiente. Portaria GM/MMA nº 1.011, de 11 de março de 2024.
-- ABNT. NBR ISO 37120 e NBR ISO 37122 — Cidades e comunidades sustentáveis.
-- BALDÉ, C. P. et al. *Global E-waste Monitor 2024*. ITU/UNITAR.
-- LEITE, P. R. *Logística reversa: meio ambiente e competitividade*. São Paulo: Pearson.
-- MACINTOSH, A. Characterizing e-participation in policy-making. *HICSS*, 2004.
-- ARNSTEIN, S. A ladder of citizen participation. *Journal of the American Institute of Planners*, 1969.
-- KITCHIN, R.; LAURIAULT, T.; MCARDLE, G. Knowing and governing cities through urban indicators, city benchmarking and real-time dashboards. *Regional Studies, Regional Science*, 2015.
-- UNITED NATIONS. *E-Government Survey* (edição mais recente).
+- BRASIL. Decreto nº 10.936, de 12 de janeiro de 2022 (regulamenta a PNRS).
+- BRASIL. Ministério do Meio Ambiente e Mudança do Clima. Portaria GM/MMA nº 1.011, de 11 de março de 2024.
+- BROOKE, J. SUS: a "quick and dirty" usability scale. In: JORDAN, P. W. et al. (ed.). *Usability evaluation in industry*. London: Taylor & Francis, 1996. p. 189-194.
+- FAYYAD, U.; PIATETSKY-SHAPIRO, G.; SMYTH, P. From data mining to knowledge discovery in databases. *AI Magazine*, v. 17, n. 3, p. 37-54, 1996.
+- GIL, A. C. *Como elaborar projetos de pesquisa*. 6. ed. São Paulo: Atlas, 2017.
+- KITCHIN, R.; LAURIAULT, T. P.; MCARDLE, G. Knowing and governing cities through urban indicators, city benchmarking and real-time dashboards. *Regional Studies, Regional Science*, v. 2, n. 1, p. 6-28, 2015.
+- LEITE, P. R. *Logística reversa: meio ambiente e competitividade*. (há edições pela Pearson Prentice Hall e pela Saraiva; cite a que for consultada)
+- MACINTOSH, A. Characterizing e-participation in policy-making. In: HAWAII INTERNATIONAL CONFERENCE ON SYSTEM SCIENCES, 37., 2004. *Proceedings* [...]. IEEE, 2004. DOI: 10.1109/HICSS.2004.1265300.
+- MCKINNEY, W. Data structures for statistical computing in Python. In: PYTHON IN SCIENCE CONFERENCE, 9., 2010, Austin. *Proceedings* [...]. p. 56-61.
+- UNITED NATIONS. *E-Government Survey 2024*. New York: UN DESA, 2024.

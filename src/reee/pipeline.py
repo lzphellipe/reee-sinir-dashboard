@@ -55,6 +55,18 @@ def executar(usar_demo: bool = False, seed: int = 42, coletar: bool = False, for
             if man.get("falhas"):
                 q["coleta_falhas"] = man["falhas"]
         mun = transform.dim_municipio(_populacao_bruta(progresso))
+        from . import coleta, etl_sinir
+        coleta.importar_compactados_locais(progresso)  # ZIPs salvos à mão em data/raw/sinir/
+        try:
+            etl = etl_sinir.executar(progresso)  # inventário + linhas candidatas (ETL da equipe)
+        except Exception as e:  # noqa: BLE001 – o ETL exploratório não pode derrubar o painel
+            log.exception("Falha no ETL do SINIR")
+            progresso(f"ETL do SINIR falhou ({e}); seguindo sem o inventário de linhas candidatas")
+            etl = {}
+        if etl.get("por_classe"):
+            q["etl_sinir"] = "; ".join(
+                f"{a}: {sum(c.values())} linhas candidatas, {c.get('cita eletroeletrônicos', 0)} citam eletroeletrônicos"
+                for a, c in etl["por_classe"].items())
         extraido = C.RAW_SINIR / "extraido"
         if extraido.exists() and any(extraido.iterdir()):
             fonte = "sinir_estados_municipios"
@@ -69,13 +81,13 @@ def executar(usar_demo: bool = False, seed: int = 42, coletar: bool = False, for
                 q[f"anos_com_campo_{campo}"] = ", ".join(map(str, anos)) or "nenhum"
             q["declaracoes_municipio_ano"] = int(len(declaracoes))
             if declaracoes[["pontos", "possui"]].notna().sum().sum() == 0:
-                q["aviso"] = ("Nenhuma coluna de pontos de eletroeletrônicos foi reconhecida. "
-                              "Veja data/processed/inventario_sinir.md e ajuste data/raw/sinir/mapeamento.json.")
-                progresso("ATENÇÃO: " + q["aviso"])
+                # Esperado: o módulo Estados e Municípios não tem campo de pontos de eletroeletrônicos.
+                # Não é erro; o painel segue com os dados que existem (relatórios e planos municipais).
+                q["nota_sinir"] = ("As planilhas do SINIR não têm campo de pontos de eletroeletrônicos; "
+                                   "o painel usa os relatórios das entidades gestoras e os planos municipais.")
+                progresso("Planilhas do SINIR sem campo de pontos de eletroeletrônicos: seguindo com os dados encontrados")
                 if relatorios.disponivel():
-                    # sem dado municipal útil: mantém os indicadores por UF dos relatórios
                     fonte = "relatorios_entidades"
-                    q["aviso"] += " Enquanto isso, o painel usa os relatórios das entidades gestoras."
                     progresso("Usando os relatórios das entidades gestoras (dados por estado)")
             pontos = pd.DataFrame(columns=["ano", "cod_ibge", "entidade", "tipo"])
             massa_mun = pd.DataFrame(columns=["ano", "cod_ibge", "toneladas"])
@@ -110,6 +122,11 @@ def executar(usar_demo: bool = False, seed: int = 42, coletar: bool = False, for
         planos = planos_sinir.processar(mun, q)
         if len(planos):
             progresso(f"Planos municipais: {len(planos)} declarações; {int(planos['cita_reee'].sum())} citam eletroeletrônicos")
+            por_ano = planos.groupby("ano")["cita_reee"].agg(["size", "sum"])
+            progresso("Anos encontrados no SINIR: " + "; ".join(
+                f"{a}: {int(r['size'])} municípios, {int(r['sum'])} citam REEE" for a, r in por_ano.iterrows()))
+        else:
+            progresso("Nenhuma planilha municipal do SINIR encontrada em data/raw/sinir/extraido/")
     q = {"fonte": fonte, **q}
 
     pontos_mun = (pontos.groupby(["cod_ibge", "ano"]).size().rename("pontos").reset_index()
@@ -131,15 +148,40 @@ def executar(usar_demo: bool = False, seed: int = 42, coletar: bool = False, for
             "fontes_relatorios": rel["fontes"],
         }
 
+    if not usar_demo and (C.RAW_SINIR / "extraido").exists():
+        from . import sinir_extras
+        ext = sinir_extras.processar(mun, q)
+        if len(ext):
+            progresso(f"Custos e passivos do SINIR: {len(ext)} declarações município × ano")
+            extras["sinir_mun"] = ext
+            base_ext = ext.merge(mun[["cod_ibge", "uf"]], on="cod_ibge")
+            fuf = fuf.merge(sinir_extras.agregar(base_ext, ["uf", "ano"]), on=["uf", "ano"], how="left")
+            fbr = fbr.merge(sinir_extras.agregar(base_ext, ["ano"]), on="ano", how="left")
+
     if planos is not None and len(planos):
+        # funil: onde a informação se perde, do universo de municípios até a menção a REEE
+        extras["funil"] = [{"ano": int(a), "municipios": int(len(mun)), "declararam": int(len(g)),
+                            "citam_logistica_reversa": int(g["cita_lr"].sum()), "preveem_ecoponto_pev": int(g["cita_pev"].sum()),
+                            "citam_reee": int(g["cita_reee"].sum())} for a, g in planos.groupby("ano")]
         extras["planos_mun"] = planos
         puf = planos_sinir.agregar_uf(planos, mun)
         extras["planos_uf"] = puf
         fuf = fuf.merge(puf, on=["uf", "ano"], how="left")
-        pbr = puf.groupby("ano")[["planos_declarados", "planos_citam_reee"]].sum().reset_index()
-        pbr["pct_planos_reee"] = (pbr["planos_citam_reee"] / pbr["planos_declarados"] * 100).round(1)
+        pbr = planos_sinir.agregar(puf, ["ano"])
         fbr = fbr.merge(pbr, on="ano", how="left")
 
+    from . import analise
+    base_analise = fuf
+    if rel is not None:
+        # mesma entidade nos dois eixos (pontos e massa), para não misturar sistemas diferentes
+        ue = rel["uf_entidade"].dropna(subset=["pontos", "toneladas"])
+        if len(ue):
+            pop = fuf.groupby("uf")["populacao"].max()
+            base_analise = ue.assign(populacao=ue["uf"].map(pop))
+            base_analise = base_analise.assign(pontos_100k=base_analise["pontos"] / base_analise["populacao"] * 1e5,
+                                               kg_hab=base_analise["toneladas"] * 1000 / base_analise["populacao"],
+                                               entidades=base_analise["entidade"])
+    extras["analise"] = analise.pontos_x_coleta(base_analise)
     progresso("Publicando arquivos do painel")
     pacote = exportar(mun, pontos, fmun, fuf, fbr, prio, q, fonte, proveniencia, extras)
     ult = fbr.iloc[-1]

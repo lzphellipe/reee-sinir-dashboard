@@ -1,5 +1,5 @@
 {
-  "coletado_em": "2026-10-08",
+  "coletado_em": "2026-10-10",
   "pagina_sinir": "https://sinir.gov.br/perfis/logistica-reversa/logistica-reversa/eletroeletronicos/",
   "metodo": "Tabelas transcritas dos PDFs publicados no SINIR; cada arquivo foi conferido contra os totais impressos no próprio documento.",
   "arquivos": {
@@ -32,14 +32,18 @@
     },
     "totais_nacionais.csv": {
       "documento": "Totais impressos nos relatórios acima (2019–2021 citados no relatório ABREE 2022)",
-      "observacao": "Green Eletron 2023: 4.279,67 t coletadas em PEVs e campanhas; o total de 7.068,4 t inclui saldo de anos anteriores e não é usado."
+      "observacao": "Green Eletron 2023: 4.279,67 t coletadas em PEVs e campanhas; o total de 7.068,4 t inclui saldo de anos anteriores e não é usado. Green Eletron 2024: 1.611 PEVs e 366 municípios (totais nacionais, sem detalhe por UF), conforme notícia da Abinee de 21/08/2025; a massa coletada em 2024 não foi divulgada (só a meta de 8.066,17 t, informada como cumprida).",
+      "url_2024": "https://www.abinee.org.br/green-eletron-cumpre-as-metas/"
     }
   },
   "nao_obtidos": {
     "ABREE 2021 e 2022 (anexos)": "publicados como ZIP no SINIR; não lidos",
     "ABREE 2023": "o PDF publicado remete os números ao Anexo 9.1, que não está no documento",
     "Green Eletron 2021": "PDF não pôde ser aberto",
-    "Whirlpool 2023": "PDF não pôde ser aberto",
-    "2024 e 2025": "nenhum relatório publicado na página do SINIR em 08/10/2026"
+    "Whirlpool 2023": "PDF publicado em 10/2025 não pôde ser aberto",
+    "2024 e 2025": "nenhum relatório de resultados publicado no SINIR em 10/10/2026; os de 2025 estavam em análise no MMA (Comunicado LR-DGR/MMA nº 003/2026)",
+    "ABREE 2023 (revisado)": "o relatório revisado publicado em 09/2025 continua remetendo os números ao Anexo 9.1, que não está no documento",
+    "Green Eletron 2025": "só há o valor aproximado 'mais de 12,5 mil toneladas' (blog da entidade, 23/04/2026); não usado por não ser exato",
+    "ABREE 2024 e 2025": "só há o acumulado 2021–2025 de 230.576 t (notícias de 10/2026), que não permite separar os anos"
   }
 }

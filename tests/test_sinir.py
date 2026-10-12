@@ -189,7 +189,8 @@ def test_sem_coluna_de_reee_mantem_relatorios(tmp_path, monkeypatch):
     pacote = executar()
     assert pacote["meta"]["fonte"] == "relatorios_entidades"
     assert {r["ano"]: r for r in pacote["brasil_ano"]}[2022]["pontos"] == 6149
-    assert "relatórios das entidades" in pacote["qualidade"]["aviso"]
+    assert "relatórios das entidades" in pacote["qualidade"]["nota_sinir"]
+    assert "aviso" not in pacote["qualidade"]
 
 
 @pytest.mark.parametrize("nome,flag,esperado", [

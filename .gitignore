@@ -12,3 +12,7 @@ data/raw/sinir/extraido/
 dashboard/data/*.tmp
 local.settings.json
 .python_packages/
+data/raw/sinir/*.zip
+data/raw/sinir/*.rar
+data/processed/contribuicoes.jsonl
+dashboard/data/abertos/contribuicoes.csv

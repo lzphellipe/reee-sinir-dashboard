@@ -218,6 +218,16 @@ def executar_atualizacao(coletar: bool = True) -> dict:
     return st
 
 
+# --------------------------------------------------------------------------- e-participação
+def registrar_contribuicao(c: dict) -> None:
+    """Acrescenta a contribuição ao arquivo do Blob e republica o CSV dos dados abertos."""
+    from . import participacao
+    arm = armazenamento()
+    atual = (arm.ler("contribuicoes.jsonl") or b"") + participacao.linha(c)
+    arm.gravar("contribuicoes.jsonl", atual, "application/x-ndjson")
+    arm.gravar("data/abertos/contribuicoes.csv", participacao.para_csv(atual), TIPOS[".csv"])
+
+
 # --------------------------------------------------------------------------- arquivos do painel
 def arquivo_de_dados(caminho: str) -> tuple[bytes, str] | None:
     """data/<caminho>: do armazenamento, se houver; senão, do pacote."""

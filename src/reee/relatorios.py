@@ -14,7 +14,8 @@ Limites conhecidos (aparecem no painel):
 * "municípios atendidos" pode somar o mesmo município duas vezes quando as
   duas entidades atuam nele;
 * não há relatório publicado para 2019–2020 (só totais citados pela ABREE)
-  nem para 2024–2025 no portal do SINIR na data da coleta.
+  nem para 2024–2025 no portal do SINIR na data da coleta (2024 tem só
+  os totais nacionais da Green Eletron divulgados pela Abinee).
 """
 from __future__ import annotations
 
@@ -135,4 +136,11 @@ def aplicar(fuf: pd.DataFrame, fbr: pd.DataFrame, fmun: pd.DataFrame, rel: dict)
         a["cobertura_nominal"] = (a["pontos"] / a["pontos_exigidos"] * 100).round(1)
         a["deficit_nominal"] = (a["pontos_exigidos"] - a["pontos"]).clip(lower=0)
         a.loc[a["pontos"].isna(), "deficit_nominal"] = np.nan
+    # Ano em que só parte das entidades publicou: a razão informados ÷ exigidos subestimaria
+    # a cobertura (ex.: 2023–2024, só a Green Eletron). O painel mostra os pontos, mas não a razão.
+    n_ent = int(rel["nacional"]["entidade"].nunique())
+    for a in (fuf, fbr):
+        qtd = a["entidades"].fillna("").map(lambda s: len([e for e in s.split(",") if e.strip()]))
+        a["dados_parciais"] = (qtd > 0) & (qtd < n_ent)
+        a.loc[a["dados_parciais"], ["cobertura_nominal", "deficit_nominal"]] = np.nan
     return fuf, fbr

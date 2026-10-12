@@ -55,6 +55,19 @@ def atualizar(req: func.HttpRequest, fila: func.Out[str]) -> func.HttpResponse:
     return _json(nuvem.marcar_na_fila(), 202)
 
 
+@app.route(route="api/contribuicao", methods=["POST"])
+def contribuicao(req: func.HttpRequest) -> func.HttpResponse:
+    from reee import participacao
+    try:
+        if len(req.get_body()) > 10_000:
+            raise participacao.ContribuicaoInvalida("Texto muito longo.")
+        c = participacao.validar(req.get_json())
+    except (ValueError, participacao.ContribuicaoInvalida) as e:
+        return _json({"erro": str(e)}, 400)
+    nuvem.registrar_contribuicao(c)
+    return _json({"ok": True, "contribuicao": c}, 201)
+
+
 @app.queue_trigger(arg_name="msg", queue_name=FILA, connection="AzureWebJobsStorage")
 def processar(msg: func.QueueMessage) -> None:
     logging.info("Atualização pedida pelo painel: %s", msg.get_body().decode("utf-8", "replace"))

@@ -285,14 +285,11 @@ def _consolidar(partes):
 
 
 def processar(validos: set[int], pasta: Path | None = None):
-    """Lê data/raw/sinir/extraido/<ano>/ e devolve (declaracoes, inventario)."""
+    """Lê as planilhas de data/raw/sinir/extraido/ (qualquer estrutura de pastas) e devolve (declaracoes, inventario)."""
+    from .extract import planilhas_por_ano
     pasta = pasta or (C.RAW_SINIR / "extraido")
     decl, inv = [], []
-    for dir_ano in sorted(p for p in pasta.iterdir() if p.is_dir() and p.name.isdigit()):
-        ano = int(dir_ano.name)
-        if not C.ANO_INICIAL <= ano <= C.ANO_FINAL:
-            continue
-        planilhas = sorted(p for p in dir_ano.rglob("*") if p.suffix.lower() in {".xlsx", ".xls", ".csv", ".ods"})
+    for ano, planilhas in planilhas_por_ano(pasta, C.ANO_INICIAL, C.ANO_FINAL).items():
         d, i = processar_ano(ano, planilhas, validos)
         decl.append(d)
         inv += i

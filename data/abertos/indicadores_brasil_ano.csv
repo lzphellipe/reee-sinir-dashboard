@@ -1,0 +1,8 @@
+﻿ano,populacao,pop_com_ponto,municipios,municipios_com_ponto,declarantes,municipios_com_info,obrigados_sem_info,obrigados,obrigados_com_ponto,obrigados_cumprem,deficit_pontos,meta_municipios,meta_percentual_peso,pct_municipios_com_info,pct_pop_coberta,pct_obrigados_com_ponto,pontos_100k,kg_hab,pontos,municipios_atendidos,toneladas,entidades,pontos_exigidos,cobertura_nominal,deficit_nominal,dados_parciais,planos_declarados,planos_citam_reee,pct_planos_reee
+2019,203080756,0,5571,0,0,0,405,405,0,0,0.0,,,0.0,0.0,0.0,0.01,0.0001,20.0,,16.0,ABREE,5139,,,True,,,
+2020,203080756,0,5571,0,0,0,405,405,0,0,0.0,,,0.0,0.0,0.0,,0.0003,,,51.0,ABREE,5139,,,True,,,
+2021,203080756,0,5571,0,0,0,405,405,0,0,0.0,24.0,1.0,0.0,0.0,0.0,1.683,0.0061,3417.0,,1245.0,ABREE,5139,,,True,,,
+2022,203080756,0,5571,0,0,0,405,405,0,0,0.0,72.0,3.0,0.0,0.0,0.0,3.028,0.0983,6149.0,1636.0,19959.550000000003,"ABREE, Green Eletron",5139,119.7,0.0,False,,,
+2023,203080756,0,5571,0,0,0,405,405,0,0,0.0,130.0,6.0,0.0,0.0,0.0,0.631,0.0211,1282.0,306.0,4279.67,Green Eletron,5139,,,True,807.0,1.0,0.1
+2024,203080756,0,5571,0,0,0,405,405,0,0,0.0,240.0,12.0,0.0,0.0,0.0,0.793,,1611.0,366.0,,Green Eletron,5139,,,True,880.0,7.0,0.8
+2025,203080756,0,5571,0,0,0,405,405,0,0,0.0,400.0,17.0,0.0,0.0,0.0,,,,,,,5139,,,False,1002.0,15.0,1.5

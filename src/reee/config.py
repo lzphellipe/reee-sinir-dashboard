@@ -24,26 +24,55 @@ DASHBOARD_DATA = ROOT / "dashboard" / "data"
 # ---------------------------------------------------------------------------
 # Recorte temporal do estudo
 # ---------------------------------------------------------------------------
-ANO_INICIAL = 2019
+ANO_INICIAL = 2023
 ANO_FINAL = 2025
 ANOS = list(range(ANO_INICIAL, ANO_FINAL + 1))
+# Anos exibidos no painel (delimitação do TCC). Os dados abertos mantêm a série inteira.
+ANOS_PAINEL = [2023, 2024, 2025]
+ANO_BASE = 2023            # linha de base: único ano completo nos relatórios (ABREE + Green Eletron por UF)
+ANO_INICIAL_PAINEL = 2023  # o painel abre neste ano
+# Região disponível no filtro (o TCC destaca o Sudeste); "" = abre no Brasil inteiro.
+REGIAO_PADRAO = ""
+
+# Linha de produto atendida principalmente por cada entidade gestora (TCC, seção 3.4).
+ENTIDADE_LINHA = {"ABREE": "linha branca", "Green Eletron": "linha verde"}
+
+# Localizadores oficiais de pontos de recebimento (o SINIR não publica os endereços).
+LOCALIZADORES = {
+    "ABREE": "https://abree.org.br/pontos-de-recebimento",
+    "Green Eletron": "https://greeneletron.org.br/localizador",
+}
+
+# Meta em peso (Decreto 10.240/2020, Anexo II) por entidade. A base é o peso colocado no
+# mercado em 2018 pelas empresas de cada sistema, que não é público. Para a Green Eletron
+# ela é estimada pela meta de 2024 divulgada (12 % = 8.066,17 t; Abinee, 21/08/2025).
+BASE_PESO_2018_T = {"Green Eletron": round(8066.17 / 0.12, 2)}
+COLETA_DIVULGADA_T = {  # massa coletada divulgada, quando não está nos relatórios transcritos
+    ("Green Eletron", 2024): {"texto": "meta cumprida (valor não divulgado)", "fonte": "Abinee, 21/08/2025"},
+    ("Green Eletron", 2025): {"texto": "mais de 12,5 mil t (aproximado)", "fonte": "Green Eletron, 23/04/2026"},
+}
 
 # ---------------------------------------------------------------------------
 # Parâmetros do Decreto nº 10.240/2020 (logística reversa de eletroeletrônicos
-# de uso doméstico). CONFERIR no texto oficial (Anexo I) antes de citar no TCC.
+# de uso doméstico). Conferido no texto oficial (planalto.gov.br) em 11/10/2026.
 # ---------------------------------------------------------------------------
-# Obrigação de pontos de recebimento: municípios com mais de 80 mil habitantes,
-# com ao menos 1 ponto para cada 25 mil habitantes.
+# Art. 48, § 2º: cada município atendido constante do Anexo III ("Lista dos
+# Municípios alvo") instalará no mínimo 1 ponto de recebimento a cada 25 mil
+# habitantes. O Decreto não fixa um corte populacional; a lista do Anexo III
+# reúne os cerca de 400 municípios mais populosos, e as entidades gestoras a
+# descrevem como "municípios com mais de 80 mil habitantes". O protótipo usa
+# esse corte como aproximação da lista.
+# ---------------------------------------------------------------------------
 LIMIAR_POPULACIONAL = 80_000
 HAB_POR_PONTO_DECRETO = 25_000
 
-# Fase 2 – metas progressivas (ano: (nº acumulado de municípios atendidos,
-# % em peso dos produtos colocados no mercado em 2018)).
+# Anexo II – metas anuais e não cumulativas (art. 49): total de cidades
+# atendidas e % em peso dos produtos colocados no mercado em 2018.
 METAS_DECRETO = {
     2021: {"municipios": 24, "percentual_peso": 1},
-    2022: {"municipios": 72, "percentual_peso": 3},
-    2023: {"municipios": 130, "percentual_peso": 6},
-    2024: {"municipios": 240, "percentual_peso": 12},
+    2022: {"municipios": 68, "percentual_peso": 3},
+    2023: {"municipios": 186, "percentual_peso": 6},
+    2024: {"municipios": 294, "percentual_peso": 12},
     2025: {"municipios": 400, "percentual_peso": 17},
 }
 

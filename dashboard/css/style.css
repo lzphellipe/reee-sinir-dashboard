@@ -76,6 +76,11 @@ a { color: var(--accent); }
 }
 .tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .tab:hover:not([aria-selected="true"]) { background: var(--surface-2); }
+.theme-btn {
+  display: inline-grid; place-items: center; width: 38px; height: 38px; flex: none;
+  border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink-2); cursor: pointer;
+}
+.theme-btn:hover { background: var(--surface-2); color: var(--ink); }
 
 .banner {
   background: var(--accent-soft); color: var(--ink); border-bottom: 1px solid var(--line);
@@ -203,6 +208,7 @@ form.part { display: grid; gap: 12px; }
 .prose { display: grid; gap: 10px; max-width: 72ch; }
 .prose ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 4px; }
 dl.dict { display: grid; grid-template-columns: minmax(9rem, max-content) minmax(0, 1fr); gap: 6px 16px; margin: 0; font-size: var(--step--1); }
+#qualidade .qual-rot { display: block; color: var(--ink); margin-bottom: 2px; }
 dl.dict dt { font-family: var(--font-mono); color: var(--accent); }
 dl.dict dd { margin: 0; color: var(--ink-2); }
 @media (max-width: 560px) { dl.dict { grid-template-columns: 1fr; } dl.dict dd { margin-bottom: 6px; } }
@@ -225,3 +231,22 @@ footer.foot .wrap { padding-block: 18px; }
 .statusbar .dot.pulse { animation: pulse 1.2s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity: 0.35; } }
 .empty-state { color: var(--muted); font-size: var(--step--1); }
+.row-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; }
+.row-btns .btn { text-decoration: none; }
+#atencao td b, #peso td b { color: var(--critical); }
+
+.kpis-mini { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 4px 0 8px; }
+.kpis-mini div { background: var(--surface-2); border-radius: 8px; padding: 8px 10px; display: grid; gap: 2px; }
+.kpis-mini b { font: 600 1.25rem var(--font-display, inherit); }
+.kpis-mini span { font-size: var(--step--1); color: var(--ink-2); }
+.chart-vazio { display: grid; place-items: center; height: 100%; min-height: 140px; text-align: center; color: var(--ink-2); font-size: var(--step--1); padding: 12px; }
+#card-pontosmun header { display: flex; gap: 12px; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; }
+.muted-value { color: var(--ink-2); }
+.years button small { font-size: 0.65em; opacity: 0.75; margin-left: 2px; }
+
+/* Dados abertos no celular: nomes de arquivo quebram para a coluna "Conteúdo" não sumir */
+@media (max-width: 640px) {
+  #arquivos th, #arquivos td { white-space: normal; }
+  #arquivos td:first-child { width: 42%; overflow-wrap: anywhere; }
+  #funil th { white-space: normal; }
+}

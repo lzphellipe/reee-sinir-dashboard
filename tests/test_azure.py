@@ -90,3 +90,16 @@ def test_execucao_na_nuvem_publica_no_armazenamento(armazenamento):
     assert (armazenamento / "relatorios" / "qualidade.json").exists()
     assert C.RAW_SINIR == raiz_antes                 # configuração restaurada
     assert json.loads((armazenamento / "status.json").read_text(encoding="utf-8"))["estado"] == "concluido"
+
+
+def test_contribuicao_grava_no_armazenamento_e_valida(armazenamento):
+    corpo = {"tipo": "Corrigir um dado do painel", "municipio": "Guaranésia – MG", "local": "",
+             "descricao": "O plano de 2025 cita coleta de eletrônicos no ecoponto.", "email": "nao@deve.ser.salvo"}
+    r = chamar("contribuicao", func.HttpRequest(method="POST", url="/api/contribuicao", body=json.dumps(corpo).encode()))
+    assert r.status_code == 201
+    linhas = (armazenamento / "contribuicoes.jsonl").read_text(encoding="utf-8").splitlines()
+    salvo = json.loads(linhas[0])
+    assert salvo["municipio"] == "Guaranésia – MG" and "email" not in salvo   # nada de dado pessoal
+    assert "Corrigir um dado do painel" in (armazenamento / "data" / "abertos" / "contribuicoes.csv").read_text(encoding="utf-8-sig")
+    ruim = chamar("contribuicao", func.HttpRequest(method="POST", url="/api/contribuicao", body=json.dumps({**corpo, "descricao": "curto"}).encode()))
+    assert ruim.status_code == 400
