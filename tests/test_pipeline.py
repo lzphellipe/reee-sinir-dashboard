@@ -37,6 +37,10 @@ def pacote(tmp_path_factory):
     for nome, valor in {"RAW_DEMO": tmp / "raw_demo", "PROCESSED": tmp / "proc", "POWERBI": tmp / "proc" / "powerbi",
                         "DASHBOARD_DATA": tmp / "dash"}.items():
         mp.setattr(C, nome, valor)
+    # fixture de módulo roda antes do recorte automático do conftest: fixa o mesmo intervalo aqui
+    from conftest import INTERVALO_TESTES
+    inicio, fim = INTERVALO_TESTES
+    mp.setattr(C, "ANO_INICIAL", inicio); mp.setattr(C, "ANO_FINAL", fim); mp.setattr(C, "ANOS", list(range(inicio, fim + 1)))
     from reee.pipeline import executar
     yield executar(usar_demo=True, seed=42)
     mp.undo()

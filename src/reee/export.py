@@ -67,6 +67,17 @@ def _flag(v):
     return None if v is None or pd.isna(v) else int(v)
 
 
+def _anos_do_painel() -> dict:
+    """Anos exibidos, limitados ao recorte de config (ANO_INICIAL–ANO_FINAL).
+
+    Se o recorte for 2023–2025, o ano-base 2022 sai do painel em vez de aparecer como botão vazio.
+    """
+    anos = [a for a in C.ANOS_PAINEL if a in C.ANOS] or list(C.ANOS)
+    return {"anos_painel": anos,
+            "ano_base": C.ANO_BASE if C.ANO_BASE in anos else None,
+            "ano_inicial_painel": C.ANO_INICIAL_PAINEL if C.ANO_INICIAL_PAINEL in anos else anos[0]}
+
+
 def _anos_com_dados(fmun: pd.DataFrame, fbr: pd.DataFrame) -> list[int]:
     """Anos com qualquer dado encontrado: pontos, massa ou planos municipais declarados."""
     anos = set(int(a) for a in fmun.loc[fmun["tem_info"], "ano"].unique())
@@ -144,9 +155,7 @@ def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str, provenien
             "fonte": fonte,
             "proveniencia": proveniencia or {},
             "anos_com_dados": _anos_com_dados(fmun, fbr),
-            "anos_painel": C.ANOS_PAINEL,
-            "ano_base": C.ANO_BASE,
-            "ano_inicial_painel": C.ANO_INICIAL_PAINEL,
+            **_anos_do_painel(),
             "regiao_padrao": C.REGIAO_PADRAO,
             "entidade_linha": C.ENTIDADE_LINHA,
             "localizadores": C.LOCALIZADORES,
