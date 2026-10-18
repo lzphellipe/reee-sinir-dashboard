@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 import numpy as np
 import pandas as pd
 
-from . import config as C
+from . import config as C, prioridade_sinir
 
 
 def _limpo(v):
@@ -111,9 +111,14 @@ def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str, provenien
     else:
         (C.PROCESSED / "planos_municipais_reee.csv").unlink(missing_ok=True)
         (abertos / "planos_municipais_reee.csv").unlink(missing_ok=True)
+    if "prioridade_sinir" in extras:
+        extras["prioridade_sinir"].to_csv(C.PROCESSED / "prioridade_sinir.csv", index=False, encoding="utf-8-sig")
+    else:
+        (C.PROCESSED / "prioridade_sinir.csv").unlink(missing_ok=True)
     for nome in ("municipios", "indicadores_municipio_ano", "indicadores_uf_ano",
                  "indicadores_brasil_ano", "prioridade_novos_pontos", "planos_municipais_reee",
-                 "inventario_arquivos_sinir", "linhas_relacionadas_reee_sinir", "sinir_custos_passivos"):
+                 "inventario_arquivos_sinir", "linhas_relacionadas_reee_sinir", "sinir_custos_passivos",
+                 "prioridade_sinir"):
         if not (C.PROCESSED / f"{nome}.csv").exists():
             (abertos / f"{nome}.csv").unlink(missing_ok=True)
         else:
@@ -202,6 +207,13 @@ def exportar(mun, pontos, fmun, fuf, fbr, prio, qualidade, fonte: str, provenien
                         _flag(getattr(r, "cita_pev", None)), getattr(r, "trecho_pev", "") if getattr(r, "cita_pev", False) and not r.cita_reee else ""]
                        for r in extras["planos_mun"].itertuples()] if "planos_mun" in extras else [],
         "planos_uf": _registros(extras["planos_uf"]) if "planos_uf" in extras else [],
+        # [cod_ibge, ano, indice, pontos_exigidos, pevs_listados, sem_pev_listado, sem_plano,
+        #  plano_sem_reee, sem_coleta_seletiva, plano_sem_pev, passivo]
+        "prioridade_sinir": [[int(r.cod_ibge), int(r.ano), float(r.indice_prioridade), int(r.pontos_exigidos),
+                              int(r.pevs_listados), *[int(getattr(r, k)) for k in
+                              ("sem_pev_listado", "sem_plano", "plano_sem_reee", "sem_coleta_seletiva", "plano_sem_pev", "passivo")]]
+                             for r in extras["prioridade_sinir"].itertuples()] if "prioridade_sinir" in extras else [],
+        "pesos_prioridade_sinir": prioridade_sinir.pesos(),
         # [cod_ibge, ano, custo_conv_hab, custo_sel_hab, custo_disp_hab, taxa, passivo, n_passivos]
         "sinir_mun": [[int(r.cod_ibge), int(r.ano), *[None if pd.isna(v) else float(v) for v in
                        (r.custo_conv_hab, r.custo_sel_hab, r.custo_disp_hab, r.taxa, r.passivo, r.n_passivos)]]

@@ -15,6 +15,8 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<div id="anuncio" class="sr-only" aria-live="polite"></div>
 <header class="topbar">
   <div class="wrap">
     <div class="brand">
@@ -46,7 +48,7 @@
   </div>
 </div>
 
-<main class="wrap">
+<main class="wrap" id="conteudo" tabindex="-1">
   <div class="filters" id="filters">
     <div class="field">
       <span id="lbl-ano">Ano de referência</span>
@@ -58,6 +60,10 @@
     <label class="field"><span>Unidade da federação</span>
       <select id="f-uf"><option value="">Brasil (todas)</option></select>
     </label>
+    <div class="field link-field">
+      <button class="btn ghost" type="button" id="btn-link">Copiar link desta visão</button>
+      <span class="small muted" id="link-status" role="status" aria-live="polite"></span>
+    </div>
   </div>
 
   <!-- ===================== GESTOR ===================== -->
@@ -156,6 +162,8 @@
           <div><h2>Onde instalar os próximos pontos</h2>
             <p id="prio-sub">Índice de prioridade (0–100) do ano mais recente. Arraste para simular a instalação de novos pontos.</p></div>
         </header>
+        <label class="check-prio" id="prio-pev-wrap"><input type="checkbox" id="prio-pev">
+          Só municípios cujo plano já prevê ecoponto/PEV e sem PEV listado (candidatos diretos a parceria com as entidades)</label>
         <div class="sim">
           <label class="field"><span>Novos pontos a instalar: <b id="sim-n-lbl" class="mono">100</b></span>
             <input type="range" id="sim-n" min="0" max="800" step="10" value="100">
@@ -172,7 +180,17 @@
             <tbody></tbody>
           </table>
         </div>
-        <p class="small muted" id="prio-nota">Índice = 45 % déficit de pontos + 30 % população acima da capacidade da rede + 15 % coleta per capita abaixo da mediana da UF + 10 % ausência de ponto. Pesos editáveis em <span class="mono">src/reee/config.py</span>.</p>
+        <p class="small muted" id="prio-nota">Modo demonstração: índice calculado com dados sintéticos (45 % déficit, 30 % população acima da capacidade da rede, 15 % coleta per capita abaixo da mediana da UF, 10 % ausência de ponto). Com dados reais, o painel usa o índice descrito no TCC (50 % demanda + 50 % sinais do SINIR). Pesos em <span class="mono">src/reee/config.py</span>.</p>
+      </div>
+      <div class="card span-12" id="card-contrib">
+        <header><div><h2>Contribuições dos cidadãos</h2>
+          <p id="contrib-sub">Sugestões e correções enviadas pela aba Cidadão (sem dados pessoais).</p></div></header>
+        <div class="kpis-mini" id="contrib-kpis"></div>
+        <div class="grid-2">
+          <div><h3>Por município</h3><div class="table-wrap"><table id="contrib-mun"><thead><tr><th scope="col">Município</th><th scope="col" class="r">Contribuições</th><th scope="col" class="r">Sugestões de ponto</th></tr></thead><tbody></tbody></table></div></div>
+          <div><h3>Mais recentes</h3><div class="table-wrap"><table id="contrib-ult"><thead><tr><th scope="col">Data</th><th scope="col">Tipo</th><th scope="col">Município</th><th scope="col">Descrição</th></tr></thead><tbody></tbody></table></div></div>
+        </div>
+        <p class="small muted">Fonte: <a href="data/abertos/contribuicoes.csv">contribuicoes.csv</a> (dados abertos). No servidor local e no Azure, cada envio entra na hora; no GitHub Pages, que é só leitura, o formulário não grava.</p>
       </div>
       <div class="card span-12" id="card-atencao" hidden>
         <header><div><h2>Municípios que pedem atenção</h2>
@@ -189,10 +207,32 @@
   <section class="panel" id="panel-cidadao" role="tabpanel" aria-labelledby="tab-cidadao" hidden>
     <div class="grid">
       <div class="card span-12">
-        <label class="field"><span>Busque sua cidade</span>
-          <input type="search" id="busca" list="lista-mun" placeholder="Digite o nome do município" autocomplete="off">
+        <div class="field combo">
+          <label for="busca"><span>Busque sua cidade</span></label>
+          <input type="search" id="busca" placeholder="Digite o nome do município (acentos opcionais)" autocomplete="off"
+                 role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="busca-lista" aria-describedby="busca-ajuda">
+          <ul id="busca-lista" role="listbox" aria-label="Municípios encontrados" hidden></ul>
+          <span id="busca-ajuda" class="sr-only">Use as setas para escolher e Enter para abrir a ficha.</span>
+          <span id="busca-status" class="sr-only" aria-live="polite"></span>
           <datalist id="lista-mun"></datalist>
-        </label>
+        </div>
+      </div>
+
+      <div class="card span-12" id="card-comparar">
+        <header><div><h2>Comparar municípios</h2><p>Até 3 cidades lado a lado, no ano escolhido no topo da página.</p></div></header>
+        <div class="cmp-controles">
+          <div class="field combo">
+            <label for="cmp-busca"><span>Adicionar município</span></label>
+            <input type="search" id="cmp-busca" placeholder="Digite o nome do município" autocomplete="off"
+                   role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="cmp-lista" aria-describedby="busca-ajuda">
+            <ul id="cmp-lista" role="listbox" aria-label="Municípios para comparar" hidden></ul>
+            <span id="cmp-status" class="sr-only" aria-live="polite"></span>
+          </div>
+          <button class="btn ghost" type="button" id="cmp-atual" hidden>Adicionar cidade atual</button>
+          <button class="btn ghost" type="button" id="cmp-limpar" hidden>Limpar</button>
+        </div>
+        <div class="cmp-chips" id="cmp-chips"></div>
+        <div id="cmp-tabela"></div>
       </div>
 
       <div class="card span-7" id="cidade"></div>
@@ -209,7 +249,7 @@
         <p class="small muted">Itens grandes podem exigir agendamento. Confira as regras do ponto antes de levar.</p>
       </div>
 
-      <div class="card span-7">
+      <div class="card span-12">
         <header><div><h2>Participe</h2><p>Sugira um ponto, relate um problema ou peça dados ao seu município.</p></div></header>
         <form class="part" id="form-part" novalidate>
           <div class="row2">

@@ -2,29 +2,27 @@
 
 **Onde o Brasil descarta seus eletrônicos, e onde ainda falta lugar para isso.**
 
-Protótipo de dashboard que acompanha a logística reversa de **resíduos de equipamentos eletroeletrônicos (REEE)** com dados do **SINIR (2019–2025)** e do **Censo 2022**. A mesma base de dados atende a dois públicos:
+Protótipo de dashboard que acompanha a logística reversa de **resíduos de equipamentos eletroeletrônicos (REEE)** com dados do **SINIR (2023–2025)** e do **Censo 2022**. É o protótipo do TCC *Sustentabilidade e logística reversa de Resíduos de Equipamentos Eletroeletrônicos (REEE) no Brasil* (UNIVESP, Ciência de Dados, Grupo 5, 2026). A mesma base de dados atende a dois públicos:
 
 | Para o **gestor público** | Para o **cidadão** |
 |---|---|
 | Quantos pontos de recebimento existem e quantos a lei exige em cada estado | A situação da sua cidade, em linguagem simples |
 | Comparação com as metas do Decreto 10.240/2020 | Cidades vizinhas com ponto de coleta |
 | Ranking de onde instalar os próximos pontos | Como descartar e o que é aceito |
-| Séries por entidade gestora (ABREE, Green Eletron) | Formulário para sugerir pontos e avaliar o painel |
+| Séries por entidade gestora (ABREE, Green Eletron) | Formulário para sugerir pontos e corrigir dados |
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-1f6f5c) ![Pandas](https://img.shields.io/badge/ETL-Pandas-1f6f5c) ![Front-end](https://img.shields.io/badge/HTML5%20·%20CSS3%20·%20JS-d3%20%2B%20Chart.js-a3531f) ![Testes](https://img.shields.io/badge/testes-36%20passando-0ca30c) ![Licença](https://img.shields.io/badge/licença-MIT-47564f)
+![Python](https://img.shields.io/badge/Python-3.10%2B-1f6f5c) ![Pandas](https://img.shields.io/badge/ETL-Pandas-1f6f5c) ![Front-end](https://img.shields.io/badge/HTML5%20·%20CSS3%20·%20JS-d3%20%2B%20Chart.js-a3531f) ![Testes](https://img.shields.io/badge/testes-66%20passando-0ca30c) ![Licença](https://img.shields.io/badge/licença-MIT-47564f)
 
 ---
 
-## O que os dados reais já mostram
+## O que os dados reais já mostram (2023–2025)
 
-Com os relatórios de 2022 da ABREE e da Green Eletron publicados no SINIR e a população do Censo 2022:
+- **A rede cresce acima da meta anual.** Em 2023, a Green Eletron informou **1.282 pontos em 306 municípios** (meta do Decreto: 186). Em 2024, **1.611 pontos em 366 municípios** (meta: 294). A meta de 2025, de 400 municípios, ainda não pode ser verificada: os relatórios de 2025 não foram publicados.
+- **Os municípios quase não falam de eletroeletrônicos.** Em 2025, **1.002 municípios** (18 %) declararam dados ao SINIR; só **15 citam REEE** no plano e **51 preveem ecoponto ou PEV**.
+- **Onde instalar primeiro.** Dos **405 municípios-alvo** (mais de 80 mil habitantes, aproximação do Anexo III do Decreto), **94 têm prioridade alta** em 2025.
+- **O SINIR não publica número de pontos por município.** O módulo Estados e Municípios só traz os planos em texto livre. O painel transforma esses textos num indicador municipal, com o trecho original como evidência.
 
-- **6.149 pontos de recebimento informados** no país, para **5.139 exigidos** pela regra do Decreto (1 ponto a cada 25 mil habitantes nos municípios acima de 80 mil). No total nacional, a regra é cumprida em número.
-- **A distribuição é desigual.** O Rio Grande do Sul tem 3 vezes o número exigido (302 %) e a Bahia mais que o dobro (217 %). Já o **Amapá tem 26 %** do exigido, o **Ceará 45 %** e **Roraima 47 %**.
-- **19.960 toneladas** foram coletadas em 2022 pelas duas entidades.
-- **O SINIR não publica número de pontos por município.** O módulo Estados e Municípios só traz os planos de gestão de resíduos em texto livre. O painel transforma esses textos num indicador municipal: quais prefeituras declararam ações para eletroeletrônicos, e com que palavras.
-
-> Os números são por estado porque é assim que as entidades publicam. Para dados por município, o painel usa automaticamente o módulo Estados e Municípios do SINIR quando consegue baixá-lo (veja [De onde vêm os dados](#de-onde-vêm-os-dados)).
+> Os números de pontos são por estado ou nacionais porque é assim que as entidades publicam. Trocando `ANO_INICIAL` para 2019 em `config.py`, o painel mostra também 2019–2022, incluindo o relatório da ABREE de 2022.
 
 ---
 
@@ -70,7 +68,7 @@ O navegador abre sozinho em **http://localhost:8000**. Na primeira execução, o
 | Baixar tudo de novo, ignorando o cache | `python iniciar.py pipeline --coletar --forcar` |
 | Reprocessar o que já foi baixado | `python iniciar.py pipeline` |
 | Gerar só os dados de demonstração | `python iniciar.py pipeline --demo` |
-| Rodar os testes | `python -m pytest` |
+| Rodar os testes | `python -m pytest` (roda em 2019–2025 qualquer que seja o recorte do `config.py`) |
 
 > **Cuidado com `--demo`.** Ele substitui os dados reais do painel pelos sintéticos. Para voltar aos reais, rode `python iniciar.py pipeline`.
 
@@ -117,14 +115,15 @@ flowchart LR
 | **IBGE – Censo 2022** (SIDRA, tabela 4709) | População dos 5.570 municípios | **Incluída** em `data/raw/ibge/populacao.csv`. A soma é 203.080.756, o total oficial, e cada estado bate com seu total. |
 | **ABREE – Relatório 2022** | Pontos 2021/2022, municípios atendidos e toneladas, por estado | **Incluída** em `data/raw/sinir/relatorios/`. Os totais conferem com os impressos no relatório. |
 | **Green Eletron – Relatórios 2022 e 2023** | 2022: lista de 266 municípios com seus PEVs. 2023: PEVs e municípios por estado | **Incluída.** Os totais conferem, inclusive os regionais. |
-| **SINIR – Módulo Estados e Municípios** (2019–2025) | Planos de gestão de resíduos declarados por estados e municípios | **Baixada automaticamente** por `python iniciar.py`. Não traz números de REEE; o painel lê os **textos** das metas e soluções e mostra quais municípios citam ações para eletroeletrônicos, com o trecho como evidência. |
+| **ABINEE – notícia de 21/08/2025** | Totais da Green Eletron em 2024: 1.611 PEVs e 366 municípios | **Incluída** em `totais_nacionais.csv` (sem detalhe por estado). |
+| **SINIR – Módulo Estados e Municípios** (2023–2025) | Planos de gestão de resíduos declarados por estados e municípios | **Baixada automaticamente** por `python iniciar.py`. Não traz números de REEE; o painel lê os **textos** das metas e soluções e mostra quais municípios citam ações para eletroeletrônicos, com o trecho como evidência. |
 
 A proveniência de cada número (documento, URL e conferência) está em `data/raw/sinir/relatorios/fontes.json` e aparece na aba **Dados abertos** do painel.
 
 **Lacunas conhecidas:**
 - **2019 e 2020:** só há totais nacionais da ABREE (16 t e 51 t).
 - **2023:** só a Green Eletron publicou. O relatório da ABREE remete os números a um anexo que não foi publicado.
-- **2024 e 2025:** nenhum relatório no SINIR até 08/10/2026.
+- **2024 e 2025:** nenhum relatório no SINIR até 08/10/2026; 2024 usa os totais da ABINEE.
 - **Municípios atendidos:** um município atendido pelas duas entidades conta duas vezes na soma.
 
 ---
@@ -183,21 +182,38 @@ A chave `"*"` vale para todos os anos; um ano específico sobrepõe. Depois, rod
 ├── dashboard/              site estático (index.html, css/, js/, data/)
 ├── data/raw/               entradas: ibge/, geo/, sinir/ (relatorios/, downloads)
 ├── data/processed/         saídas tratadas, powerbi/, qualidade.json, inventário
-├── docs/                   referencial teórico, metodologia, avaliação e implantação no Azure
+├── docs/                   referencial, metodologia, limitações, Azure e pedido LAI
 ├── notebooks/              análise exploratória em Pandas
-└── tests/                  42 testes, incluindo um portal MMA/IBGE simulado e as funções do Azure
+└── tests/                  66 testes, incluindo um portal MMA/IBGE simulado e as funções do Azure
 ```
 
 ---
 
+## Recursos do painel
+
+- **Onde instalar os próximos pontos (2023–2025):** índice de 0 a 100 por município-alvo do Decreto, com 50 % de demanda (pontos exigidos) e 50 % de sinais nos dados do SINIR: sem PEV listado, sem plano, plano sem REEE, sem coleta seletiva, plano sem ecoponto/PEV e passivo ambiental. Pesos em `PESOS_PRIORIDADE_SINIR` (`src/reee/config.py`), definidos pelo grupo e ainda sem análise de sensibilidade nem validação com gestores; tabela completa em `prioridade_sinir.csv`.
+- **Simulador:** o controle deslizante distribui novos pontos pela ordem do índice e mostra municípios atendidos, quantos passam a cumprir o Decreto e o déficit restante. O déficit é estimado (pontos exigidos − PEVs listados da Green Eletron, 2022), uma estimativa máxima porque a ABREE não publica pontos por município.
+- **Link compartilhável:** ano, região, UF, aba, indicador e cidade ficam no endereço (`?ano=2024&uf=MG&aba=cidadao&cidade=3106200`). O botão **Copiar link desta visão** copia o endereço.
+- **Busca de município:** autocompletar que ignora acentos e maiúsculas (`sao jose` encontra São José), com setas e Enter.
+- **Acessibilidade (WCAG 2.1 AA, conferida com axe-core):** link para pular ao conteúdo, mapa navegável por Tab e Enter, abas com setas, tabela com os números de cada gráfico, avisos para leitor de tela, contraste mínimo de 4,5:1 e respeito à preferência por menos animação.
+- **Tema claro/escuro:** segue o sistema até a pessoa escolher; a escolha fica salva no navegador.
+- **Filtro de parceria:** no ranking, a caixa "Só municípios cujo plano já prevê ecoponto/PEV e sem PEV listado" mostra os candidatos diretos a parceria com as entidades.
+- **Comparar municípios:** até 3 cidades lado a lado na aba Cidadão (plano, REEE, coleta seletiva, custos, passivos, pontos exigidos e índice), também no link (`&comparar=3550308,3128303`).
+- **Evolução da cidade:** a ficha mostra, ano a ano (2023–2025), o que a prefeitura declarou ao SINIR e como o índice de prioridade mudou.
+- **Ficha em PDF:** o botão **Imprimir ou salvar PDF** gera só a ficha da cidade, com data, link e fontes.
+- **Selos de fonte:** cada indicador do topo diz de onde vem o número e de que ano é (relatório da entidade, SINIR, IBGE ou Decreto).
+- **Contribuições dos cidadãos:** a aba Gestor resume as sugestões e correções enviadas (por município e as mais recentes), lidas de `contribuicoes.csv`.
+- **Pedido de endereços dos pontos:** modelos de pedido pela Lei de Acesso à Informação em [`docs/05_pedido_lai.md`](docs/05_pedido_lai.md).
+
 ## Objetivos do trabalho
 
-| Objetivo | Onde está |
+| Objetivo específico (TCC) | Onde está |
 |---|---|
-| **I.** Mapear os conceitos de logística reversa de REEE, cidades inteligentes e e-Democracia | [`docs/01_referencial_teorico.md`](docs/01_referencial_teorico.md) |
-| **II.** Extrair e tratar os dados do SINIR (2019–2025) com Python e Pandas | [`src/reee/`](src/reee), [`docs/02_metodologia.md`](docs/02_metodologia.md), [`notebooks/01_exploracao.ipynb`](notebooks/01_exploracao.ipynb) |
-| **III.** Implementar o dashboard (Python, HTML5, CSS3, JS e GitHub; Power BI como alternativa) | [`dashboard/`](dashboard), [`data/processed/powerbi/`](data/processed/powerbi), [`.github/workflows/pages.yml`](.github/workflows/pages.yml) |
-| **IV.** Avaliar a dupla entrega para o gestor e para o cidadão | [`docs/03_avaliacao.md`](docs/03_avaliacao.md) e o questionário embutido no painel |
+| **I.** Mapear os conceitos de logística reversa de REEE, cidades inteligentes e e-Democracia, e o papel da Ciência de Dados | [`docs/01_referencial_teorico.md`](docs/01_referencial_teorico.md) |
+| **II.** Identificar, extrair e tratar os dados do SINIR (2023–2025) com Python e Pandas | [`src/reee/`](src/reee), [`docs/02_metodologia.md`](docs/02_metodologia.md), [`notebooks/01_exploracao.ipynb`](notebooks/01_exploracao.ipynb) |
+| **III.** Implementar o dashboard (HTML5, CSS3, JS, D3 e GitHub; Power BI como alternativa) | [`dashboard/`](dashboard), [`data/processed/powerbi/`](data/processed/powerbi), [`.github/workflows/`](.github/workflows) |
+
+O antigo objetivo IV (avaliação com usuários) saiu do escopo do TCC; as limitações e os trabalhos futuros estão em [`docs/03_limitacoes.md`](docs/03_limitacoes.md).
 
 ---
 
@@ -232,7 +248,7 @@ Os dois workflows rodam a cada push. Se for usar só um destino, apague o outro 
 
 ## Antes de citar no TCC
 
-- **Metas do Decreto.** As metas em `src/reee/config.py` seguem o Anexo II do Decreto 10.240/2020 (24, 68, 186, 294 e 400 cidades; 1 %, 3 %, 6 %, 12 % e 17 % do peso), conferidas em 11/10/2026. O corte de 80 mil habitantes é uma aproximação da lista de municípios do Anexo III.
+- **Metas do Decreto.** As metas em `src/reee/config.py` seguem o Anexo II do Decreto 10.240/2020 (24, 68, 186, 294 e 400 cidades; 1 %, 3 %, 6 %, 12 % e 17 % do peso), conferidas em 11/10/2026. A Portaria GM/MMA 1.560/2026 manteve para 2026 as metas de 2025. O corte de 80 mil habitantes é uma aproximação da lista de municípios do Anexo III.
 - **Contagem não é acesso.** Cumprir o número de pontos não garante acesso: um município pode ter todos os pontos num mesmo bairro.
 - **Dados autodeclarados.** As planilhas do módulo municipal do SINIR são preenchidas pelos próprios municípios. O painel mostra quantos municípios informaram em cada ano.
 

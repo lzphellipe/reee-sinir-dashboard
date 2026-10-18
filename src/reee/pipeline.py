@@ -170,6 +170,13 @@ def executar(usar_demo: bool = False, seed: int = 42, coletar: bool = False, for
         pbr = planos_sinir.agregar(puf, ["ano"])
         fbr = fbr.merge(pbr, on="ano", how="left")
 
+    if planos is not None and len(planos):
+        from . import prioridade_sinir
+        ps = prioridade_sinir.calcular(mun, planos, extras.get("sinir_mun"), extras.get("mun_entidade"))
+        if len(ps):
+            extras["prioridade_sinir"] = ps
+            progresso(f"Prioridade (SINIR): {ps['cod_ibge'].nunique()} municípios-alvo em {ps['ano'].nunique()} ano(s)")
+
     from . import analise
     base_analise = fuf
     if rel is not None:

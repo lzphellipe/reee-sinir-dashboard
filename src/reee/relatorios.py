@@ -127,6 +127,10 @@ def aplicar(fuf: pd.DataFrame, fbr: pd.DataFrame, fmun: pd.DataFrame, rel: dict)
         municipios_atendidos=("municipios_atendidos", lambda s: s.sum(min_count=1)),
         toneladas=("toneladas", lambda s: s.sum(min_count=1)),
         entidades=("entidade", lambda s: ", ".join(sorted(set(s))))).reset_index()
+    # Massa 0 com pontos informados = massa não publicada (célula vazia que virou 0 numa soma
+    # ou num CSV salvo pelo Excel). Relatório publicado nunca tem coleta zero com pontos ativos.
+    for t in (soma, nac):
+        t.loc[t["toneladas"].eq(0) & t["pontos"].gt(0), "toneladas"] = np.nan
     exig_br = exig.groupby("ano")["pontos_exigidos"].sum().reset_index()
     fbr = (fbr.drop(columns=["pontos", "toneladas"], errors="ignore")
            .merge(nac, on="ano", how="left").merge(exig_br, on="ano", how="left"))

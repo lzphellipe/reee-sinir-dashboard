@@ -52,7 +52,34 @@
   }
 
   let D, GEO, M; // pacote, geojson, municípios
-  const S = { ano: null, uf: "", reg: null, ind: "pontos_100k", city: null };
+
+  /* ---------------- link compartilhável: estado da visão no endereço ---------------- */
+  // ?ano=2024&reg=Sudeste&uf=MG&aba=cidadao&cidade=3106200&ind=pct_coleta_seletiva
+  const URL0 = (() => {
+    const q = new URLSearchParams(location.search);
+    const num = (k) => (q.has(k) && /^\d+$/.test(q.get(k)) ? +q.get(k) : null);
+    return { ano: num("ano"), reg: q.has("reg") ? q.get("reg") : null, uf: q.get("uf"), aba: q.get("aba"),
+             cidade: num("cidade"), ind: q.get("ind"), pev: q.get("pev") === "1",
+             comparar: (q.get("comparar") || "").split(",").filter((x) => /^\d{7}$/.test(x)).map(Number).slice(0, 3) };
+  })();
+  let abaAtual = "gestor";
+  function urlDaVisao() {
+    const q = new URLSearchParams();
+    if (S.ano) q.set("ano", S.ano);
+    if (S.reg) q.set("reg", S.reg);
+    if (S.uf) q.set("uf", S.uf);
+    if (abaAtual !== "gestor") q.set("aba", abaAtual);
+    if (abaAtual === "cidadao" && S.city !== null && M) q.set("cidade", M.cod[S.city]);
+    if (S.indEscolhido && abaAtual === "gestor") q.set("ind", S.ind);
+    if (S.soPev && abaAtual === "gestor") q.set("pev", "1");
+    if (abaAtual === "cidadao" && S.comparar.length) q.set("comparar", S.comparar.map((i) => M.cod[i]).join(","));
+    return `${location.pathname}${q.toString() ? "?" + q.toString().replace(/%2C/g, ",") : ""}`;
+  }
+  function salvarURL() {
+    if (!D) return;
+    try { history.replaceState(null, "", urlDaVisao()); } catch { /* file:// ou sandbox: ignora */ }
+  }
+  const S = { ano: null, uf: "", reg: null, ind: "pontos_100k", city: null, comparar: [], soPev: false };
   const charts = {};
 
   /* ---------------- carga ---------------- */
@@ -73,6 +100,8 @@
       if (!M.planos.has(cod)) M.planos.set(cod, []);
       M.planos.get(cod).push({ ano, reee, lr, trecho, coleta, plano, pev, trechoPev });
     }
+    M.prio = new Map();   // `${cod}|${ano}` -> {indice, exigidos, pevs, sinais}
+    for (const [cod, ano, indice, exigidos, pevs, ...sinais] of d.prioridade_sinir || []) M.prio.set(`${cod}|${ano}`, { indice, exigidos, pevs, sinais });
     M.extra = new Map();  // `${cod}|${ano}` -> {conv, sel, disp, taxa, passivo, nPassivos}
     for (const [cod, ano, conv, sel, disp, taxa, passivo, nPassivos] of d.sinir_mun || []) M.extra.set(`${cod}|${ano}`, { conv, sel, disp, taxa, passivo, nPassivos });
     if (S.city !== null && S.city >= M.n) S.city = null;
@@ -82,12 +111,14 @@
     const comDados = todos.filter((a) => anosV.includes(a)).length ? todos.filter((a) => anosV.includes(a)) : anosV;
     // abre no ano inicial configurado (2023), ou no mais recente com algum dado
     if (!iniciado || !anosV.includes(S.ano)) S.ano = comDados.includes(d.meta.ano_inicial_painel) ? d.meta.ano_inicial_painel : comDados[comDados.length - 1];
+    if (!iniciado && URL0.ano && anosV.includes(URL0.ano)) S.ano = URL0.ano;
+    if (!iniciado && URL0.ind && IND[URL0.ind]) { S.ind = URL0.ind; S.indEscolhido = true; }
     montarIndicadores();
     if (!iniciado) { init(); iniciado = true; } else { renderDados(); render(); }
     $$("#years button").forEach((b) => {
       const tem = comDados.includes(+b.dataset.ano);
       b.classList.toggle("sem-dados", !tem);
-      b.title = tem ? "" : "Nenhum dado encontrado neste ano";
+      if (!tem) b.title = "Nenhum dado encontrado neste ano";
       b.setAttribute("aria-pressed", +b.dataset.ano === S.ano);
     });
     atualizarBanner();
@@ -211,7 +242,11 @@
   function init() {
     $("#banner").hidden = D.meta.fonte !== "demo";
     // anos
-    $("#years").innerHTML = ANOS_V().map((a) => `<button type="button" data-ano="${a}" aria-pressed="${a === S.ano}"${a === D.meta.ano_base ? ' title="Linha de base: único ano com ABREE e Green Eletron por estado"' : ""}>${a}${a === D.meta.ano_base ? ' <small>base</small>' : ""}</button>`).join("");
+    // dica do ano-base conforme os dados: só diz "ABREE e Green Eletron" se as duas publicaram naquele ano
+    const entsBase = (D.brasil_ano.find((r) => r.ano === D.meta.ano_base) || {}).entidades || "";
+    const dicaBase = entsBase.includes(",") ? "Linha de base: único ano com ABREE e Green Eletron por estado"
+      : "Linha de base: primeiro ano do recorte do trabalho";
+    $("#years").innerHTML = ANOS_V().map((a) => `<button type="button" data-ano="${a}" aria-pressed="${a === S.ano}"${a === D.meta.ano_base ? ` title="${dicaBase}"` : ""}>${a}${a === D.meta.ano_base ? ' <small>base</small>' : ""}</button>`).join("");
     $("#years").addEventListener("click", (e) => {
       const b = e.target.closest("button"); if (!b) return;
       S.ano = +b.dataset.ano; $$("#years button").forEach((x) => x.setAttribute("aria-pressed", x === b)); montarIndicadores(); render();
@@ -219,6 +254,10 @@
     // região (recorte do TCC: abre no Sudeste) e UF
     const sel = $("#f-uf"), reg = $("#f-reg");
     if (S.reg === null) S.reg = store.get("reee_regiao", D.meta.regiao_padrao || "");
+    const REGIOES = ["", "Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"];
+    if (URL0.reg !== null && REGIOES.includes(URL0.reg)) S.reg = URL0.reg;
+    else if (URL0.uf || URL0.ano) S.reg = "";   // link sem região = Brasil, não a última região usada
+    if (URL0.uf && D.ufs.some((u) => u.uf === URL0.uf)) { S.uf = URL0.uf; if (!naRegiao(S.uf)) S.reg = ""; }
     reg.value = S.reg;
     const preencherUFs = () => {
       sel.innerHTML = `<option value="">${S.reg ? "Todas da região" : "Brasil (todas)"}</option>`;
@@ -229,20 +268,37 @@
     preencherUFs();
     reg.addEventListener("change", () => { S.reg = reg.value; store.set("reee_regiao", S.reg); if (!naRegiao(S.uf)) S.uf = ""; preencherUFs(); render(); });
     sel.addEventListener("change", () => { S.uf = sel.value; render(); });
-    $("#f-ind").addEventListener("change", (e) => { S.ind = e.target.value; S.indEscolhido = true; renderMap(); renderRank(); });
+    $("#f-ind").addEventListener("change", (e) => { S.ind = e.target.value; S.indEscolhido = true; renderMap(); renderRank(); salvarURL(); });
     $("#pm-camada").addEventListener("change", renderMapaMun);
     // abas
     $$(".tab").forEach((t) => t.addEventListener("click", () => selectTab(t.id.replace("tab-", ""))));
+    $(".tabs").addEventListener("keydown", (e) => {
+      const tabs = $$(".tab"), k = tabs.indexOf(document.activeElement);
+      if (k < 0 || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
+      e.preventDefault();
+      const n = e.key === "Home" ? 0 : e.key === "End" ? tabs.length - 1 : (k + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+      tabs[n].focus(); selectTab(tabs[n].id.replace("tab-", ""));
+    });
     const hash = location.hash.replace("#", "");
-    if (["gestor", "cidadao", "dados"].includes(hash)) selectTab(hash);
+    const abaLink = ["gestor", "cidadao", "dados"].includes(URL0.aba) ? URL0.aba : hash;
+    if (["gestor", "cidadao", "dados"].includes(abaLink)) selectTab(abaLink);
     // simulador
+    $("#prio").addEventListener("click", (e) => { const b = e.target.closest("[data-cidade]"); if (b) abrirCidade(+b.dataset.cidade); });
     $("#sim-n").addEventListener("input", (e) => { $("#sim-n-lbl").textContent = e.target.value; renderPrio(); });
     // cidadão
     const dl = $("#lista-mun");
     dl.innerHTML = M.nome.map((n, i) => `<option value="${n} – ${M.uf[i]}"></option>`).join("");
-    $("#busca").addEventListener("change", onBusca);
-    $("#busca").addEventListener("keydown", (e) => { if (e.key === "Enter") onBusca(); });
+    initBusca();
+    $("#btn-link").addEventListener("click", copiarLink);
     S.city = store.get("reee_city", null);
+    if (URL0.cidade && M.idx.has(URL0.cidade)) S.city = M.idx.get(URL0.cidade);
+    S.comparar = URL0.comparar.filter((c) => M.idx.has(c)).map((c) => M.idx.get(c));
+    S.soPev = URL0.pev;
+    $("#prio-pev").checked = S.soPev;
+    $("#prio-pev").addEventListener("change", (e) => { S.soPev = e.target.checked; renderPrio(); salvarURL(); });
+    $("#cmp-limpar").addEventListener("click", () => { S.comparar = []; renderComparacao(); salvarURL(); });
+    $("#cmp-chips").addEventListener("click", (e) => { const b = e.target.closest("[data-rm]"); if (!b) return; S.comparar = S.comparar.filter((i) => i !== +b.dataset.rm); renderComparacao(); salvarURL(); $("#cmp-busca").focus(); });
+    $("#cmp-atual").addEventListener("click", () => adicionarComparacao(S.city));
     if (S.city === null || M.cod[S.city] === undefined) {
       // começa pela capital mais populosa
       let best = 0; for (let i = 0; i < M.n; i++) if (M.capital[i] && M.pop[i] > M.pop[best]) best = i;
@@ -250,6 +306,7 @@
     }
     initParticipacao();
     initAvaliacao();
+    renderContrib();
     renderDados();
     render();
     const mq = matchMedia("(prefers-color-scheme: dark)");
@@ -259,15 +316,19 @@
   }
 
   function selectTab(id) {
-    $$(".tab").forEach((t) => t.setAttribute("aria-selected", t.id === "tab-" + id));
+    abaAtual = id;
+    $$(".tab").forEach((t) => { const sel = t.id === "tab-" + id; t.setAttribute("aria-selected", sel); t.tabIndex = sel ? 0 : -1; });
     $$(".panel").forEach((p) => (p.hidden = p.id !== "panel-" + id));
     $("#filters").hidden = id === "dados";
     if (id === "cidadao") renderCidade();
+    salvarURL();
   }
 
   function render() {
     renderKPIs(); renderMap(); renderRank(); renderCharts(); renderEntidades(); renderPlanos(); renderMapaMun(); renderCustos(); renderPeso(); renderAnalise();
     renderPrio(); renderAtencao(); renderCidade();
+    salvarURL();
+    const an = $("#anuncio"); if (an) an.textContent = `Painel atualizado: ${lugarNome()}, ${S.ano}.`;
   }
 
   /* ---------------- planos municipais (texto livre declarado ao SINIR) ---------------- */
@@ -353,6 +414,7 @@
       $("#k-deficit").innerHTML = `<span class="label">Coleta seletiva implantada</span>
         <div><span class="value">${r.coleta_seletiva_resp ? fmt(r.pct_coleta_seletiva, nf1) : "–"}</span><span class="unit">%</span></div>
         <div class="sub">${r.coleta_seletiva_resp ? `${fmt(r.coleta_seletiva_sim)} de ${fmt(r.coleta_seletiva_resp)} municípios que responderam ao diagnóstico do SINIR` : `O SINIR não publicou o diagnóstico municipal de ${S.ano}`}</div>`;
+      selosKPIRel();
       return;
     }
     const cob = r.cobertura_nominal;
@@ -361,6 +423,24 @@
       <div><span class="value">${cob === null || cob === undefined ? "–" : fmt(cob, nf1)}</span><span class="unit">%</span></div>
       <span class="pill"><i class="dot" style="background:var(${cor})"></i>${r.dados_parciais ? `Dados parciais: só ${r.entidades} divulgou ${S.ano}` : `${fmt(r.pontos)} de ${fmt(r.pontos_exigidos)} exigidos`}</span>
       <div class="sub">Exigidos: 1 ponto a cada 25 mil hab. nos municípios acima de 80 mil (Censo 2022).</div>`;
+    selosKPIRel();
+  }
+  // selo discreto com a fonte e o ano de cada número (transparência)
+  function selo(id, texto) {
+    const c = $("#" + id); if (!c) return;
+    c.querySelector(":scope > .selo")?.remove();
+    c.insertAdjacentHTML("beforeend", `<span class="selo"><span class="sr-only">Fonte: </span>${texto}</span>`);
+  }
+  function selosKPIRel() {
+    const r = scopeRow() || {};
+    const ult = (campo) => { for (let a = S.ano; a >= D.meta.anos[0]; a--) { const x = scopeRow(a); if (x && x[campo] !== null && x[campo] !== undefined) return x; } return null; };
+    const p = ult("pontos"), t = ult("toneladas");
+    selo("k-pontos", p ? `Relatório ${p.entidades || "das entidades"} · ${p.ano}` : "Sem relatório publicado");
+    selo("k-massa", t ? `Relatório ${t.entidades || "das entidades"} · ${t.ano}` : "Sem relatório publicado");
+    const sinir = ($("#k-meta .label")?.textContent || "").startsWith("Planos");
+    selo("k-meta", sinir ? `SINIR · ${S.ano}` : `Relatórios ${S.ano} · Decreto 10.240/2020`);
+    selo("k-deficit", ($("#k-deficit .label")?.textContent || "").startsWith("Coleta") ? `SINIR · ${S.ano}` : `Relatórios · IBGE (Censo 2022)`);
+    if (r) $$("#k-pontos, #k-massa, #k-meta, #k-deficit").forEach((c) => c.setAttribute("aria-live", "off"));
   }
   function renderKPIs() {
     if (REL()) return renderKPIsRel();
@@ -441,8 +521,9 @@
     const path = d3.geoPath(proj);
 
     box.innerHTML = "";
-    const svg = d3.select(box).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img")
-      .attr("aria-label", `Mapa do Brasil por ${IND[S.ind].label}, ${S.ano}`);
+    const svg = d3.select(box).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "group")
+      .attr("aria-label", `Mapa do Brasil por ${IND[S.ind].label}, ${S.ano}. Use Tab para percorrer os estados e Enter para filtrar.`);
+    const escolherUF = (f) => { const u = f.properties.uf; S.uf = S.uf === u ? "" : u; $("#f-uf").value = S.uf; hideTip(); render(); };
     svg.append("g").selectAll("path").data(feats).join("path")
       .attr("class", (f) => "uf-shape" + (S.uf && f.properties.uf !== S.uf ? " dim" : ""))
       .attr("d", path)
@@ -455,7 +536,12 @@
         showTip(e, `<b>${f.properties.nome}</b><br>${IND[S.ind].label}: ${IND[S.ind].f(r[S.ind])}<br>${fmt(r.pontos)} pontos · ${fmt(r.toneladas)} t`);
       })
       .on("mouseleave", hideTip)
-      .on("click", (e, f) => { const u = f.properties.uf; S.uf = S.uf === u ? "" : u; $("#f-uf").value = S.uf; hideTip(); render(); });
+      .attr("tabindex", 0).attr("role", "button")
+      .attr("aria-pressed", (f) => String(S.uf === f.properties.uf))
+      .attr("aria-label", (f) => { const v = vals.get(f.properties.uf); return `${f.properties.nome}: ${v === null || v === undefined ? "sem dado" : IND[S.ind].f(v)}`; })
+      .on("keydown", (e, f) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); escolherUF(f); $(`#map path[data-uf="${f.properties.uf}"]`)?.focus(); } })
+      .attr("data-uf", (f) => f.properties.uf)
+      .on("click", (e, f) => escolherUF(f));
 
     // municípios (não há dado municipal no modo de relatórios)
     const j = anoIdx(), pts = [];
@@ -538,9 +624,29 @@
     cv.hidden = !temValor;
     if (!temValor) {  // em vez de eixos vazios com rótulos repetidos
       box.insertAdjacentHTML("beforeend", `<p class="chart-vazio">${cfg.vazio || "Nenhuma fonte publicou este dado para o recorte escolhido."}</p>`);
-      charts[id] = null; return;
+      charts[id] = null; tabelaDoGrafico(box, null); return;
     }
     charts[id] = new Chart(cv, cfg);
+    tabelaDoGrafico(box, cfg);
+  }
+  // Tabela com os mesmos números do gráfico (leitores de tela, impressão, quem prefere ler valores)
+  function tabelaDoGrafico(box, cfg) {
+    box.parentElement.querySelector(":scope > .chart-tabela")?.remove();
+    if (!cfg) return;
+    const ds = (cfg.data.datasets || []).filter((d) => d.label !== undefined);
+    const valor = (v) => (v === null || v === undefined ? "–" : typeof v === "number" ? fmt(v, Math.abs(v) < 10 && v % 1 ? nf2 : nf0) : esc(v));
+    let html;
+    if (cfg.type === "scatter") {
+      const pts = ds.filter((d) => d.type !== "line").flatMap((d) => d.data).sort((a, b) => (b.x ?? 0) - (a.x ?? 0));
+      const x = cfg.options?.scales?.x?.title?.text || "x", y = cfg.options?.scales?.y?.title?.text || "y";
+      html = `<thead><tr><th scope="col">UF</th><th scope="col" class="r">${esc(x)}</th><th scope="col" class="r">${esc(y)}</th></tr></thead><tbody>` +
+        pts.map((p) => `<tr><th scope="row">${esc(p.uf ? ufNome(p.uf) : p.label || "")}</th><td class="r">${valor(p.x)}</td><td class="r">${valor(p.y)}</td></tr>`).join("") + "</tbody>";
+    } else {
+      const labels = cfg.data.labels || [];
+      html = `<thead><tr><th scope="col"></th>${ds.map((d) => `<th scope="col" class="r">${esc(d.label)}</th>`).join("")}</tr></thead><tbody>` +
+        labels.map((l, k) => `<tr><th scope="row">${esc(l)}</th>${ds.map((d) => `<td class="r">${valor(d.data[k])}</td>`).join("")}</tr>`).join("") + "</tbody>";
+    }
+    box.insertAdjacentHTML("afterend", `<details class="chart-tabela"><summary>Ver dados em tabela</summary><div class="table-wrap"><table>${html}</table></div></details>`);
   }
 
   function serieEntidade(campo) {
@@ -742,7 +848,7 @@
   /* ---------------- municípios que pedem atenção (SINIR 2023–2025) ---------------- */
   function renderAtencao() {
     const card = $("#card-atencao");
-    card.hidden = !REL() || !(D.planos_mun || []).length;
+    card.hidden = !REL() || !(D.planos_mun || []).length || (D.prioridade_sinir || []).length > 0;
     if (card.hidden) return;
     const green = new Set(D.mun_entidade.map((r) => r.cod_ibge));
     const lim = D.meta.limiar_populacional, hpp = D.meta.hab_por_ponto_decreto;
@@ -767,18 +873,87 @@
   /* Regra do simulador: segue a ordem do índice de prioridade e instala, em cada
      município, o necessário para zerar o déficit (ou 1 ponto, se não for obrigado)
      antes de passar ao próximo. */
-  function simular(cands, n) {
-    let resto = n;
-    return cands.map((c) => {
-      const precisa = Math.max(1, c.deficit_pontos);
-      const add = Math.min(precisa, resto);
-      resto -= add;
-      return { c, add };
-    });
-  }
+  function simular(cands, n, { soObrigados = false } = {}) {
+  let resto = n;
+  return cands.map((c) => {
+    const precisa = soObrigados ? c.deficit_pontos : Math.max(1, c.deficit_pontos);
+    const add = Math.min(precisa, resto);
+    resto -= add;
+    return { c, add };
+  });
+}
+
+// NOVO: o resumo sai de renderPrio para ser usado pelos dois modos
+function resumoSimulacao(cands, sim) {
+  const benef = sim.filter((a) => a.add > 0);
+  const novosCumprem = benef.filter((a) => a.c.deficit_pontos > 0 && a.add >= a.c.deficit_pontos).length;
+  const popNova = benef.filter((a) => a.c.pontos === 0).reduce((s, a) => s + a.c.populacao, 0);
+  const defAntes = cands.reduce((s, c) => s + c.deficit_pontos, 0);
+  const defDepois = sim.reduce((s, a) => s + Math.max(0, a.c.deficit_pontos - a.add), 0);
+  $("#sim-out").innerHTML = `
+    <div><span class="label">Municípios atendidos</span><b>${fmt(benef.length)}</b></div>
+    <div><span class="label">Passam a cumprir o Decreto</span><b>${fmt(novosCumprem)}</b></div>
+    <div><span class="label">Pessoas com 1º ponto na cidade</span><b>${fmt(popNova)}</b></div>
+    <div><span class="label">Déficit restante</span><b>${fmt(defDepois)}</b><span class="small muted">de ${fmt(defAntes)}</span></div>`;
+}
   const PRIO_HEAD = $("#prio thead").innerHTML;
+  const SINAIS_PRIO = [
+    ["sem_pev_listado", "sem PEV listado"], ["sem_plano", "sem plano declarado"], ["plano_sem_reee", "plano não cita REEE"],
+    ["sem_coleta_seletiva", "sem coleta seletiva"], ["plano_sem_pev", "plano sem ecoponto/PEV"], ["passivo", "passivo ambiental"],
+  ];
+  function prioSinirDoAno(ano = S.ano) {
+    return (D.prioridade_sinir || []).filter((r) => r[1] === ano).map(([cod, a, indice, exigidos, pevs, ...sinais]) => {
+      const i = M.idx.get(cod);
+      return { cod, i, indice, exigidos, pevs, sinais, classe: indice >= 70 ? "Alta" : indice >= 55 ? "Média" : "Baixa" };
+    }).filter((r) => r.i !== undefined && (S.uf ? M.uf[r.i] === S.uf : naRegiao(M.uf[r.i])));
+  }
+  function abrirCidade(i) {
+    S.city = i; store.set("reee_city", i); selectTab("cidadao"); salvarURL();
+    $("#cidade-titulo")?.focus();
+  }
+  function renderPrioSinir(rows) {
+  $(".sim").hidden = false; $("#prio-pev-wrap").hidden = false;          // era .sim hidden = true
+  const total = rows.length;
+  if (S.soPev) rows = rows.filter((r) => r.sinais[0] === 1 && r.sinais[1] === 0 && r.sinais[4] === 0);
+  // Só a Green Eletron publica PEVs por município (2022); a ABREE não. O déficit é uma estimativa máxima.
+  const cands = rows.map((r) => ({ ...r, deficit_pontos: Math.max(0, r.exigidos - r.pevs), pontos: r.pevs, populacao: M.pop[r.i] }));
+  const sim = simular(cands, +$("#sim-n").value, { soObrigados: true });
+  const add = new Map(sim.map((a) => [a.c.cod, a.add]));
+  resumoSimulacao(cands, sim);
+  const conta = { Alta: 0, "Média": 0, Baixa: 0 }; rows.forEach((r) => conta[r.classe]++);
+  $("#prio-sub").textContent = (S.soPev ? `${fmt(rows.length)} de ${fmt(total)} municípios-alvo têm ecoponto/PEV previsto no plano e nenhum PEV listado · ` : "") +
+    `${fmt(S.soPev ? total : rows.length)} municípios-alvo em ${lugarNome()} (aproximação: mais de 80 mil hab.) · ${S.ano} · ` +
+    `${fmt(conta.Alta)} de prioridade alta, ${fmt(conta["Média"])} média e ${fmt(conta.Baixa)} baixa. ` +
+    `Arraste para simular novos pontos; clique no nome para abrir a ficha da cidade.`;
+  $("#prio thead").innerHTML = `<tr><th scope="col">#</th><th scope="col">Município</th><th scope="col">UF</th><th scope="col" class="r">População</th>
+    <th scope="col" class="r">Pontos exigidos</th><th scope="col" class="r">PEVs listados</th><th scope="col" class="r">Faltam (estim.)</th>
+    <th scope="col">Sinais de atenção</th><th scope="col" class="r">Índice</th><th scope="col">Prioridade</th><th scope="col" class="r">Simulação</th></tr>`;
+  const cor = { Alta: "--critical", "Média": "--warning", Baixa: "--muted" };
+  $("#prio tbody").innerHTML = cands.slice(0, 30).map((r, k) => {
+    const a = add.get(r.cod) || 0;
+    const sinais = SINAIS_PRIO.filter((_, x) => r.sinais[x]).map(([, rot]) => rot);
+    return `<tr class="${a ? "alloc" : ""}"><td class="mono">${k + 1}</td>
+      <td><button type="button" class="link-btn" data-cidade="${r.i}">${esc(M.nome[r.i])}</button></td><td class="mono">${M.uf[r.i]}</td>
+      <td class="r">${fmt(M.pop[r.i])}</td><td class="r">${fmt(r.exigidos)}</td><td class="r">${fmt(r.pevs)}</td><td class="r">${fmt(r.deficit_pontos)}</td>
+      <td class="small" style="white-space:normal">${sinais.length ? sinais.join(" · ") : "nenhum"}</td>
+      <td class="r mono">${fmt(r.indice, nf1)}</td>
+      <td><span class="pill"><i class="dot" style="background:var(${cor[r.classe]})" aria-hidden="true"></i>${r.classe}</span></td>
+      <td class="r mono">${a ? "+" + fmt(a) : ""}</td></tr>`;
+  }).join("") || `<tr><td colspan="11" class="empty-state">${S.soPev ? "Nenhum município com ecoponto/PEV previsto e sem PEV listado neste recorte." : "Nenhum município-alvo neste recorte."}</td></tr>`;
+  const p = D.pesos_prioridade_sinir || {}, pc = (k) => `${Math.round((p[k] || 0) * 100)} %`;
+  $("#prio-nota").hidden = false;
+  $("#prio-nota").innerHTML = `Índice (0–100) = ${pc("demanda")} demanda (posição nos pontos exigidos pelo Decreto: população ÷ 25 mil) + sinais: ` +
+    `${pc("sem_pev_listado")} sem PEV listado, ${pc("sem_plano")} sem plano declarado, ${pc("plano_sem_reee")} plano não cita REEE, ` +
+    `${pc("sem_coleta_seletiva")} sem coleta seletiva, ${pc("plano_sem_pev")} plano sem ecoponto/PEV, ${pc("passivo")} passivo ambiental. ` +
+    `Sem informação conta como sinal. Alta ≥ 70, média ≥ 55. Pesos definidos pelo grupo, ainda sem análise de sensibilidade nem validação com gestores. ` +
+    `Simulação: segue a ordem do índice e instala em cada município os pontos que faltam antes de passar ao próximo. ` +
+    `PEVs listados vêm só do relatório municipal da Green Eletron (2022); como a ABREE não publica lista por município, o déficit é uma estimativa máxima. ` +
+    `Tabela completa em <span class="mono">prioridade_sinir.csv</span> (Dados abertos).`;
+}
   function renderPrioRel() {
-    $(".sim").hidden = true; $("#prio-nota").hidden = true;
+    const sinir = prioSinirDoAno();
+    if (sinir.length || (D.prioridade_sinir || []).some((r) => r[1] === S.ano)) return renderPrioSinir(sinir);
+    $(".sim").hidden = true; $("#prio-nota").hidden = true; $("#prio-pev-wrap").hidden = true;
     // a comparação com a regra do Decreto só vale com todas as entidades: usa o último ano completo até o ano escolhido
     const doAno = (a) => D.uf_ano.filter((r) => r.ano === a && r.pontos !== null && !r.dados_parciais && (S.uf ? r.uf === S.uf : naRegiao(r.uf)));
     let anoP = S.ano, rows = doAno(anoP);
@@ -799,7 +974,7 @@
   }
   function renderPrio() {
     if (REL()) return renderPrioRel();
-    $(".sim").hidden = false; $("#prio-nota").hidden = false;
+    $(".sim").hidden = false; $("#prio-nota").hidden = false; $("#prio-pev-wrap").hidden = true;
     if ($("#prio thead").innerHTML !== PRIO_HEAD) $("#prio thead").innerHTML = PRIO_HEAD;
     const anoP = D.meta.ano_prioridade ?? D.meta.anos[D.meta.anos.length - 1];
     const cands = D.prioridade.filter((r) => !S.uf || r.uf === S.uf);
@@ -831,14 +1006,64 @@
   }
 
   /* ---------------- cidadão ---------------- */
-  function onBusca() {
-    const v = $("#busca").value.trim();
-    const m = v.match(/^(.*) – ([A-Z]{2})$/);
-    let i = -1;
-    if (m) i = M.nome.findIndex((n, k) => n === m[1] && M.uf[k] === m[2]);
-    if (i < 0) { const t = v.toLowerCase(); i = M.nome.findIndex((n) => n.toLowerCase() === t); }
-    if (i < 0) { const t = v.toLowerCase(); i = M.nome.findIndex((n) => n.toLowerCase().startsWith(t)); }
-    if (i >= 0) { S.city = i; store.set("reee_city", i); renderCidade(); }
+  /* busca de município: combobox com lista (ARIA 1.2), ignora acentos e maiúsculas */
+  const semAcento = (t) => String(t).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+  let buscaIdx = null;
+  function buscarMunicipios(texto, limite = 8) {
+    const t = semAcento(texto).replace(/\s*[-–]\s*[a-z]{2}$/, "");   // aceita "Nome – UF"
+    if (!t) return [];
+    if (!buscaIdx) buscaIdx = M.nome.map(semAcento);
+    const comeca = [], contem = [];
+    for (let i = 0; i < M.n; i++) {
+      const n = buscaIdx[i];
+      if (n.startsWith(t)) comeca.push(i); else if (n.includes(t)) contem.push(i);
+    }
+    const porPop = (a, b) => M.pop[b] - M.pop[a];
+    return comeca.sort(porPop).concat(contem.sort(porPop)).slice(0, limite);
+  }
+  // Combobox reutilizável (busca da ficha e "adicionar à comparação")
+  function criarCombo({ inp, ul, status, prefixo, aoEscolher, limpar = false }) {
+    let sel = -1, res = [];
+    const fechar = () => { ul.hidden = true; inp.setAttribute("aria-expanded", "false"); inp.removeAttribute("aria-activedescendant"); sel = -1; };
+    const marcar = (k) => {
+      sel = k;
+      ul.querySelectorAll("li").forEach((li, x) => li.setAttribute("aria-selected", x === k));
+      if (k >= 0) { inp.setAttribute("aria-activedescendant", `${prefixo}-${k}`); document.getElementById(`${prefixo}-${k}`)?.scrollIntoView({ block: "nearest" }); }
+    };
+    const escolher = (i) => { fechar(); inp.value = limpar ? "" : `${M.nome[i]} – ${M.uf[i]}`; aoEscolher(i); };
+    inp.addEventListener("input", () => {
+      res = buscarMunicipios(inp.value);
+      ul.innerHTML = res.map((i, k) => `<li id="${prefixo}-${k}" role="option" aria-selected="false" data-i="${i}">
+        <span>${esc(M.nome[i])}</span><span class="small muted">${M.uf[i]} · ${fmt(M.pop[i])} hab.</span></li>`).join("");
+      const aberto = res.length > 0 && inp.value.trim().length > 0;
+      ul.hidden = !aberto; inp.setAttribute("aria-expanded", aberto); sel = -1; inp.removeAttribute("aria-activedescendant");
+      status.textContent = inp.value.trim() ? (res.length ? `${res.length} município${res.length > 1 ? "s" : ""} encontrado${res.length > 1 ? "s" : ""}.` : "Nenhum município encontrado.") : "";
+    });
+    inp.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); if (ul.hidden && res.length) { ul.hidden = false; inp.setAttribute("aria-expanded", "true"); } marcar(Math.min(sel + 1, res.length - 1)); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); marcar(Math.max(sel - 1, 0)); }
+      else if (e.key === "Enter") { e.preventDefault(); const i = res[sel >= 0 ? sel : 0]; if (i !== undefined) escolher(i); }
+      else if (e.key === "Escape") { if (!ul.hidden) { e.preventDefault(); fechar(); } }
+    });
+    ul.addEventListener("mousedown", (e) => e.preventDefault());
+    ul.addEventListener("click", (e) => { const li = e.target.closest("li[data-i]"); if (li) escolher(+li.dataset.i); });
+    inp.addEventListener("blur", () => setTimeout(fechar, 100));
+  }
+  function initBusca() {
+    criarCombo({ inp: $("#busca"), ul: $("#busca-lista"), status: $("#busca-status"), prefixo: "busca-op",
+      aoEscolher: (i) => { S.city = i; store.set("reee_city", i); renderCidade(); salvarURL(); $("#busca-status").textContent = `Ficha de ${M.nome[i]} aberta.`; } });
+    criarCombo({ inp: $("#cmp-busca"), ul: $("#cmp-lista"), status: $("#cmp-status"), prefixo: "cmp-op", limpar: true,
+      aoEscolher: (i) => adicionarComparacao(i) });
+  }
+  async function copiarLink() {
+    salvarURL();
+    const url = location.origin && location.origin !== "null" ? location.origin + urlDaVisao() : location.href;
+    let ok = false;
+    try { await navigator.clipboard.writeText(url); ok = true; } catch {
+      try { const t = Object.assign(document.createElement("textarea"), { value: url }); document.body.append(t); t.select(); ok = document.execCommand("copy"); t.remove(); } catch { ok = false; }
+    }
+    $("#link-status").textContent = ok ? "Link copiado." : "Copie o endereço da barra do navegador.";
+    setTimeout(() => { $("#link-status").textContent = ""; }, 4000);
   }
   function vizinhosComPonto(i, j, k = 3) {
     const toRad = Math.PI / 180, out = [];
@@ -850,6 +1075,146 @@
     }
     return out.sort((a, b) => a.km - b.km).slice(0, k);
   }
+  /* ---------- fatos de uma cidade num ano (ficha, evolução e comparação) ---------- */
+  function fatosCidade(i, ano) {
+    const cod = M.cod[i], p = (M.planos.get(cod) || []).find((x) => x.ano === ano), e = M.extra.get(`${cod}|${ano}`), pr = M.prio.get(`${cod}|${ano}`);
+    const pevs = D.mun_entidade.filter((r) => r.cod_ibge === cod).reduce((t, r) => t + (r.pontos || 0), 0);
+    const alvo = M.pop[i] > D.meta.limiar_populacional;
+    return { declarou: !!p, reee: p ? !!p.reee : null, coleta: p ? p.coleta : null, plano: p ? p.plano : null, pev: p ? p.pev : null,
+      conv: e ? e.conv : null, sel: e ? e.sel : null, taxa: e ? e.taxa : null, passivo: e ? e.passivo : null,
+      exigidos: alvo ? Math.ceil(M.pop[i] / D.meta.hab_por_ponto_decreto) : 0, alvo, pevs,
+      indice: pr ? pr.indice : null, classe: pr ? (pr.indice >= 70 ? "Alta" : pr.indice >= 55 ? "Média" : "Baixa") : null };
+  }
+  const simNao = (v, sim = "sim", nao = "não") => (v === true || v === 1 ? sim : v === false || v === 0 ? nao : "–");
+  // linhas de atributos usadas na evolução e na comparação
+  const LINHAS_FATOS = [
+    ["Declarou o plano ao SINIR", (f) => (f.declarou ? "sim" : "não")],
+    ["Plano cita eletroeletrônicos", (f) => (f.declarou ? simNao(f.reee) : "–")],
+    ["Coleta seletiva implantada", (f) => simNao(f.coleta)],
+    ["Plano prevê ecoponto/PEV", (f) => simNao(f.pev)],
+    ["Passivo ambiental declarado", (f) => simNao(f.passivo, "sim", "não")],
+    ["Cobra taxa de resíduos", (f) => simNao(f.taxa)],
+    ["Coleta convencional (R$/hab./ano)", (f) => (f.conv === null ? "–" : fmt(f.conv, nf2))],
+    ["Coleta seletiva (R$/hab./ano)", (f) => (f.sel === null ? "–" : fmt(f.sel, nf2))],
+    ["Índice de prioridade (0–100)", (f) => (f.indice === null ? (f.alvo ? "–" : "não é município-alvo") : `${fmt(f.indice, nf1)} (${f.classe})`)],
+  ];
+  function evolucaoHtml(i) {
+    const anos = ANOS_V().filter((a) => (D.meta.anos_com_dados || ANOS_V()).includes(a) || (D.planos_mun || []).some((p) => p[1] === a));
+    if (!anos.length || !(D.planos_mun || []).length) return "";
+    const fs = anos.map((a) => fatosCidade(i, a));
+    return `<div class="evolucao"><span class="label">Evolução declarada ao SINIR · ${anos[0]}–${anos[anos.length - 1]}</span>
+      <div class="table-wrap"><table><caption class="sr-only">Evolução de ${esc(M.nome[i])} por ano</caption>
+      <thead><tr><th scope="col">Indicador</th>${anos.map((a) => `<th scope="col" class="r">${a}</th>`).join("")}</tr></thead>
+      <tbody>${LINHAS_FATOS.map(([rot, fn]) => `<tr><th scope="row">${rot}</th>${fs.map((f) => `<td class="r">${fn(f)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
+      <p class="small muted">"–" = a prefeitura não informou. Ano de exercício: a declaração de um ano se refere, em geral, ao anterior.</p></div>`;
+  }
+  function adicionarComparacao(i) {
+    if (i === null || i === undefined) return;
+    if (!S.comparar.includes(i)) { if (S.comparar.length >= 3) S.comparar.shift(); S.comparar.push(i); }
+    renderComparacao(); salvarURL();
+    $("#cmp-status").textContent = `${M.nome[i]} adicionada à comparação.`;
+  }
+  function renderComparacao() {
+    const box = $("#cmp-tabela"); if (!box || !D) return;
+    $("#cmp-chips").innerHTML = S.comparar.map((i) => `<span class="chip-cmp">${esc(M.nome[i])} – ${M.uf[i]}
+      <button type="button" data-rm="${i}" aria-label="Remover ${esc(M.nome[i])} da comparação">×</button></span>`).join("");
+    $("#cmp-limpar").hidden = !S.comparar.length;
+    $("#cmp-atual").textContent = S.city !== null ? `Adicionar ${M.nome[S.city]}` : "Adicionar cidade atual";
+    $("#cmp-atual").hidden = S.city === null || S.comparar.includes(S.city) || S.comparar.length >= 3;
+    if (!S.comparar.length) { box.innerHTML = `<p class="small muted">Adicione até 3 municípios para comparar lado a lado (${S.ano}).</p>`; return; }
+    const fs = S.comparar.map((i) => fatosCidade(i, S.ano));
+    const extra = [["População (Censo 2022)", (f, i) => fmt(M.pop[i])], ["Pontos exigidos pelo Decreto", (f) => (f.alvo ? fmt(f.exigidos) : "sem meta (< 80 mil)")],
+      ["PEVs listados (Green Eletron, 2022)", (f) => fmt(f.pevs)]];
+    box.innerHTML = `<div class="table-wrap"><table><caption class="sr-only">Comparação de municípios em ${S.ano}</caption>
+      <thead><tr><th scope="col">${S.ano}</th>${S.comparar.map((i) => `<th scope="col" class="r">${esc(M.nome[i])} – ${M.uf[i]}</th>`).join("")}</tr></thead>
+      <tbody>${extra.concat(LINHAS_FATOS).map(([rot, fn]) => `<tr><th scope="row">${rot}</th>${fs.map((f, k) => `<td class="r">${fn(f, S.comparar[k])}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+  }
+  // CSV simples com aspas (o arquivo vem do csv.DictWriter do Python)
+  function lerCSV(texto) {
+    const linhas = []; let campo = "", linha = [], aspas = false;
+    texto = texto.replace(/^\ufeff/, "");
+    for (let k = 0; k < texto.length; k++) {
+      const c = texto[k];
+      if (aspas) { if (c === '"') { if (texto[k + 1] === '"') { campo += '"'; k++; } else aspas = false; } else campo += c; }
+      else if (c === '"') aspas = true;
+      else if (c === ",") { linha.push(campo); campo = ""; }
+      else if (c === "\n" || c === "\r") { if (c === "\r" && texto[k + 1] === "\n") k++; linha.push(campo); campo = ""; if (linha.some((x) => x !== "")) linhas.push(linha); linha = []; }
+      else campo += c;
+    }
+    if (campo !== "" || linha.length) { linha.push(campo); linhas.push(linha); }
+    const [cab, ...resto] = linhas;
+    return cab ? resto.map((l) => Object.fromEntries(cab.map((h, x) => [h, l[x] ?? ""]))) : [];
+  }
+  async function renderContrib() {
+    if (!$("#card-contrib")) return;
+    let itens = [];
+    try {
+      const r = await fetch("data/abertos/contribuicoes.csv", { cache: "no-store" });
+      if (r.ok) itens = lerCSV(await r.text());
+    } catch { itens = []; }
+    const sug = (t) => t.startsWith("Sugerir");
+    const porMun = new Map();
+    for (const c of itens) { const m = porMun.get(c.municipio) || { n: 0, s: 0 }; m.n++; if (sug(c.tipo)) m.s++; porMun.set(c.municipio, m); }
+    const tipos = {}; itens.forEach((c) => { tipos[c.tipo] = (tipos[c.tipo] || 0) + 1; });
+    $("#contrib-kpis").innerHTML = [["Contribuições", itens.length], ["Municípios citados", porMun.size],
+      ["Sugestões de ponto", itens.filter((c) => sug(c.tipo)).length], ["Correções de dado", tipos["Corrigir um dado do painel"] || 0]]
+      .map(([k, v]) => `<div><span class="label">${k}</span><b class="num">${fmt(v)}</b></div>`).join("");
+    const vazio = (n) => `<tr><td colspan="${n}" class="empty-state">Nenhuma contribuição recebida ainda.</td></tr>`;
+    $("#contrib-mun tbody").innerHTML = [...porMun].sort((a, b) => b[1].n - a[1].n).slice(0, 15)
+      .map(([m, v]) => `<tr><td>${esc(m)}</td><td class="r">${fmt(v.n)}</td><td class="r">${fmt(v.s)}</td></tr>`).join("") || vazio(3);
+    $("#contrib-ult tbody").innerHTML = itens.slice().sort((a, b) => (b.data || "").localeCompare(a.data || "")).slice(0, 10)
+      .map((c) => `<tr><td class="mono">${esc((c.data || "").slice(0, 10).split("-").reverse().join("/"))}</td><td>${esc(c.tipo)}</td><td>${esc(c.municipio)}</td>
+        <td class="small" style="white-space:normal">${esc(c.descricao.length > 140 ? c.descricao.slice(0, 140) + "…" : c.descricao)}</td></tr>`).join("") || vazio(4);
+    $("#contrib-sub").textContent = itens.length ? `${fmt(itens.length)} contribuições enviadas pela aba Cidadão (sem dados pessoais).`
+      : "Sugestões e correções enviadas pela aba Cidadão (sem dados pessoais) aparecem aqui.";
+  }
+  // A ficha é impressa a partir de um documento próprio, num iframe oculto: a página principal
+  // (mapas e gráficos que se redesenham ao imprimir) não é tocada e a pré-visualização não some.
+  function htmlDaFicha() {
+    const ficha = $("#cidade").cloneNode(true);
+    ficha.querySelectorAll(".nao-imprimir, button, script").forEach((e) => e.remove());
+    ficha.querySelectorAll("[id]").forEach((e) => e.removeAttribute("id"));
+    ficha.querySelectorAll(".so-imprimir").forEach((e) => e.classList.remove("so-imprimir"));
+    const css = new URL("css/style.css", location.href).href;
+    const nome = M.nome[S.city], uf = M.uf[S.city];
+    return `<!doctype html><html lang="pt-BR" data-theme="light"><head><meta charset="utf-8">
+      <title>Ficha – ${esc(nome)} (${uf}) – Painel REEE Brasil</title>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+      <link rel="stylesheet" href="${css}">
+      <style>
+        body { background: #fff; margin: 0; padding: 24px; }
+        .ficha-impressa { max-width: 760px; margin: 0 auto; border: 0; box-shadow: none; padding: 0; }
+        .ficha-topo { font: 600 0.8rem var(--font-mono); color: #555; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 12px; }
+        a { color: #111; }
+        @page { margin: 16mm; }
+        @media print { body { padding: 0; } table { break-inside: avoid; } }
+      </style></head>
+      <body><div class="ficha-topo">Painel REEE Brasil · Ficha do município · ${S.ano}</div>
+      <div class="card ficha-impressa">${ficha.innerHTML}</div></body></html>`;
+  }
+  function imprimirFicha() {
+    if (S.city === null) return;
+    document.getElementById("ifr-ficha")?.remove();
+    const ifr = Object.assign(document.createElement("iframe"), { id: "ifr-ficha", title: "Ficha para impressão" });
+    ifr.setAttribute("aria-hidden", "true");
+    ifr.style.cssText = "position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden";
+    document.body.append(ifr);
+    const doc = ifr.contentDocument;
+    doc.open(); doc.write(htmlDaFicha()); doc.close();
+    const imprimir = () => {
+      const w = ifr.contentWindow;
+      ifr.dataset.impressao = String(Date.now());   // marca (útil para testes automatizados)
+      try { w.focus(); w.print(); }
+      catch {  // navegador sem impressão de iframe: abre a ficha numa aba para Ctrl+P
+        const aba = window.open("", "_blank");
+        if (aba) { aba.document.write(htmlDaFicha()); aba.document.close(); }
+      }
+    };
+    // espera o CSS e as fontes carregarem; o iframe fica até a próxima impressão (não some no meio)
+    const pronto = () => (doc.fonts && doc.fonts.ready ? doc.fonts.ready : Promise.resolve()).then(() => setTimeout(imprimir, 150));
+    if (doc.readyState === "complete") pronto(); else ifr.addEventListener("load", pronto, { once: true });
+  }
+
   function renderCidadeRel() {
     const i = S.city, pop = M.pop[i], uf = M.uf[i], u = ufRow(uf), b = brRow();
     const nec = pop > D.meta.limiar_populacional ? Math.ceil(pop / D.meta.hab_por_ponto_decreto) : 0;
@@ -874,10 +1239,13 @@
     const cmp = [{ k: ufNome(uf), v: u.pontos_100k }, { k: "Brasil", v: b.pontos_100k }];
     const max = d3.max(cmp, (c) => c.v || 0) || 1;
     $("#cidade").innerHTML = `
-      <div class="city-head"><span class="label">${ufNome(uf)} · Censo 2022</span><span class="big">${M.nome[i]}</span><p>${regra}</p></div>
+      <div class="city-head"><span class="label">${ufNome(uf)} · Censo 2022</span><h2 class="big" id="cidade-titulo" tabindex="-1">${esc(M.nome[i])}</h2><p>${regra}</p>
+        <div class="row-btns nao-imprimir"><button class="btn ghost" type="button" id="btn-pdf">Imprimir ou salvar PDF</button>
+        <button class="btn ghost" type="button" id="btn-cmp-ficha">Comparar com outras cidades</button></div></div>
       <div><span class="label">Pontos listados nos relatórios</span><div class="list">${lst}</div></div>
       ${viz}
       ${planoHtml(i)}
+      ${evolucaoHtml(i)}
       ${(() => { const e = M.extra.get(`${M.cod[i]}|${S.ano}`); if (!e) return ""; const it = [];
         if (e.conv !== null) it.push(`coleta convencional: <b>R$ ${fmt(e.conv, nf2)}</b> por habitante/ano`);
         if (e.sel !== null) it.push(`coleta seletiva: <b>R$ ${fmt(e.sel, nf2)}</b> por habitante/ano`);
@@ -891,7 +1259,12 @@
       <div class="compare"><span class="label">Pontos por 100 mil habitantes · ${S.ano}</span>
         ${cmp.map((c, n) => `<div class="bar-row"><span>${c.k}</span><span class="track"><span class="fill" style="width:${((c.v || 0) / max) * 100}%;background:var(${n === 0 ? "--series-1" : "--axis"})"></span></span><span class="v">${c.v === null ? "sem dado" : fmt(c.v, nf2)}</span></div>`).join("")}
       </div>
-      <div><button class="btn ghost" type="button" id="sugerir">Sugerir um ponto em ${M.nome[i]}</button></div>`;
+      <div class="nao-imprimir"><button class="btn ghost" type="button" id="sugerir">Sugerir um ponto em ${M.nome[i]}</button></div>
+      <p class="so-imprimir small">Painel REEE Brasil · ficha gerada em ${new Date().toLocaleDateString("pt-BR")} · ${location.origin && location.origin !== "null" ? location.origin + urlDaVisao() : ""}
+        · Fontes: SINIR (módulo Estados e Municípios), relatórios das entidades gestoras, IBGE (Censo 2022), Decreto 10.240/2020.</p>`;
+    $("#btn-pdf").addEventListener("click", imprimirFicha);
+    $("#btn-cmp-ficha").addEventListener("click", () => { adicionarComparacao(i); $("#card-comparar").scrollIntoView({ block: "start" }); $("#cmp-busca").focus(); });
+    renderComparacao();
     $("#busca").placeholder = `${M.nome[i]} – ${uf}`;
     $("#sugerir").addEventListener("click", () => { $("#p-mun").value = `${M.nome[i]} – ${uf}`; $("#p-tipo").selectedIndex = 0; $("#p-local").focus(); });
     if (!$("#p-mun").value) $("#p-mun").value = `${M.nome[i]} – ${uf}`;
@@ -923,7 +1296,7 @@
     $("#cidade").innerHTML = `
       <div class="city-head">
         <span class="label">${ufNome(M.uf[i])} · ${fmt(M.pop[i])} habitantes · ${S.ano}</span>
-        <span class="big">${M.nome[i]}</span>
+        <h2 class="big" id="cidade-titulo" tabindex="-1">${esc(M.nome[i])}</h2>
         <p>${pts === null ? "Sem informação sobre pontos de recebimento neste ano." : pts > 0 ? `<b class="num">${fmt(pts)}</b> ponto${pts > 1 ? "s" : ""} de recebimento de eletroeletrônicos ativo${pts > 1 ? "s" : ""}.` : "Nenhum ponto de recebimento ativo registrado."}</p>
       </div>
       <div class="status-line"><i class="dot" style="background:var(${st.c})"></i><p><b>${st.t}.</b> ${msgs[st.k]}</p></div>
@@ -974,7 +1347,7 @@
       const guardar = (msg) => { const l = lista(); l.push(c); store.set("reee_contrib", l); t.textContent = msg; $("#p-desc").value = ""; $("#p-local").value = ""; draw(); };
       if (!apiOk) { guardar("Registrada neste navegador (esta versão do painel não tem servidor). Use \"Copiar como CSV\" para enviar ao município."); return; }
       fetch("api/contribuicao", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(c) })
-        .then(async (r) => { const j = await r.json().catch(() => ({})); if (!r.ok) throw new Error(j.erro || "falha no envio"); guardar("Contribuição enviada. Ela aparece em Dados abertos › contribuicoes.csv para o gestor responder."); })
+        .then(async (r) => { const j = await r.json().catch(() => ({})); if (!r.ok) throw new Error(j.erro || "falha no envio"); guardar("Contribuição enviada. Ela aparece em Dados abertos › contribuicoes.csv para o gestor responder."); renderContrib(); })
         .catch((err) => { t.textContent = `Não foi possível enviar: ${err.message}`; });
     });
     $("#p-copiar").addEventListener("click", () => {

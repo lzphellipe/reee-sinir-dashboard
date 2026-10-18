@@ -24,12 +24,12 @@ DASHBOARD_DATA = ROOT / "dashboard" / "data"
 # ---------------------------------------------------------------------------
 # Recorte temporal do estudo
 # ---------------------------------------------------------------------------
-ANO_INICIAL = 2023
+ANO_INICIAL = 2023          # recorte do TCC: 2023–2025 (use 2019 para a série histórica completa)
 ANO_FINAL = 2025
 ANOS = list(range(ANO_INICIAL, ANO_FINAL + 1))
-# Anos exibidos no painel (delimitação do TCC). Os dados abertos mantêm a série inteira.
+# Anos exibidos no painel (delimitação do TCC); limitados ao recorte ANO_INICIAL–ANO_FINAL.
 ANOS_PAINEL = [2023, 2024, 2025]
-ANO_BASE = 2023            # linha de base: único ano completo nos relatórios (ABREE + Green Eletron por UF)
+ANO_BASE = 2023            # linha de base: primeiro ano do recorte (com 2019–2025, use 2022: único ano com ABREE + Green Eletron por UF)
 ANO_INICIAL_PAINEL = 2023  # o painel abre neste ano
 # Região disponível no filtro (o TCC destaca o Sudeste); "" = abre no Brasil inteiro.
 REGIAO_PADRAO = ""
@@ -121,6 +121,20 @@ ALIASES_POP = {
     "cod_ibge": ["cod ibge", "codigo ibge", "codigo", "cod municipio", "geocodigo", "cod"],
     "populacao": ["populacao", "pop", "populacao residente", "habitantes", "valor"],
 }
+
+# Índice de prioridade com dados do SINIR (2023–2025), por município-alvo (soma = 1).
+# "demanda" = posição do município nos pontos exigidos pelo Decreto (população ÷ 25 mil);
+# os demais são sinais de fragilidade (1 = sinal presente; sem informação conta como sinal).
+PESOS_PRIORIDADE_SINIR = {
+    "demanda": 0.50,
+    "sem_pev_listado": 0.15,      # nenhum PEV na lista municipal da Green Eletron
+    "sem_plano": 0.10,            # não declarou o plano ao SINIR no ano
+    "plano_sem_reee": 0.10,       # plano não cita eletroeletrônicos
+    "sem_coleta_seletiva": 0.05,  # não tem coleta seletiva implantada
+    "plano_sem_pev": 0.05,        # plano não prevê ecoponto/PEV
+    "passivo": 0.05,              # declarou passivo ambiental (lixão, área degradada)
+}
+CLASSES_PRIORIDADE_SINIR = ((70, "Alta"), (55, "Média"), (0, "Baixa"))  # ~20 % Alta em 2025
 
 # Pesos do índice de prioridade de novos pontos (soma = 1).
 PESOS_PRIORIDADE = {

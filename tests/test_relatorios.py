@@ -45,3 +45,29 @@ def test_anos_com_dados_parciais_nao_mostram_cobertura(tmp_path, monkeypatch):
     assert br[2024]["pontos"] == 1611 and br[2024]["municipios_atendidos"] == 366
     for ano in (2023, 2024):  # só a Green Eletron divulgou: a razão subestimaria a cobertura
         assert br[ano]["dados_parciais"] is True and br[ano]["cobertura_nominal"] is None
+
+
+def test_massa_zero_com_pontos_vira_sem_dado(tmp_path, monkeypatch):
+    """Massa 2024 gravada como 0 (ex.: CSV salvo pelo Excel) não pode aparecer como coleta zero."""
+    import json
+    import shutil
+    from reee import pipeline
+    for nome in ("PROCESSED", "POWERBI", "DASHBOARD_DATA"):
+        monkeypatch.setattr(C, nome, tmp_path / nome.lower())
+    monkeypatch.setattr(C, "RAW_SINIR", tmp_path / "sinir")
+    rel = tmp_path / "sinir" / "relatorios"
+    shutil.copytree(C.ROOT / "data" / "raw" / "sinir" / "relatorios", rel)
+    csv = rel / "totais_nacionais.csv"
+    # Lê sem depender da formatação do arquivo (separador, BOM, aspas, CRLF, "0" ou vazio),
+    # grava a massa de 2024 como 0 e salva de novo no formato que o pipeline lê.
+    nac = pd.read_csv(csv, dtype=str, sep=None, engine="python", encoding="utf-8-sig", keep_default_na=False)
+    alvo = (nac["ano"].str.strip() == "2024") & (nac["entidade"].str.strip() == "Green Eletron")
+    assert alvo.sum() == 1, "totais_nacionais.csv precisa ter uma linha de 2024 da Green Eletron"
+    nac.loc[alvo, "toneladas"] = "0"
+    nac.to_csv(csv, index=False, encoding="utf-8")
+    pipeline.executar()
+    d = json.loads((C.DASHBOARD_DATA / "dashboard.json").read_text(encoding="utf-8"))
+    br = {r["ano"]: r for r in d["brasil_ano"]}
+    assert br[2024]["pontos"] == 1611
+    assert br[2024]["toneladas"] is None and br[2024]["kg_hab"] is None
+    assert br[2023]["toneladas"] == 4279.67      # massa publicada continua intacta
